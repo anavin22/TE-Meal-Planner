@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    <h1>Browse Recipes</h1>
+  <div id="home">
+    <h1>Latest Recipes</h1>
     <!-- <p>You must be authenticated to see this</p> -->
     <button>Add New Recipe</button>
   
@@ -47,3 +47,24 @@ export default {
 };
 </script>
 
+<style>
+
+#home {
+  border-color: white;
+  border-style: solid;
+  border-width: 5px;
+  border-radius: 40px;
+  background-image: url("../assets/mainback2.png");
+  background-position: left;
+  background-repeat: repeat-x;
+  background-size: cover, contain;
+  position: fixed;
+  top: 3em;
+  bottom: 3em;
+  right: 3em;
+  left: 20%;
+  color: #249492;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+</style>
