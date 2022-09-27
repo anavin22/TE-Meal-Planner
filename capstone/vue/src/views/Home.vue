@@ -6,10 +6,10 @@
   
 
     <div class="recipes-browse">
-      <div class="card" v-for="recipe in $store.state.recipes" :key="">
+      <div class="card" v-for="recipe in recipes" :key="recipe.Id">
         <h2>{{recipe.title}}</h2>
         <p>{{recipe.description}}</p>
-        <!-- <router-link :to -->
+        <!-- <router-link :to> -->
           <button>View Recipe</button>
           <button>Save Recipe</button>
         <!-- </router-link> -->
@@ -23,6 +23,25 @@
 <script>
 export default {
   name: "home",
+  data() {
+    return {
+      recipe: {
+        recipe_id: 1,
+        created_by: 1,
+        recipe_name: 'test-recipe',
+        recipe_img: '',
+        ingredients: [
+          { ingredient_id: 1,
+            name: 'ingredient1',
+            quantity: 1,
+            unit: 'whole',
+        }
+        ],
+        instructions: ['instructions1', 'instructions2']
+      }
+    }
+  }
+  
 
 
 };
