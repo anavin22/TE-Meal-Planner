@@ -21,7 +21,7 @@ CREATE TABLE recipe (
     recipe_id SERIAL,
     created_by integer,
     recipe_name varchar(100) NOT NULL,
-    recipe_img varchar(50) NOT NULL,
+    recipe_img varchar NOT NULL,
     CONSTRAINT PK_recipe PRIMARY KEY (recipe_id),
     CONSTRAINT FK_created_by FOREIGN KEY (created_by) REFERENCES users(user_id)
 );
@@ -60,5 +60,11 @@ CREATE TABLE recipe_tag (
     tag_id integer,
     CONSTRAINT PK_recipe_tag PRIMARY KEY (recipe_id, tag_id)
 );
+
+CREATE TABLE saved_recipes (
+    recipe_id integer,
+    user_id integer,
+    CONSTRAINT PK_saved PRIMARY KEY (recipe_id, user_id)
+)
 
 COMMIT TRANSACTION;
