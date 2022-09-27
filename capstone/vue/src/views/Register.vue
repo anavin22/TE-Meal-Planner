@@ -1,11 +1,11 @@
 <template>
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">
-      <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Create an Account</h1>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
-      <label for="username" class="sr-only">Username</label>
+      <label for="username" class="sr-only">Username: </label>
       <input
         type="text"
         id="username"
@@ -14,8 +14,8 @@
         v-model="user.username"
         required
         autofocus
-      />
-      <label for="password" class="sr-only">Password</label>
+      /><br>
+      <label for="password" class="sr-only">Password: </label>
       <input
         type="password"
         id="password"
@@ -31,11 +31,12 @@
         placeholder="Confirm Password"
         v-model="user.confirmPassword"
         required
-      />
-      <router-link :to="{ name: 'login' }">Have an account?</router-link>
+      /> <br>
+
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
-      </button>
+      </button><br>
+            <router-link :to="{ name: 'login' }">Already have an account?</router-link>
     </form>
   </div>
 </template>
@@ -90,4 +91,45 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+
+/* html {
+  background-image: url("../assets/backgrounds/back2.jpg");
+  height: 100%;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover, contain;
+    color: #249492;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+} */
+
+#register {
+  border-color: white;
+  border-style: solid;
+  border-width: 5px;
+  border-radius: 40px;
+  background-image: url("../assets/Back2.png");
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: cover, contain;
+  position: fixed;
+  top: 3em;
+  bottom: 3em;
+  right: 3em;
+  left: 3em;
+}
+
+h1 {
+  font-size: 4em;
+
+}
+
+form {
+  position: relative;
+  left: 5%;
+  top: 5%;
+  font-size: 1.5em;
+}
+
+</style>
