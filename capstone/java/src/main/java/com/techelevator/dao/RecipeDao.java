@@ -12,6 +12,8 @@ public interface RecipeDao {
 
     Recipe getRecipeByName(String name);
 
+    List<Recipe> getAllSavedRecipesByUserId(int id);
+
     List<Recipe> getAllRecipesByCreatedBy(int createdBy);
 
     //getrecipebytag .. array of tags

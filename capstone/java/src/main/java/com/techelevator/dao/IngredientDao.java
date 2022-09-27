@@ -2,6 +2,8 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Ingredient;
 
+import java.util.List;
+
 public interface IngredientDao {
 
     Ingredient getIngredientById(int id);
@@ -10,6 +12,10 @@ public interface IngredientDao {
 
     Ingredient getIngredientByType(String type);
 
-    Ingredient createIngredient(Ingredient newIngredient);
+    Ingredient createIngredient(Ingredient ingredient);
+
+    Ingredient updateIngredient(Ingredient ingredient);
+
+    List<Ingredient> getAllIngredientsByRecipeId(int recipeId);
 
 }
