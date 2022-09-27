@@ -1,17 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>final-vue-capstone-seed</title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but final-vue-capstone-seed doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="dragon-fruit.png">
+  <title>final-vue-capstone-seed</title>
+
+  <style type="text/css">
+    html {
+      height: 100%;
+      width: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover, contain;
+  </style>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    $(function () {
+      var images = ['back1.jpg', 'back2.jpg', 'back3.jpg', 'back4.jpg'];
+      $('html').css({ 'background-image': 'url(/backgrounds/' + images[Math.floor(Math.random() * images.length)] + ')' });
+    });
+  </script>
+
+
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but final-vue-capstone-seed doesn't work properly without JavaScript enabled. Please enable it
+      to continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+</body>
+
 </html>
