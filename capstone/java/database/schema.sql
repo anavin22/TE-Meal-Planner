@@ -21,6 +21,7 @@ CREATE TABLE recipe (
     recipe_id SERIAL,
     created_by integer,
     recipe_name varchar(100) NOT NULL,
+    recipe_img varchar(50) NOT NULL,
     CONSTRAINT PK_recipe PRIMARY KEY (recipe_id),
     CONSTRAINT FK_created_by FOREIGN KEY (created_by) REFERENCES users(user_id)
 );
