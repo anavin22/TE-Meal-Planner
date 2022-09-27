@@ -14,6 +14,8 @@ public interface RecipeDao {
 
     List<Recipe> getAllRecipesByCreatedBy(int createdBy);
 
+    //getrecipebytag .. array of tags
+
     Recipe createRecipe(Recipe newRecipe);
 
     Recipe updateRecipe(Recipe recipe);

@@ -1,7 +1,6 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Ingredient;
-import com.techelevator.model.Instruction;
 
 public interface IngredientDao {
 
@@ -11,6 +10,6 @@ public interface IngredientDao {
 
     Ingredient getIngredientByType(String type);
 
-    Ingredient createIngredient(Instruction newInstruction);
+    Ingredient createIngredient(Ingredient newIngredient);
 
 }

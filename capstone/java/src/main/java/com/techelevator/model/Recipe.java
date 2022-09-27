@@ -4,6 +4,8 @@ public class Recipe<recipeName> {
     private int recipeId;
     private int createdBy;
     private String recipeName;
+    //add ingredients array
+    //add instruction array-- map? sequence = key, text = value
 
     public Recipe() {
     }

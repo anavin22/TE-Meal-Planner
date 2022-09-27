@@ -16,6 +16,10 @@ public class RecipeController {
     @Autowired
     private RecipeDao recipeDao;
 
+    public RecipeController(RecipeDao recipeDao) {
+        this.recipeDao = recipeDao;
+    }
+
     @GetMapping("/recipes/{id}")
     public Recipe getRecipeByRecipeId(@PathVariable int id) {
         return recipeDao.getRecipeByRecipeId(id);
