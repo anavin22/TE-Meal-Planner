@@ -1,7 +1,7 @@
 <template>
   <div id="recipe-details">
       <h2>{{detailedRecipe.recipeName}}</h2>
-      <img :src="detailedRecipe.image">
+      <img class="foodpic" :src="detailedRecipe.image">
       <ingredients v-bind:ingredients="detailedRecipe.ingredientList" />
       <instructions v-bind:instructions="detailedRecipe.instructions" />
 
@@ -58,6 +58,13 @@ export default {
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   text-align: center;
   min-height: 80vh;
+}
+
+.foodpic {
+    max-width: 30%;
+    height: auto;
+    border-radius: 30px;
+    box-shadow: 20px 16px teal;
 }
 
 

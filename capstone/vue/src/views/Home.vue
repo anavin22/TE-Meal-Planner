@@ -72,7 +72,7 @@ export default {
   color: #249492;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   text-align: center;
-  min-height: 80vh;
+  min-height: 100vh;
   z-index: -2;
 }
 
