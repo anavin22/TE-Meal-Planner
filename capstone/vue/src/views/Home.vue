@@ -67,8 +67,8 @@ export default {
   width: 80%;
   margin-right: auto;
   margin-left: auto;
-  margin-top: -5em;
-  padding-top: 3em;
+  margin-top: -7em;
+  padding-top: 5em;
   color: #249492;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   text-align: center;

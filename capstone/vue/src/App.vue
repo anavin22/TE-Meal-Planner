@@ -34,6 +34,7 @@ export default {
   text-align: center;
   position: relative;
   z-index: 900;
+  margin-top: 2em;
 }
 
 #nav {
