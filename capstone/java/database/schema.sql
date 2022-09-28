@@ -65,6 +65,6 @@ CREATE TABLE saved_recipes (
     recipe_id integer,
     user_id integer,
     CONSTRAINT PK_saved PRIMARY KEY (recipe_id, user_id)
-)
+);
 
 COMMIT TRANSACTION;

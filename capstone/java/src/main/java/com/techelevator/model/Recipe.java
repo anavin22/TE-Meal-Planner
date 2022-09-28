@@ -1,5 +1,6 @@
 package com.techelevator.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,7 +10,7 @@ public class Recipe<recipeName> {
     private int createdBy;
     private String recipeName;
     private String image;
-    Map<Integer, String> Instructions = new HashMap<>(); //sequence, instruction_text
+    List<String> Instructions = new ArrayList<>(); //sequence, instruction_text
     List<Ingredient> ingredientList;
     //add ingredients array
     //add instruction array-- map? sequence = key, text = value
@@ -17,7 +18,7 @@ public class Recipe<recipeName> {
     public Recipe() {
     }
 
-    public Recipe(int recipeId, int createdBy, String recipeName, String image, Map<Integer, String> Instructions, List<Ingredient> ingredientList) {
+    public Recipe(int recipeId, int createdBy, String recipeName, String image, List<String> Instructions, List<Ingredient> ingredientList) {
         this.recipeId = recipeId;
         this.createdBy = createdBy;
         this.recipeName = recipeName;
@@ -34,11 +35,11 @@ public class Recipe<recipeName> {
         this.image = image;
     }
 
-    public Map<Integer, String> getInstructions() {
+    public List<String> getInstructions() {
         return Instructions;
     }
 
-    public void setInstructions(Map<Integer, String> instructions) {
+    public void setInstructions(List<String> instructions) {
         Instructions = instructions;
     }
 

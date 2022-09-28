@@ -3,6 +3,7 @@ package com.techelevator.controller;
 import com.techelevator.dao.RecipeDao;
 import com.techelevator.model.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequestMapping
-//@PreAuthorize(is)
+@PreAuthorize("isAuthenticated()")
 public class RecipeController {
 
     @Autowired
@@ -39,4 +40,10 @@ public class RecipeController {
     public List<Recipe> getRecipeByCreatedBy(@PathVariable int createdBy){
         return recipeDao.getAllRecipesByCreatedBy(createdBy);
     }
+    @GetMapping("/recipes/latest")
+    public List<Recipe> getLatestRecipes(){
+        return recipeDao.getLatestRecipes();
+    }
+
+
 }

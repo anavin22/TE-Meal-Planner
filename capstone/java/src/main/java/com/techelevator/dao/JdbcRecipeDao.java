@@ -21,7 +21,7 @@ public class JdbcRecipeDao implements RecipeDao {
     @Override
     public Recipe getRecipeByRecipeId(int id) {
         Recipe recipe = null;
-        String sql = "SELECT id, created_by, recipe_name, recipe_img " +
+        String sql = "SELECT recipe_id, created_by, recipe_name, recipe_img " +
                 "FROM recipe WHERE id= ?";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, id);
         if(result.next()){
@@ -33,11 +33,10 @@ public class JdbcRecipeDao implements RecipeDao {
     @Override
     public List<Recipe> getAllRecipes() {
         List<Recipe> recipeList = new ArrayList<>();
-        String sql = "SELECT id, created_by, recipe_name, recipe_img " +
-                "FROM recipe";
+        String sql = "SELECT recipe_id FROM recipe ";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while(results.next()){
-            recipeList.add(mapRowToRecipe(results));
+            recipeList.add(createObjectCalledRecipe(results.getInt("recipe_id")));
         }
         return recipeList;
     }
@@ -45,7 +44,7 @@ public class JdbcRecipeDao implements RecipeDao {
     @Override
     public Recipe getRecipeByName(String name) {
         Recipe recipe = null;
-        String sql = "SELECT id, created_by, recipe_name, recipe_img " +
+        String sql = "SELECT recipe_id, created_by, recipe_name, recipe_img " +
                 "FROM recipe WHERE recipe_name = ?";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, name);
          if(result.next()){
@@ -58,7 +57,7 @@ public class JdbcRecipeDao implements RecipeDao {
     @Override
     public List<Recipe> getAllSavedRecipesByUserId(int id){
         List<Recipe> recipeList = new ArrayList<>();
-        String sql = "SELECT id, created_by, recipe_name, recipe_img " +
+        String sql = "SELECT recipe_id, created_by, recipe_name, recipe_img " +
                 "FROM recipe " +
                 "JOIN saved_recipe ON recipe.recipe_id = saved_recipe.recipe_id " +
                 "JOIN ";
@@ -67,14 +66,48 @@ public class JdbcRecipeDao implements RecipeDao {
 
     @Override
     public List<Recipe> getAllRecipesByCreatedBy(int createdBy) {
-        return null;
+        List<Recipe> recipes = new ArrayList<>();
+        String sql = "SELECT recipe_id FROM recipe WHERE created_by = ?";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, createdBy);
+        while(result.next()){
+            recipes.add(createObjectCalledRecipe(result.getInt("recipe_id")));
+        }
+        return recipes;
     }
 
     @Override
-    public Recipe createObjectCalledRecipe(Recipe newRecipe, int recipeId, String name) {
-        newRecipe.setIngredientList(jdbcIngredientDao.getAllIngredientsByRecipeId(recipeId));
-        newRecipe.setRecipeName(name);
-        return newRecipe;
+    public List<Recipe> getLatestRecipes() {
+        List<Recipe> latestRecipes = new ArrayList<>();
+        String sql = "SELECT recipe_id FROM recipe ORDER BY recipe_id DESC LIMIT 8";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while(results.next()){
+            latestRecipes.add(createObjectCalledRecipe(results.getInt("recipe_id")));
+        }
+        return latestRecipes;
+    }
+
+    @Override
+    public Recipe createObjectCalledRecipe(int recipeId) {
+        Recipe createdRecipe = new Recipe();
+        createdRecipe.setRecipeId(recipeId);
+//      createdRecipe.setRecipeName();
+        String sqlRecipeTable = "SELECT recipe_name, created_by, recipe_img " +
+                "FROM recipe WHERE recipe_id = ?";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sqlRecipeTable, recipeId);
+        if (result.next()) {
+            createdRecipe.setRecipeName(result.getString("recipe_name"));
+            createdRecipe.setCreatedBy(result.getInt("created_by"));
+            createdRecipe.setImage(result.getString("recipe_img"));
+        }
+        createdRecipe.getIngredientList().add(jdbcIngredientDao.getAllIngredientsByRecipeId(recipeId));
+
+        String sqlInstructionsTable = "SELECT instruction_text FROM instructions WHERE recipe_id = ? " +
+                "ORDER BY sequence ASC";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlInstructionsTable, recipeId);
+        while(results.next()){
+            createdRecipe.getInstructions().add(results.getString("instructions_text"));
+        }
+        return createdRecipe;
     }
 
     @Override
@@ -86,6 +119,7 @@ public class JdbcRecipeDao implements RecipeDao {
     public Recipe deleteRecipeById(int id) {
         return null;
     }
+
     private Recipe mapRowToRecipe(SqlRowSet result){
         Recipe recipe = new Recipe();
         recipe.setRecipeId(result.getInt("id"));
