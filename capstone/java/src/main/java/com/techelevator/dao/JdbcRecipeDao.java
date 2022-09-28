@@ -12,6 +12,7 @@ import java.util.List;
 public class JdbcRecipeDao implements RecipeDao {
 
     JdbcTemplate jdbcTemplate;
+    JdbcIngredientDao jdbcIngredientDao;
 
     public JdbcRecipeDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -70,8 +71,10 @@ public class JdbcRecipeDao implements RecipeDao {
     }
 
     @Override
-    public Recipe createRecipe(Recipe newRecipe) {
-        newRecipe
+    public Recipe createObjectCalledRecipe(Recipe newRecipe, int recipeId, String name) {
+        newRecipe.setIngredientList(jdbcIngredientDao.getAllIngredientsByRecipeId(recipeId));
+        newRecipe.setRecipeName(name);
+        return newRecipe;
     }
 
     @Override

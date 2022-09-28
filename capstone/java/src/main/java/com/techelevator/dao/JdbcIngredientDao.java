@@ -47,6 +47,14 @@ public class JdbcIngredientDao implements IngredientDao {
     }
 
     @Override
+    public Ingredient userAddsNewIngredientToDB(Ingredient newIngredient) {
+        String sql = "INSERT INTO ingredient (ingredient_name, ingredient_type) " +
+                "VALUES (?, ?) RETURNING ingredient_id";
+        Integer newId = jdbcTemplate.queryForObject(sql, Integer.class, newIngredient.getName(), newIngredient.getType());
+        return getIngredientById(newId);
+    }
+
+    @Override
     public Ingredient updateIngredient(Ingredient ingredient) {
         return null;
     }

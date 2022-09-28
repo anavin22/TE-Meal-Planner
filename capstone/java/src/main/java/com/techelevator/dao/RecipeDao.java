@@ -18,7 +18,7 @@ public interface RecipeDao {
 
     //getrecipebytag .. array of tags
 
-    Recipe createRecipe(Recipe newRecipe);
+    Recipe createObjectCalledRecipe(Recipe newRecipe, int recipeId, String name);
 
     Recipe updateRecipe(Recipe recipe);
 

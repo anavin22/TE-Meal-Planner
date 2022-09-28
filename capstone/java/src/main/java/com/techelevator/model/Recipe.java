@@ -17,11 +17,13 @@ public class Recipe<recipeName> {
     public Recipe() {
     }
 
-    public Recipe(int recipeId, int createdBy, String recipeName, String image) {
+    public Recipe(int recipeId, int createdBy, String recipeName, String image, Map<Integer, String> Instructions, List<Ingredient> ingredientList) {
         this.recipeId = recipeId;
         this.createdBy = createdBy;
         this.recipeName = recipeName;
         this.image = image;
+        this.Instructions = Instructions;
+        this.ingredientList = ingredientList;
     }
 
     public String getImage() {
