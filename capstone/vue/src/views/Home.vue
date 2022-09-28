@@ -2,26 +2,32 @@
   <div id="home">
     <h1>Latest Recipes</h1>
     <!-- <p>You must be authenticated to see this</p> -->
-    <button>Add New Recipe</button>
+    
   
 
     <div class="recipes-browse">
-      <div class="card" v-for="recipe in recipes" :key="recipe.Id">
+      <card-box />
+      
+      <!-- <div class="card" v-for="recipe in recipes" :key="recipe.Id">
         <h2>{{recipe.title}}</h2>
         <p>{{recipe.description}}</p>
-        <!-- <router-link :to> -->
+        <router-link :to>
           <button>View Recipe</button>
           <button>Save Recipe</button>
-        <!-- </router-link> -->
-      </div>
+        </router-link>
+      </div> -->
+
     </div>
+    <button>Add New Recipe</button>
   </div>
 </template>
 
 
 
 <script>
+import CardBox from '../components/CardBox.vue';
 export default {
+  components: { CardBox },
   name: "home",
   data() {
     return {
