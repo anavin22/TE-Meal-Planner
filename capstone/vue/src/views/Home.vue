@@ -58,14 +58,16 @@ export default {
   background-position: center;
   background-repeat: repeat-y;
   background-size: 75% auto;
-  position: fixed;
-  top: 3em;
-  bottom: 3em;
-  right: 10%;
-  left: 10%;
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: -5em;
+  padding-top: 3em;
   color: #249492;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   text-align: center;
+  min-height: 80vh;
+  z-index: -2;
 }
 
 

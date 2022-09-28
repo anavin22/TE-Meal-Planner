@@ -93,19 +93,9 @@ export default {
 
 <style>
 
-/* html {
-  background-image: url("../assets/backgrounds/back2.jpg");
-  height: 100%;
-  width: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover, contain;
-    color: #249492;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-} */
 
 #register {
-  border-color: white;
+    border-color: white;
   border-style: solid;
   border-width: 5px;
   border-radius: 40px;
@@ -118,6 +108,8 @@ export default {
   bottom: 3em;
   right: 3em;
   left: 3em;
+  color: #249492;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
 h1 {
@@ -127,6 +119,7 @@ h1 {
 
 form {
   position: relative;
+  text-align: left;
   left: 5%;
   top: 5%;
   font-size: 1.5em;

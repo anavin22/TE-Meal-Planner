@@ -79,15 +79,6 @@ export default {
 </script>
 
 <style scoped>
-/* #back {
-  background-image: url("../assets/backgrounds/back1.jpg");
-  height: 100%;
-  width: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover, contain;
-  z-index: 100;
-} */
 
 #login {
   border-color: white;
@@ -111,17 +102,12 @@ h1 {
   font-size: 4em;
 }
 
-/* form {
+form {
   position: relative;
   left: 5%;
   top: 5%;
   font-size: 1.5em;
-} */
+  text-align: left;
+}
 
-/* #nav {
-  position: fixed;
-  bottom: 4em;
-  left: 4em;
-  z-index: 100;
-} */
 </style>
