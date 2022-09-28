@@ -12,6 +12,7 @@ import java.util.List;
 public class JdbcRecipeDao implements RecipeDao {
 
     JdbcTemplate jdbcTemplate;
+    JdbcIngredientDao jdbcIngredientDao;
 
     public JdbcRecipeDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -34,12 +35,34 @@ public class JdbcRecipeDao implements RecipeDao {
         List<Recipe> recipeList = new ArrayList<>();
         String sql = "SELECT id, created_by, recipe_name, recipe_img " +
                 "FROM recipe";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(results);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while(results.next()){
+            recipeList.add(mapRowToRecipe(results));
+        }
+        return recipeList;
     }
 
     @Override
     public Recipe getRecipeByName(String name) {
-        return null;
+        Recipe recipe = null;
+        String sql = "SELECT id, created_by, recipe_name, recipe_img " +
+                "FROM recipe WHERE recipe_name = ?";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, name);
+         if(result.next()){
+             recipe = mapRowToRecipe(result);
+         }
+         return recipe;
+
+    }
+
+    @Override
+    public List<Recipe> getAllSavedRecipesByUserId(int id){
+        List<Recipe> recipeList = new ArrayList<>();
+        String sql = "SELECT id, created_by, recipe_name, recipe_img " +
+                "FROM recipe " +
+                "JOIN saved_recipe ON recipe.recipe_id = saved_recipe.recipe_id " +
+                "JOIN ";
+        return recipeList;
     }
 
     @Override
@@ -48,8 +71,10 @@ public class JdbcRecipeDao implements RecipeDao {
     }
 
     @Override
-    public Recipe createRecipe(Recipe newRecipe) {
-        return null;
+    public Recipe createObjectCalledRecipe(Recipe newRecipe, int recipeId, String name) {
+        newRecipe.setIngredientList(jdbcIngredientDao.getAllIngredientsByRecipeId(recipeId));
+        newRecipe.setRecipeName(name);
+        return newRecipe;
     }
 
     @Override

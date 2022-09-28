@@ -12,11 +12,13 @@ public interface RecipeDao {
 
     Recipe getRecipeByName(String name);
 
+    List<Recipe> getAllSavedRecipesByUserId(int id);
+
     List<Recipe> getAllRecipesByCreatedBy(int createdBy);
 
     //getrecipebytag .. array of tags
 
-    Recipe createRecipe(Recipe newRecipe);
+    Recipe createObjectCalledRecipe(Recipe newRecipe, int recipeId, String name);
 
     Recipe updateRecipe(Recipe recipe);
 
