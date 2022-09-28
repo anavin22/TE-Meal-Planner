@@ -79,7 +79,7 @@ export default {
 </script>
 
 <style scoped>
-#back {
+/* #back {
   background-image: url("../assets/backgrounds/back1.jpg");
   height: 100%;
   width: 100%;
@@ -87,7 +87,7 @@ export default {
   background-repeat: no-repeat;
   background-size: cover, contain;
   z-index: 100;
-}
+} */
 
 #login {
   border-color: white;

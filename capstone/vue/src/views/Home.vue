@@ -54,17 +54,20 @@ export default {
   border-style: solid;
   border-width: 5px;
   border-radius: 40px;
-  background-image: url("../assets/mainback2.png");
-  background-position: left;
-  background-repeat: repeat-x;
-  background-size: cover, contain;
+  background-image: url("../assets/mainback.png");
+  background-position: center;
+  background-repeat: repeat-y;
+  background-size: 75% auto;
   position: fixed;
   top: 3em;
   bottom: 3em;
-  right: 3em;
-  left: 20%;
+  right: 10%;
+  left: 10%;
   color: #249492;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  text-align: center;
 }
+
+
 
 </style>

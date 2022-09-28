@@ -18,5 +18,20 @@ export default {
 
 <style>
 
+#nav {
+  display: flex;
+  background-color: #249492;
+    border-radius: 40px;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    width: 20%;
+    height: 40px;
+    margin: auto 3em 3em 3em;
+    z-index: 900;
+}
+
+
 </style>
 
