@@ -62,10 +62,10 @@ public class JdbcIngredientDao implements IngredientDao {
     @Override
     public List<Ingredient> getAllIngredientsByRecipeId(int recipeId) {
          List<Ingredient> ingredientList = new ArrayList<>();
-         String sql = "SELECT ingredient_id, name, type, quantity, unit " +
-                "FROM ingredient JOIN ingredient_recipe ON ingredient.ingredient_id = ingredient_recipe.ingredient_id " +
-                "JOIN unit ON ingredient_recipe.unit_id = unit.unit_id " +
-                "WHERE ingredient_recipe.recipe_id = ?";
+         String sql = "SELECT ingredient.ingredient_id, ingredient_name, quantity, unit_name FROM ingredient\n" +
+                 "JOIN ingredient_recipe ON ingredient.ingredient_id = ingredient_recipe.ingredient_id\n" +
+                 "JOIN unit ON ingredient_recipe.unit_id = unit.unit_id\n" +
+                 "WHERE ingredient_recipe.recipe_id = ?;";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, recipeId);
         while(result.next()){
             ingredientList.add(mapRowToIngredient(result));
@@ -77,9 +77,9 @@ public class JdbcIngredientDao implements IngredientDao {
          Ingredient ingredient = new Ingredient();
          ingredient.setIngredientId(result.getInt("ingredient_id"));
          ingredient.setName(result.getString("ingredient_name"));
-         ingredient.setType(result.getString("ingredient_type"));
+         //ingredient.setType(result.getString("ingredient_type"));
          ingredient.setQuantity(result.getDouble("quantity"));
-         ingredient.setUnit(result.getDouble("unit"));
+         ingredient.setUnit(result.getString("unit_name"));
         return ingredient;
      }
 }

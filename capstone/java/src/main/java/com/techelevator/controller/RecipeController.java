@@ -21,7 +21,7 @@ public class RecipeController {
         this.recipeDao = recipeDao;
     }
 
-    @GetMapping("/recipes/{id}")
+    @GetMapping("/recipes/detail/{id}")
     public Recipe getRecipeByRecipeId(@PathVariable int id) {
         return recipeDao.getRecipeByRecipeId(id);
     }

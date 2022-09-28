@@ -5,11 +5,11 @@ public class Ingredient {
     private String name;
     private String type;
     private double quantity;
-    private double unit;
+    private String unit;
 
     public Ingredient(){};
 
-    public Ingredient(int ingredientId, String name, String type, double quantity, double unit) {
+    public Ingredient(int ingredientId, String name, String type, double quantity, String unit) {
         this.ingredientId = ingredientId;
         this.name = name;
         this.type = type;
@@ -49,11 +49,11 @@ public class Ingredient {
         this.quantity = quantity;
     }
 
-    public double getUnit() {
+    public String getUnit() {
         return unit;
     }
 
-    public void setUnit(double unit) {
+    public void setUnit(String unit) {
         this.unit = unit;
     }
 

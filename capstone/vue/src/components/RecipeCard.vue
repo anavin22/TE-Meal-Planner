@@ -1,7 +1,7 @@
 <template>
   <div id="recipe-card">
-      <img id="thumb" v-bind:src="recipe.recipe_img">
-      <h3>{{recipe.recipe_name}}</h3>
+      <img id="thumb" v-bind:src="recipe.image">
+      <h3>{{recipe.recipeName}}</h3>
       <input type="checkbox" id="save" name="saved" value="saved">
       <label for="saved">Save Recipe</label>
   </div>
@@ -25,8 +25,8 @@ color: white;
 }
 
 #thumb {
-    height: auto;
-    width: 9em;
+    max-height: 10em;
+    width: auto;
     margin: .5em;
     border-radius: 15px;
 }

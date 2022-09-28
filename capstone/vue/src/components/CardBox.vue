@@ -1,75 +1,32 @@
 <template>
   <div id="card-box">
-      <recipe-card v-bind:recipe="recipe" v-for="recipe in recipes" v-bind:key="recipe.id" />
+      
+      <router-link 
+      v-for="recipe in recipes" :key="recipe.recipeId" 
+      v-bind:recipe="recipe" 
+      :to="{ name: 'recipeDetails', params: { id: recipe.recipeId } }">
+      <recipe-card v-bind:recipe="recipe" />
+      </router-link>
   </div>
 </template>
 
 <script>
 import RecipeCard from './RecipeCard.vue'
+import RecipeService from '../services/RecipeService'
 export default {
   components: { RecipeCard },
     name: "cardBox",
     data() {
         return {
-            recipes: [
-                {
-        recipe_id: 1,
-        created_by: 1,
-        recipe_name: 'test-recipe',
-        recipe_img: 'https://static01.nyt.com/images/2021/02/17/dining/17tootired-grilled-cheese/17tootired-grilled-cheese-articleLarge.jpg',
-        ingredients: [
-          { ingredient_id: 1,
-            name: 'ingredient1',
-            quantity: 1,
-            unit: 'whole',
+            recipes: []
         }
-        ],
-        instructions: ['instructions1', 'instructions2']
-      },
-      {
-        recipe_id: 1,
-        created_by: 1,
-        recipe_name: 'test-recipe',
-        recipe_img: 'https://static01.nyt.com/images/2021/02/17/dining/17tootired-grilled-cheese/17tootired-grilled-cheese-articleLarge.jpg',
-        ingredients: [
-          { ingredient_id: 1,
-            name: 'ingredient1',
-            quantity: 1,
-            unit: 'whole',
-        }
-        ],
-        instructions: ['instructions1', 'instructions2']
-      },
-                      {
-        recipe_id: 1,
-        created_by: 1,
-        recipe_name: 'test-recipe',
-        recipe_img: 'https://static01.nyt.com/images/2021/02/17/dining/17tootired-grilled-cheese/17tootired-grilled-cheese-articleLarge.jpg',
-        ingredients: [
-          { ingredient_id: 1,
-            name: 'ingredient1',
-            quantity: 1,
-            unit: 'whole',
-        }
-        ],
-        instructions: ['instructions1', 'instructions2']
-      },
-      {
-        recipe_id: 1,
-        created_by: 1,
-        recipe_name: 'test-recipe',
-        recipe_img: 'https://static01.nyt.com/images/2021/02/17/dining/17tootired-grilled-cheese/17tootired-grilled-cheese-articleLarge.jpg',
-        ingredients: [
-          { ingredient_id: 1,
-            name: 'ingredient1',
-            quantity: 1,
-            unit: 'whole',
-        }
-        ],
-        instructions: ['instructions1', 'instructions2']
-      }
-            ]
-        }
+    },
+    created() {
+      RecipeService
+      .getLatestRecipes()
+      .then(response => {
+        this.recipes = response.data;
+      });
     }
 }
 </script>

@@ -14,19 +14,20 @@ public class JdbcRecipeDao implements RecipeDao {
     JdbcTemplate jdbcTemplate;
     JdbcIngredientDao jdbcIngredientDao;
 
-    public JdbcRecipeDao(JdbcTemplate jdbcTemplate) {
+    public JdbcRecipeDao(JdbcTemplate jdbcTemplate, JdbcIngredientDao jdbcIngredientDao) {
         this.jdbcTemplate = jdbcTemplate;
+        this.jdbcIngredientDao = jdbcIngredientDao;
     }
 
     @Override
     public Recipe getRecipeByRecipeId(int id) {
-        Recipe recipe = null;
-        String sql = "SELECT recipe_id, created_by, recipe_name, recipe_img " +
-                "FROM recipe WHERE id= ?";
-        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, id);
-        if(result.next()){
-            recipe = mapRowToRecipe(result);
-        }
+        Recipe recipe = createObjectCalledRecipe(id);
+//        String sql = "SELECT recipe_id, created_by, recipe_name, recipe_img " +
+//                "FROM recipe WHERE id= ?";
+//        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, id);
+//        if(result.next()){
+//            recipe = mapRowToRecipe(result);
+//        }
         return recipe;
     }
 
@@ -99,13 +100,13 @@ public class JdbcRecipeDao implements RecipeDao {
             createdRecipe.setCreatedBy(result.getInt("created_by"));
             createdRecipe.setImage(result.getString("recipe_img"));
         }
-        createdRecipe.getIngredientList().add(jdbcIngredientDao.getAllIngredientsByRecipeId(recipeId));
+       createdRecipe.setIngredientList(jdbcIngredientDao.getAllIngredientsByRecipeId(recipeId));
 
         String sqlInstructionsTable = "SELECT instruction_text FROM instructions WHERE recipe_id = ? " +
                 "ORDER BY sequence ASC";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sqlInstructionsTable, recipeId);
         while(results.next()){
-            createdRecipe.getInstructions().add(results.getString("instructions_text"));
+            createdRecipe.getInstructions().add(results.getString("instruction_text"));
         }
         return createdRecipe;
     }
