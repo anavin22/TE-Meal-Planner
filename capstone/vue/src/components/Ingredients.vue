@@ -20,15 +20,9 @@ export default {
 
 <style>
 #ingredients {
-
-    border-color: grey;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 30px;
-    margin: auto;
     width: 50%;
-    padding: 3%;
-    font-size: 1.5em;
+    font-size: 2em;
+    text-align: left;
 }
 
 tr {
