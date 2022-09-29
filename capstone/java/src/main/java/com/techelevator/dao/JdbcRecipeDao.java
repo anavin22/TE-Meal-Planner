@@ -38,7 +38,7 @@ public class JdbcRecipeDao implements RecipeDao {
         while(results.next()){
             favoritesList.add(results.getInt("recipe_id"));
         }
-        return favoritesList;
+        return favoritesList; 
     }
 
     @Override
