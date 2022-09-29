@@ -35,10 +35,10 @@ public class RecipeController {
         return recipeDao.getAllRecipes();
     }
 
-    @GetMapping("/recipes/{name}")
-    public Recipe getRecipeByName(@PathVariable String name) {
-        return recipeDao.getRecipeByName(name);
-    }
+//    @GetMapping("/recipes/{name}")
+//    public Recipe getRecipeByName(@PathVariable String name) {
+//        return recipeDao.getRecipeByName(name);
+//    }
 
     //getting list of all recipes created by a single user
     @GetMapping("/recipes/{createdBy}")
@@ -68,5 +68,12 @@ public class RecipeController {
         recipeDao.deleteRecipeById(recipeId);
     }
 
+    @GetMapping("/favoritelist")
+    public List<Integer> getListOfFavoriteRecipeIdsByUserId(Principal principal) {
+        int userId = userDao.findIdByUsername(principal.getName());
+        return recipeDao.getListOfFavoriteRecipeIdsByUserId(userId);
+    }
 }
+
+
 
