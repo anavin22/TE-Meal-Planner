@@ -12,6 +12,10 @@ export default {
 
     getRecipeById(id) {
         return axios.get(`/recipes/detail/${id}`)
+    },
+    
+    getSavedRecipes() {
+        return axios.get('/recipes/favorites')
     }
 
 }
