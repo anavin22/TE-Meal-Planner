@@ -20,6 +20,10 @@ export default {
 
     addToSavedRecipes() {
         return axios.post('/recipes/favorites')
+    },
+
+    getSavedList() {
+        return axios.get('/favoritelist')
     }
 
 }

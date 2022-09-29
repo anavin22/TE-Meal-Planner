@@ -19,6 +19,7 @@
 <script>
 import CardBox from '../components/CardBox.vue';
 import MySavedRecipes from '../components/MySavedRecipes.vue';
+import RecipeService from '../services/RecipeService'
 export default {
   components: { CardBox, MySavedRecipes },
   name: "home",
@@ -39,6 +40,15 @@ export default {
         instructions: ['instructions1', 'instructions2']
       }
     }
+  },
+  created(){
+    RecipeService
+    .getSavedList()
+    .then(response => {
+      if(response.status == 200) {
+        this.$store.commit('GET_SAVED_LIST', response.data);
+      }
+    });
   }
   
 
