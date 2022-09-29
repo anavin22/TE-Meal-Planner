@@ -14,10 +14,12 @@ public interface IngredientDao {
 
     Ingredient createIngredient(Ingredient ingredient);
 
-    Ingredient userAddsNewIngredientToDB(Ingredient ingredient);
-
     Ingredient updateIngredient(Ingredient ingredient);
 
     List<Ingredient> getAllIngredientsByRecipeId(int recipeId);
+
+    List<Ingredient> getAllIngredients();
+
+    void checkIngredientAndCreateIfNonexistent(Ingredient ingredient);
 
 }

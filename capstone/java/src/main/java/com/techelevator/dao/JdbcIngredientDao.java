@@ -10,10 +10,11 @@ import java.util.List;
 
 @Component
 public class JdbcIngredientDao implements IngredientDao {
-     JdbcTemplate jdbcTemplate;
-     public JdbcIngredientDao(JdbcTemplate jdbcTemplate){
-         this.jdbcTemplate = jdbcTemplate;
-     }
+    JdbcTemplate jdbcTemplate;
+
+    public JdbcIngredientDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     @Override
     public Ingredient getIngredientById(int id) {
@@ -33,25 +34,17 @@ public class JdbcIngredientDao implements IngredientDao {
 
     @Override
     public Ingredient createIngredient(Ingredient ingredient) {
-         Ingredient newIngredient = new Ingredient();
-         String sql = "SELECT ingredient_id, name, type, quantity, unit " +
-                 "FROM ingredient JOIN ingredient_recipe ON ingredient.ingredient_id = ingredient_recipe.ingredient_id " +
-                 "JOIN unit ON ingredient_recipe.unit_id = unit.unit_id " +
-                 "WHERE ingredient_recipe.recipe_id = ?";
-         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, ingredient);
-         if(result.next()){
-             newIngredient = mapRowToIngredient(result);
-         }
-         return newIngredient;
+        Ingredient newIngredient = new Ingredient();
+        String sql = "SELECT ingredient_id, name, type, quantity, unit " +
+                "FROM ingredient JOIN ingredient_recipe ON ingredient.ingredient_id = ingredient_recipe.ingredient_id " +
+                "JOIN unit ON ingredient_recipe.unit_id = unit.unit_id " +
+                "WHERE ingredient_recipe.recipe_id = ?";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, ingredient);
+        if (result.next()) {
+            newIngredient = mapRowToIngredient(result);
+        }
+        return newIngredient;
 
-    }
-
-    @Override
-    public Ingredient userAddsNewIngredientToDB(Ingredient newIngredient) {
-        String sql = "INSERT INTO ingredient (ingredient_name, ingredient_type) " +
-                "VALUES (?, ?) RETURNING ingredient_id";
-        Integer newId = jdbcTemplate.queryForObject(sql, Integer.class, newIngredient.getName(), newIngredient.getType());
-        return getIngredientById(newId);
     }
 
     @Override
@@ -61,25 +54,51 @@ public class JdbcIngredientDao implements IngredientDao {
 
     @Override
     public List<Ingredient> getAllIngredientsByRecipeId(int recipeId) {
-         List<Ingredient> ingredientList = new ArrayList<>();
-         String sql = "SELECT ingredient.ingredient_id, ingredient_name, quantity, unit_name FROM ingredient\n" +
-                 "JOIN ingredient_recipe ON ingredient.ingredient_id = ingredient_recipe.ingredient_id\n" +
-                 "JOIN unit ON ingredient_recipe.unit_id = unit.unit_id\n" +
-                 "WHERE ingredient_recipe.recipe_id = ?;";
+        List<Ingredient> ingredientList = new ArrayList<>();
+        String sql = "SELECT ingredient.ingredient_id, ingredient_name, quantity, unit_name FROM ingredient\n" +
+                "JOIN ingredient_recipe ON ingredient.ingredient_id = ingredient_recipe.ingredient_id\n" +
+                "JOIN unit ON ingredient_recipe.unit_id = unit.unit_id\n" +
+                "WHERE ingredient_recipe.recipe_id = ?;";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, recipeId);
-        while(result.next()){
+        while (result.next()) {
             ingredientList.add(mapRowToIngredient(result));
         }
-        return  ingredientList;
+        return ingredientList;
     }
 
-    private Ingredient mapRowToIngredient(SqlRowSet result){
-         Ingredient ingredient = new Ingredient();
-         ingredient.setIngredientId(result.getInt("ingredient_id"));
-         ingredient.setName(result.getString("ingredient_name"));
-         //ingredient.setType(result.getString("ingredient_type"));
-         ingredient.setQuantity(result.getDouble("quantity"));
-         ingredient.setUnit(result.getString("unit_name"));
+    @Override
+    public List<Ingredient> getAllIngredients() {
+        List<Ingredient> ingredientList = new ArrayList<>();
+        String sql = "SELECT ingredient_id, ingredient_name, ingredient_type FROM ingredient";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while (results.next()) {
+            ingredientList.add(mapRowToIngredient(results));
+        }
+        return ingredientList;
+    }
+    //        for(Ingredient eachIngredient : ingredientList) {
+//            if(!ingredientList.contains(eachIngredient)){
+//                createIngredient(eachIngredient);
+//                ingredientList.add(eachIngredient);
+//            }
+//        }
+//        return ingredientList;
+//    }
+    @Override
+    public void checkIngredientAndCreateIfNonexistent(Ingredient ingredient) {
+
+    }
+
+
+
+
+    private Ingredient mapRowToIngredient(SqlRowSet result) {
+        Ingredient ingredient = new Ingredient();
+        ingredient.setIngredientId(result.getInt("ingredient_id"));
+        ingredient.setName(result.getString("ingredient_name"));
+        //ingredient.setType(result.getString("ingredient_type"));
+        ingredient.setQuantity(result.getDouble("quantity"));
+        ingredient.setUnit(result.getString("unit_name"));
         return ingredient;
-     }
+    }
 }
