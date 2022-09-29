@@ -57,10 +57,10 @@ public class RecipeController {
         return recipeDao.getAllSavedRecipesByUserId(userId);
     }
 
-    @PutMapping("/recipes/{id}")
-    public Recipe putARecipeIntoSavedRecipes(Principal principal, @RequestBody Recipe recipe, @PathVariable int recipeId) {
+    @PostMapping("/recipes/favorites")
+    public void putARecipeIntoSavedRecipes(Principal principal, @RequestBody Recipe recipe) {
         int userId = userDao.findIdByUsername(principal.getName());
-        return recipeDao.putARecipeIntoSavedRecipes(principal, recipe, recipeId);
+       recipeDao.putARecipeIntoSavedRecipes(userId, recipe);
     }
 
     @DeleteMapping("/recipes/{id}")

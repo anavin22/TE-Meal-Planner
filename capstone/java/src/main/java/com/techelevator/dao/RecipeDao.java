@@ -23,7 +23,7 @@ public interface RecipeDao {
 
     Recipe createObjectCalledRecipe(int recipeId);
 
-    Recipe putARecipeIntoSavedRecipes( Principal principal, Recipe recipe, int user_id);
+    void putARecipeIntoSavedRecipes(int userId, Recipe recipe);
 
     Recipe deleteRecipeById(int recipeId);
 
