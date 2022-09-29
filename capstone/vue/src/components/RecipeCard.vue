@@ -2,7 +2,7 @@
   <div id="recipe-card">
       <img id="thumb" v-bind:src="recipe.image">
       <h3>{{recipe.recipeName}}</h3>
-      <input type="checkbox" id="save" name="saved" value="saved">
+      <input type="checkbox" id="save" name="saved" value="saved" v-bind:saved="saved">
       <label for="saved">Save Recipe</label>
   </div>
 </template>
@@ -11,6 +11,7 @@
 export default {
     name: "recipeCard",
     props: ['recipe']
+
 }
 </script>
 

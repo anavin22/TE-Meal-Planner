@@ -7,6 +7,7 @@
 
     <div class="recipes-browse">
       <card-box />
+      <my-saved-recipes />
       
       <!-- <div class="card" v-for="recipe in recipes" :key="recipe.Id">
         <h2>{{recipe.title}}</h2>
@@ -26,8 +27,9 @@
 
 <script>
 import CardBox from '../components/CardBox.vue';
+import MySavedRecipes from '../components/MySavedRecipes.vue';
 export default {
-  components: { CardBox },
+  components: { CardBox, MySavedRecipes },
   name: "home",
   data() {
     return {
