@@ -16,7 +16,15 @@ export default {
 
 <style>
 #instructions {
-    font-size: 1.5em;
+    border-color: grey;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 30px;
+    background-color: #FFFFFF40;
+    margin: auto;
+    width: 50%;
+    padding: 3%;
+    font-size: 2em;
     margin: auto;
     width: 50%;
     text-align: left;
