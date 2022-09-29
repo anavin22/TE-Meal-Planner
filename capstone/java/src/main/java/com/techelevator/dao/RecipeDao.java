@@ -22,8 +22,8 @@ public interface RecipeDao {
 
     Recipe createObjectCalledRecipe(int recipeId);
 
-    Recipe updateRecipe(Recipe recipe);
+    Recipe updateRecipe(Recipe recipe, int recipeId);
 
-    Recipe deleteRecipeById(int id);
+    Recipe deleteRecipeById(int recipeId);
 
 }
