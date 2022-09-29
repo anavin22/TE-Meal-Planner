@@ -16,6 +16,10 @@ export default {
     
     getSavedRecipes() {
         return axios.get('/recipes/favorites')
+    },
+
+    addToSavedRecipes() {
+        return axios.post('/recipes/favorites')
     }
 
 }

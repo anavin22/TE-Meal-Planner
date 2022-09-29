@@ -1,22 +1,13 @@
 <template>
   <div id="home">
     <h1>Latest Recipes</h1>
-    <!-- <p>You must be authenticated to see this</p> -->
-    
-  
 
     <div class="recipes-browse">
       <card-box />
+
+          <h1>My Recipes</h1>
       <my-saved-recipes />
       
-      <!-- <div class="card" v-for="recipe in recipes" :key="recipe.Id">
-        <h2>{{recipe.title}}</h2>
-        <p>{{recipe.description}}</p>
-        <router-link :to>
-          <button>View Recipe</button>
-          <button>Save Recipe</button>
-        </router-link>
-      </div> -->
 
     </div>
     <button>Add New Recipe</button>

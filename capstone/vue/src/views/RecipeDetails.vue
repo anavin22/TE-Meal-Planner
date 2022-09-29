@@ -5,7 +5,7 @@
     <ingredients id="ingredients" v-bind:ingredients="detailedRecipe.ingredientList" />
     <instructions id="instructions" v-bind:instructions="detailedRecipe.instructions" />
     <span id="savecheck">
-    <input type="checkbox" id="save" name="saved" value="saved"><br>
+    <input v-model="recipeSaved" type="checkbox" id="save" name="saved" value="saved"><br>
     <label for="saved">Save This Recipe</label></span>
   </div>
 </template>
@@ -20,6 +20,8 @@ export default {
   props: ["recipe"],
   data() {
     return {
+      recipeSaved: false,
+      currentRecipeId: parseInt(this.$route.params.id),
       detailedRecipe: {
         recipeId: 0,
         createdBy: 0,
@@ -34,8 +36,18 @@ export default {
     RecipeService.getRecipeById(parseInt(this.$route.params.id)).then(
       (response) => {
         this.detailedRecipe = response.data;
+      });
+    RecipeService.getSavedRecipes().then(response => {
+
+      if(response.status == 200) {
+      // let currentData = response.data;
+      console.log("current data: " + response.data);
+      response.data.filter((element) =>{
+        return element.recipeId == this.currentRecipeId;  
+      });
       }
-    );
+
+    });
   },
 };
 </script>
