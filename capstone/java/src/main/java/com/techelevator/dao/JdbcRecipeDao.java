@@ -55,11 +55,7 @@ public class JdbcRecipeDao implements RecipeDao {
     @Override
     public List<Recipe> getAllSavedRecipesByUserId(int id) {
         List<Recipe> recipeList = new ArrayList<>();
-<<<<<<< HEAD
-        String sql = "SELECT recipe_id FROM saved_recipes WHERE user_id = ?;";
-=======
         String sql =  "SELECT recipe_id FROM saved_recipes WHERE user_id = ?";
->>>>>>> a115da0935123b593242e58742631bf15f4dfc76
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
         while (results.next()) {
             recipeList.add(createObjectCalledRecipe(results.getInt("recipe_id")));
