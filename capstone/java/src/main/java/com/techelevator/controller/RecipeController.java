@@ -1,11 +1,13 @@
 package com.techelevator.controller;
 
 import com.techelevator.dao.RecipeDao;
+import com.techelevator.dao.UserDao;
 import com.techelevator.model.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @CrossOrigin
@@ -16,9 +18,11 @@ public class RecipeController {
 
     @Autowired
     private RecipeDao recipeDao;
+    private UserDao userDao;
 
-    public RecipeController(RecipeDao recipeDao) {
+    public RecipeController(RecipeDao recipeDao, UserDao userDao) {
         this.recipeDao = recipeDao;
+        this.userDao = userDao;
     }
 
     @GetMapping("/recipes/detail/{id}")
@@ -35,15 +39,33 @@ public class RecipeController {
     public Recipe getRecipeByName(@PathVariable String name) {
         return recipeDao.getRecipeByName(name);
     }
+
     //getting list of all recipes created by a single user
     @GetMapping("/recipes/{createdBy}")
-    public List<Recipe> getRecipeByCreatedBy(@PathVariable int createdBy){
+    public List<Recipe> getRecipeByCreatedBy(@PathVariable int createdBy) {
         return recipeDao.getAllRecipesByCreatedBy(createdBy);
     }
+
     @GetMapping("/recipes/latest")
-    public List<Recipe> getLatestRecipes(){
+    public List<Recipe> getLatestRecipes() {
         return recipeDao.getLatestRecipes();
     }
 
+    @GetMapping("/recipes/favorites/{id}")
+    public List<Recipe> getAllSavedRecipesByUserId(Principal principal) {
+        int userId = userDao.findIdByUsername(principal.getName());
+        return recipeDao.getAllSavedRecipesByUserId(userId);
+    }
+
+    @PutMapping("/recipes/{id}")
+    public Recipe updateRecipe(@RequestBody Recipe recipe, @PathVariable int recipeId) {
+        return recipeDao.updateRecipe(recipe, recipeId);
+    }
+
+    @DeleteMapping("/recipes/{id}")
+    public void deleteRecipe(@PathVariable int recipeId) {
+        recipeDao.deleteRecipeById(recipeId);
+    }
 
 }
+

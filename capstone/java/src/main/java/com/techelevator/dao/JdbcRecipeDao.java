@@ -22,12 +22,6 @@ public class JdbcRecipeDao implements RecipeDao {
     @Override
     public Recipe getRecipeByRecipeId(int id) {
         Recipe recipe = createObjectCalledRecipe(id);
-//        String sql = "SELECT recipe_id, created_by, recipe_name, recipe_img " +
-//                "FROM recipe WHERE id= ?";
-//        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, id);
-//        if(result.next()){
-//            recipe = mapRowToRecipe(result);
-//        }
         return recipe;
     }
 
@@ -61,7 +55,11 @@ public class JdbcRecipeDao implements RecipeDao {
         String sql = "SELECT recipe_id, created_by, recipe_name, recipe_img " +
                 "FROM recipe " +
                 "JOIN saved_recipe ON recipe.recipe_id = saved_recipe.recipe_id " +
-                "JOIN ";
+                "JOIN users ON saved_recipe.user_id = user.user_id ";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
+        while(results.next()){
+            recipeList.add(createObjectCalledRecipe(results.getInt("recipe_id")));
+        }
         return recipeList;
     }
 
@@ -112,7 +110,7 @@ public class JdbcRecipeDao implements RecipeDao {
     }
 
     @Override
-    public Recipe updateRecipe(Recipe recipe) {
+    public Recipe updateRecipe(Recipe recipe, int recipeId) {
         return null;
     }
 
