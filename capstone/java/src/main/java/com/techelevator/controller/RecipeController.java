@@ -62,6 +62,12 @@ public class RecipeController {
         recipeDao.putARecipeIntoSavedRecipes(userId, recipe);
     }
 
+    @PutMapping("/recipes/favorites")
+    public void updateRecipetoRecipeDB(Principal principal, @RequestBody Recipe recipe){
+        int userId = userDao.findIdByUsername(principal.getName());
+        recipeBuilderDao.updateRecipetoRecipeDB(recipe, userId);
+    }
+
     @DeleteMapping("/recipes/favorites/{recipeId}")
     public int removeRecipeFromSavedRecipes(Principal principal, @PathVariable int recipeId) {
         int userId = userDao.findIdByUsername(principal.getName());

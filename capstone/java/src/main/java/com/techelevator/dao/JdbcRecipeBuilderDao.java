@@ -1,5 +1,7 @@
 package com.techelevator.dao;
 
+import com.techelevator.model.Ingredient;
+import com.techelevator.model.Recipe;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -19,6 +21,16 @@ public class JdbcRecipeBuilderDao implements RecipeBuilderDao {
         int newRecipeId = jdbcTemplate.update(sql, Integer.class, createdBy, recipeName, recipeImage);
         return newRecipeId;
     }
+    //need to pass in a userId to verify userId == createdBy for conditional statement
+    @Override
+    public void updateRecipetoRecipeDB(Recipe recipe, int userId) {
+        String sql = "UPDATE recipe " +
+                    "SET created_by = ?, recipe_name = ?, recipe_img = ? " +
+                    "WHERE recipe_id = ?;";
+        jdbcTemplate.update(sql, userId, recipe.getRecipeName(),
+                        recipe.getImage(),recipe.getRecipeId());
+    }
+
 
     @Override
     public int addIngredientToDB(String ingredientName) {
@@ -33,6 +45,11 @@ public class JdbcRecipeBuilderDao implements RecipeBuilderDao {
        String sql = "INSERT INTO unit (unit_name) VALUES (?) RETURNING unit_id";
        int newUnitId = jdbcTemplate.update(sql, Integer.class, unitName);
        return newUnitId;
+    }
+
+    @Override
+    public void updateUnitToDB(Ingredient ingredient, int recipeId) {
+
     }
 
     @Override   //inserting ingredient to ingredient_recipe table
@@ -50,6 +67,14 @@ public class JdbcRecipeBuilderDao implements RecipeBuilderDao {
     }
 
     @Override
+    public void updateIngredientQuantityToRecipe(Ingredient ingredient, int recipeId) {
+        String sql = "UPDATE ingredient_recipe SET recipe_id = ?," +
+                " quantity = ?, unit_id = ? WHERE ingredient_id = ?";
+                jdbcTemplate.update(sql, recipeId, ingredient.getQuantity(),
+                                    ingredient.getUnit(), ingredient.getIngredientId());
+    }
+
+    @Override
     public int addInstructionToRecipe(int recipeId, int sequence, String instruction_text) {
         String sql = "INSERT INTO instructions (recipe_id, sequence, instruction_text) " +
                 "VALUES (?, ?, ?) RETURNING instruction_id";
@@ -61,6 +86,11 @@ public class JdbcRecipeBuilderDao implements RecipeBuilderDao {
     public void removeInstructionFromRecipe(int instructionId) {
         String sql = "DELETE FROM instructions WHERE instruction_id = ?";
         jdbcTemplate.update(sql, instructionId);
+
+    }
+
+    @Override
+    public void updateInstructionsToRecipe(int recipeId, int sequence, String instructionText) {
 
     }
     //add new componenet - recipe name/picture

@@ -75,9 +75,8 @@ public class JdbcRecipeDao implements RecipeDao {
             createdRecipe.getInstructions().add(results.getString("instruction_text"));
         }
         return createdRecipe;
+
     }
-
-
 
     @Override
     public List<Integer> getListOfFavoriteRecipeIdsByUserId(int userId) {
