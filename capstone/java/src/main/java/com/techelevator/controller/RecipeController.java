@@ -39,11 +39,6 @@ public class RecipeController {
         return recipeDao.getAllRecipes();
     }
 
-//    @GetMapping("/recipes/{name}")
-//    public Recipe getRecipeByName(@PathVariable String name) {
-//        return recipeDao.getRecipeByName(name);
-//    }
-
     //getting list of all recipes created by a single user
     @GetMapping("/recipes/{createdBy}")
     public List<Recipe> getRecipeByCreatedBy(@PathVariable int createdBy) {
@@ -64,7 +59,7 @@ public class RecipeController {
     @PostMapping("/recipes/favorites")
     public void putARecipeIntoSavedRecipes(Principal principal, @RequestBody Recipe recipe) {
         int userId = userDao.findIdByUsername(principal.getName());
-       recipeDao.putARecipeIntoSavedRecipes(userId, recipe);
+        recipeDao.putARecipeIntoSavedRecipes(userId, recipe);
     }
 
     @DeleteMapping("/recipes/favorites/{recipeId}")
@@ -84,26 +79,42 @@ public class RecipeController {
         int userId = userDao.findIdByUsername(principal.getName());
         return recipeDao.getListOfFavoriteRecipeIdsByUserId(userId);
     }
+
     @PostMapping("/recipes")
-    public int addRecipeToRecipeDB(Principal principal, String recipeName, String recipeImage){
+    public int addRecipeToRecipeDB(Principal principal, String recipeName, String recipeImage) {
         int userId = userDao.findIdByUsername(principal.getName());
         return recipeBuilderDao.addRecipeToRecipeDB(recipeName, recipeImage, userId);
     }
+
     @PostMapping("/ingredient")
-    public int addIngredientToDB(String ingredientName){
+    public int addIngredientToDB(String ingredientName) {
         return recipeBuilderDao.addIngredientToDB(ingredientName);
     }
+
     @PostMapping("/unit")
-    public int addUnitToDB(String unitName){
+    public int addUnitToDB(String unitName) {
         return recipeBuilderDao.addUnitToDB(unitName);
     }
+
     @PostMapping("/recipes/{recipeId}/ingredient")
-    public void addIngredientToRecipe(@PathVariable int recipeId, int ingredientId, double quantity, int unitId){
+    public void addIngredientToRecipe(@PathVariable int recipeId, int ingredientId, double quantity, int unitId) {
         recipeBuilderDao.addIngredientToRecipe(ingredientId, recipeId, quantity, unitId);
     }
-    @DeleteMapping("/ingredient/{ingredientId}")
-    
 
+    @DeleteMapping("/ingredient/{ingredientId}")
+    public void removeIngredientFromRecipe(@PathVariable int ingredientId, int recipeId) {
+        recipeBuilderDao.removeIngredientFromRecipe(ingredientId, recipeId);
+    }
+
+    @PostMapping("/recipes/{recipeId}/instruction")
+    public int addInstructionToRecipe(@PathVariable int recipeId, int sequence, String instructionText) {
+        return recipeBuilderDao.addInstructionToRecipe(recipeId, sequence, instructionText);
+    }
+
+    @DeleteMapping("/instruction/{instructionId}")
+    public void removeInstructionFromRecipe(@PathVariable int instructionId) {
+        recipeBuilderDao.removeInstructionFromRecipe(instructionId);
+    }
 
 }
 

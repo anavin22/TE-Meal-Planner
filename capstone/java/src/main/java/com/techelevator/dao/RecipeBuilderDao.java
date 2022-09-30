@@ -12,7 +12,7 @@ public interface RecipeBuilderDao {
 
     void removeIngredientFromRecipe(int ingredientId, int recipeId);
 
-    int addInstructionToRecipe(int recipeId, int sequence, String instruction_text);
+    int addInstructionToRecipe(int recipeId, int sequence, String instructionText);
 
     void removeInstructionFromRecipe(int instructionId);
 
