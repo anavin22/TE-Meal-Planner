@@ -41,17 +41,18 @@ export default {
       .addToSavedRecipes(this.detailedRecipe)
       .then(response => {
         if(response.status == 200) {
-          this.$store.state.commit('ADD_SAVED_RECIPE', this.currentRecipeId);
+          this.$store.commit('ADD_SAVED_RECIPE', this.currentRecipeId);
           this.recipeSaved = true;
         }
       })
     }
     else {
+      alert("Unsaved recipes cannot be added to meal plans!");
       RecipeService
       .removeFromSavedRecipes(this.detailedRecipe.recipeId)
       .then(response => {
         if(response.status == 200) {
-          this.$store.state.commit('REMOVE_SAVED_RECIPE', this.currentRecipeId);
+          this.$store.commit('REMOVE_SAVED_RECIPE', this.currentRecipeId);
           this.recipeSaved = false;
         }
       }); 
