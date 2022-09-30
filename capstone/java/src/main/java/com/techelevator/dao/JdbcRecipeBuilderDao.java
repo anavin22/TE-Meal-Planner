@@ -16,7 +16,7 @@ public class JdbcRecipeBuilderDao implements RecipeBuilderDao {
     public int addRecipeToRecipeDB(String recipeName, String recipeImage, int createdBy) {
         String sql = "INSERT INTO recipe (created_by, recipe_name, recipe_img) " +
                 "VALUES (?, ?, ?) RETURNING recipe_id";
-        int newRecipeId = jdbcTemplate.update(sql, Integer.class, createdBy, recipeName, recipeImage);
+        int newRecipeId = jdbcTemplate.queryForObject(sql, Integer.class, createdBy, recipeName, recipeImage);
         return newRecipeId;
     }
 
