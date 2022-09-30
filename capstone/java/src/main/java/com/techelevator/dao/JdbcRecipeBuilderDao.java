@@ -23,7 +23,7 @@ public class JdbcRecipeBuilderDao implements RecipeBuilderDao {
     }
     //need to pass in a userId to verify userId == createdBy for conditional statement
     @Override
-    public void updateRecipetoRecipeDB(Recipe recipe, int userId) {
+    public void updateRecipeToRecipeDB(Recipe recipe, int userId) {
         String sql = "UPDATE recipe " +
                     "SET created_by = ?, recipe_name = ?, recipe_img = ? " +
                     "WHERE recipe_id = ?;";
@@ -40,23 +40,11 @@ public class JdbcRecipeBuilderDao implements RecipeBuilderDao {
         return newIngredientId;
     }
 
-    @Override
-    public int addUnitToDB(String unitName) {
-       String sql = "INSERT INTO unit (unit_name) VALUES (?) RETURNING unit_id";
-       int newUnitId = jdbcTemplate.update(sql, Integer.class, unitName);
-       return newUnitId;
-    }
-
-    @Override
-    public void updateUnitToDB(Ingredient ingredient, int recipeId) {
-
-    }
-
     @Override   //inserting ingredient to ingredient_recipe table
-    public void addIngredientToRecipe(int ingredientId, int recipeId, double quantity, int unitId) {
-        String sql = "INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_id " +
+    public void addIngredientToRecipe(int ingredientId, int recipeId, double quantity, String unit) {
+        String sql = "INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit " +
                 "VALUES (?, ?, ?, ?)";
-        jdbcTemplate.update(sql, ingredientId, recipeId, quantity, unitId);
+        jdbcTemplate.update(sql, ingredientId, recipeId, quantity, unit);
     }
 
     @Override
@@ -68,17 +56,16 @@ public class JdbcRecipeBuilderDao implements RecipeBuilderDao {
 
     @Override
     public void updateIngredientQuantityToRecipe(Ingredient ingredient, int recipeId) {
-        String sql = "UPDATE ingredient_recipe SET recipe_id = ?," +
-                " quantity = ?, unit_id = ? WHERE ingredient_id = ?";
-                jdbcTemplate.update(sql, recipeId, ingredient.getQuantity(),
-                                    ingredient.getUnit(), ingredient.getIngredientId());
+        String sql = "UPDATE ingredient_recipe SET quantity = ? WHERE ingredient_id = ? AND recipe_id = ? ";
+                jdbcTemplate.update(sql, ingredient.getQuantity(), ingredient.getIngredientId(), recipeId);
+
     }
 
     @Override
-    public int addInstructionToRecipe(int recipeId, int sequence, String instruction_text) {
+    public int addInstructionToRecipe(int recipeId, int sequence, String instructionText) {
         String sql = "INSERT INTO instructions (recipe_id, sequence, instruction_text) " +
                 "VALUES (?, ?, ?) RETURNING instruction_id";
-        int newInstructionid = jdbcTemplate.update(sql, Integer.class, recipeId, sequence, instruction_text);
+        int newInstructionid = jdbcTemplate.update(sql, Integer.class, recipeId, sequence, instructionText);
         return newInstructionid;
     }
 

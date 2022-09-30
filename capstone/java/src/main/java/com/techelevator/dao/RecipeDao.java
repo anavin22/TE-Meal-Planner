@@ -24,7 +24,7 @@ public interface RecipeDao {
 
     Recipe createObjectCalledRecipe(int recipeId);
 
-    Recipe createRecipeObjectAndCheckForIngredients(int recipeId);
+//    Recipe createRecipeObjectAndCheckForIngredients(int recipeId);
 
     void putARecipeIntoSavedRecipes(int userId, Recipe recipe);
 

@@ -26,19 +26,12 @@ CREATE TABLE recipe (
     CONSTRAINT FK_created_by FOREIGN KEY (created_by) REFERENCES users(user_id)
 );
 
-CREATE TABLE unit (
-    unit_id SERIAL,
-    unit_name varchar(50) NOT NULL,
-    CONSTRAINT PK_unit PRIMARY KEY (unit_id)
-);
-
 CREATE TABLE ingredient_recipe (
     ingredient_id integer,
     recipe_id integer,
     quantity numeric NOT NULL,
-    unit_id integer,
+    unit varchar(100),
     CONSTRAINT PK_ingredient_recipe PRIMARY KEY (ingredient_id, recipe_id),
-    CONSTRAINT FK_unit_id FOREIGN KEY (unit_id) REFERENCES unit(unit_id)
 );
 
 CREATE TABLE instructions (

@@ -37,22 +37,22 @@ public class JdbcRecipeDao implements RecipeDao {
         Recipe recipe = createObjectCalledRecipe(id);
         return recipe;
     }
-    @Override
-    public Recipe createRecipeObjectAndCheckForIngredients(int recipeId) {
-        Recipe createdRecipe = new Recipe();
-        createdRecipe.setRecipeId(recipeId);
-        String sqlRecipeTable = "SELECT recipe_name, created_by, recipe_img " +
-                "FROM recipe WHERE recipe_id = ?";
-        SqlRowSet result = jdbcTemplate.queryForRowSet(sqlRecipeTable, recipeId);
-        if (result.next()) {
-            createdRecipe.setRecipeName(result.getString("recipe_name"));
-            createdRecipe.setCreatedBy(result.getInt("created_by"));
-            createdRecipe.setImage(result.getString("recipe_img"));
-        }
-        List<Ingredient> ingredientList = ingredientDao.getAllIngredients();
-        createdRecipe.setIngredientList(ingredientDao.getAllIngredients());
-        return createdRecipe;
-    }
+//    @Override
+//    public Recipe createRecipeObjectAndCheckForIngredients(int recipeId) {
+//        Recipe createdRecipe = new Recipe();
+//        createdRecipe.setRecipeId(recipeId);
+//        String sqlRecipeTable = "SELECT recipe_name, created_by, recipe_img " +
+//                "FROM recipe WHERE recipe_id = ?";
+//        SqlRowSet result = jdbcTemplate.queryForRowSet(sqlRecipeTable, recipeId);
+//        if (result.next()) {
+//            createdRecipe.setRecipeName(result.getString("recipe_name"));
+//            createdRecipe.setCreatedBy(result.getInt("created_by"));
+//            createdRecipe.setImage(result.getString("recipe_img"));
+//        }
+//        List<Ingredient> ingredientList = ingredientDao.getAllIngredients();
+//        createdRecipe.setIngredientList(ingredientDao.getAllIngredients());
+//        return createdRecipe;
+//    }
 
     @Override
     public Recipe createObjectCalledRecipe(int recipeId) {
