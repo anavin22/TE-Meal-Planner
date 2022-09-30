@@ -19,7 +19,9 @@ if(currentToken != null) {
 export default new Vuex.Store({
   state: {
     token: currentToken || '',
-    user: currentUser || {}
+    user: currentUser || {},
+    recipeSaved: false,
+    savedRecipes: []
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -37,6 +39,25 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+    },
+    SET_RECIPE_SAVED(state, newValue) {
+      state.recipeSaved = newValue;
+    },
+    GET_SAVED_LIST(state, recipeList) {
+      state.savedRecipes = recipeList;
+    },
+    CHECK_SAVED_LIST(state, id) {
+      if(state.savedRecipes.includes(id)){
+        return true;
+      }
+    },
+
+    ADD_SAVED_RECIPE(state, id) {
+      state.savedRecipes.push(id);
+    },
+
+    REMOVE_SAVED_RECIPE(state, id) {
+      state.savedRecipes = this.state.savedRecipes.filter(recipe => recipe !== id);
     }
   }
 })

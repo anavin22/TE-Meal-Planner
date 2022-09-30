@@ -1,6 +1,6 @@
 <template>
-  <div id="recipe-card">
-       <h3>{{recipe.recipeName}}</h3>
+  <div id="saved-card">
+            <h3>{{recipe.recipeName}}</h3>
       <img id="thumb" v-bind:src="recipe.image">
 
   </div>
@@ -10,11 +10,12 @@
 export default {
     name: "recipeCard",
     props: ['recipe']
+
 }
 </script>
 
 <style>
-#recipe-card {
+#saved-card {
 background: rgb(36,148,146);
 background: linear-gradient(90deg, rgba(36,148,146,1) 70%, rgba(30,70,69,1) 100%);
 height: 15em;

@@ -11,7 +11,7 @@ public interface RecipeDao {
 
     List<Recipe> getAllRecipes();
 
-    Recipe getRecipeByName(String name);
+//    Recipe getRecipeByName(String name);
 
     List<Recipe> getAllSavedRecipesByUserId(int id);
 
@@ -21,10 +21,22 @@ public interface RecipeDao {
 
     List<Recipe> getLatestRecipes();
 
+
     Recipe createObjectCalledRecipe(int recipeId);
+
+    Recipe createRecipeObjectAndCheckForIngredients(int recipeId);
 
     void putARecipeIntoSavedRecipes(int userId, Recipe recipe);
 
+    int removeARecipeFromSavedRecipes(int userId, int recipeId);
+
     Recipe deleteRecipeById(int recipeId);
+
+
+    Recipe createRecipe(Recipe recipe);
+
+    List<Integer> getListOfFavoriteRecipeIdsByUserId(int userId);
+
+
 
 }

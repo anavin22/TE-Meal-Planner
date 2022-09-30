@@ -1,22 +1,13 @@
 <template>
-  <div id="home">
+  <div id="Home" class="main-look">
     <h1>Latest Recipes</h1>
-    <!-- <p>You must be authenticated to see this</p> -->
-    
-  
 
     <div class="recipes-browse">
       <card-box />
+
+          <h1>My Recipes</h1>
       <my-saved-recipes />
       
-      <!-- <div class="card" v-for="recipe in recipes" :key="recipe.Id">
-        <h2>{{recipe.title}}</h2>
-        <p>{{recipe.description}}</p>
-        <router-link :to>
-          <button>View Recipe</button>
-          <button>Save Recipe</button>
-        </router-link>
-      </div> -->
 
     </div>
     <button>Add New Recipe</button>
@@ -28,6 +19,7 @@
 <script>
 import CardBox from '../components/CardBox.vue';
 import MySavedRecipes from '../components/MySavedRecipes.vue';
+import RecipeService from '../services/RecipeService'
 export default {
   components: { CardBox, MySavedRecipes },
   name: "home",
@@ -48,6 +40,15 @@ export default {
         instructions: ['instructions1', 'instructions2']
       }
     }
+  },
+  created(){
+    RecipeService
+    .getSavedList()
+    .then(response => {
+      if(response.status == 200) {
+        this.$store.commit('GET_SAVED_LIST', response.data);
+      }
+    });
   }
   
 
@@ -57,7 +58,7 @@ export default {
 
 <style>
 
-#home {
+.main-look {
   border-color: white;
   border-style: solid;
   border-width: 5px;
@@ -69,8 +70,8 @@ export default {
   width: 80%;
   margin-right: auto;
   margin-left: auto;
-  margin-top: -7em;
-  padding-top: 5em;
+  margin-top: -9em;
+  padding-top: 6em;
   color: #249492;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   text-align: center;
