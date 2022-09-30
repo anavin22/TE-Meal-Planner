@@ -28,6 +28,8 @@ public interface RecipeDao {
 
     void putARecipeIntoSavedRecipes(int userId, Recipe recipe);
 
+    int removeARecipeFromSavedRecipes(int userId, int recipeId);
+
     Recipe deleteRecipeById(int recipeId);
 
 

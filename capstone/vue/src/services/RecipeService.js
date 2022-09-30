@@ -18,12 +18,16 @@ export default {
         return axios.get('/recipes/favorites')
     },
 
-    addToSavedRecipes() {
-        return axios.post('/recipes/favorites')
+    addToSavedRecipes(recipe) {
+        return axios.post('/recipes/favorites', recipe)
     },
 
     getSavedList() {
         return axios.get('/favoritelist')
+    },
+
+    removeFromSavedRecipes(id) {
+        return axios.delete(`/recipes/favorites/${id}`)
     }
 
 }

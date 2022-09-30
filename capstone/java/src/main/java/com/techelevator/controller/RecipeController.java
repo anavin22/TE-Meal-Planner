@@ -63,6 +63,13 @@ public class RecipeController {
        recipeDao.putARecipeIntoSavedRecipes(userId, recipe);
     }
 
+    @DeleteMapping("/recipes/favorites/{recipeId}")
+    public int removeRecipeFromSavedRecipes(Principal principal, @PathVariable int recipeId) {
+        int userId = userDao.findIdByUsername(principal.getName());
+        int success = recipeDao.removeARecipeFromSavedRecipes(userId, recipeId);
+        return success;
+    }
+
     @DeleteMapping("/recipes/{id}")
     public void deleteRecipe(@PathVariable int recipeId) {
         recipeDao.deleteRecipeById(recipeId);
