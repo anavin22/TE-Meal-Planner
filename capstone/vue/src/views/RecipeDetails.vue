@@ -1,5 +1,5 @@
 <template>
-  <div id="recipe-details">
+  <div id="recipe-details" class="main-look">
     <h2 id="recipe-name">{{ detailedRecipe.recipeName }}</h2>
     <img id="foodpic" :src="detailedRecipe.image" />
     <ingredients id="ingredients" v-bind:ingredients="detailedRecipe.ingredientList" />
@@ -73,22 +73,6 @@ export default {
 
 <style>
 #recipe-details {
-  border-color: white;
-  border-style: solid;
-  border-width: 5px;
-  border-radius: 40px;
-  background-image: url("../assets/mainback.png");
-  background-position: center;
-  background-repeat: repeat-y;
-  background-size: 75% auto;
-  width: 80%;
-  margin-right: auto;
-  margin-left: auto;
-  margin-top: -7em;
-  padding-top: 5em;
-  color: #249492;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  min-height: 80vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-areas: 
