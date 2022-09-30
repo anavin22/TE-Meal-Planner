@@ -54,7 +54,7 @@ export default {
 
 img {
   position: relative;
-  margin: auto;
+  margin-top: 3em;
   z-index: 9000;
   width: 50%;
   height: auto;

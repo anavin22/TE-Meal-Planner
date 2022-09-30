@@ -1,7 +1,8 @@
 <template>
   <div id="saved-card">
+            <h3>{{recipe.recipeName}}</h3>
       <img id="thumb" v-bind:src="recipe.image">
-      <h3>{{recipe.recipeName}}</h3>
+
   </div>
 </template>
 
@@ -21,11 +22,14 @@ height: 15em;
 width: 10em;
 border-radius: 20px;
 color: white;
+padding-top: 10px;
+padding-right: 5px;
+padding-left: 5px;
 }
 
 #thumb {
     max-height: 10em;
-    width: auto;
+    max-width: 9em;
     margin: .5em;
     border-radius: 15px;
 }

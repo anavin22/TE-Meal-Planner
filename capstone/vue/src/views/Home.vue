@@ -1,5 +1,5 @@
 <template>
-  <div id="home">
+  <div id="Home" class="main-look">
     <h1>Latest Recipes</h1>
 
     <div class="recipes-browse">
@@ -58,7 +58,7 @@ export default {
 
 <style>
 
-#home {
+.main-look {
   border-color: white;
   border-style: solid;
   border-width: 5px;
@@ -70,8 +70,8 @@ export default {
   width: 80%;
   margin-right: auto;
   margin-left: auto;
-  margin-top: -7em;
-  padding-top: 5em;
+  margin-top: -9em;
+  padding-top: 6em;
   color: #249492;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   text-align: center;
