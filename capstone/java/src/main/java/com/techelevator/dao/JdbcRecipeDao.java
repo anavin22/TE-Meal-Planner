@@ -164,8 +164,6 @@ public class JdbcRecipeDao implements RecipeDao {
         return null;
     }
 
-
-
     private Recipe mapRowToRecipe(SqlRowSet result) {
         Recipe recipe = new Recipe();
         recipe.setRecipeId(result.getInt("id"));
