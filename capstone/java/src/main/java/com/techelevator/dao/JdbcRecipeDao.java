@@ -51,9 +51,6 @@ public class JdbcRecipeDao implements RecipeDao {
         }
         List<Ingredient> ingredientList = ingredientDao.getAllIngredients();
         createdRecipe.setIngredientList(ingredientDao.getAllIngredients());
-        for(Ingredient eachIngredient : ingredientList) {
-//            if()
-        }
         return createdRecipe;
     }
 
@@ -179,6 +176,5 @@ public class JdbcRecipeDao implements RecipeDao {
         recipe.setRecipeName(result.getString("recipe_name"));
         recipe.setImage(result.getString("recipe_img"));
         return recipe;
-
     }
 }

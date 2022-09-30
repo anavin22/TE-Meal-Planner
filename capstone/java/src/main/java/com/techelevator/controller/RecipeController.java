@@ -1,9 +1,11 @@
 package com.techelevator.controller;
 
+import com.techelevator.dao.RecipeBuilderDao;
 import com.techelevator.dao.RecipeDao;
 import com.techelevator.dao.UserDao;
 import com.techelevator.model.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.method.P;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,10 +21,12 @@ public class RecipeController {
     @Autowired
     private RecipeDao recipeDao;
     private UserDao userDao;
+    private RecipeBuilderDao recipeBuilderDao;
 
-    public RecipeController(RecipeDao recipeDao, UserDao userDao) {
+    public RecipeController(RecipeDao recipeDao, UserDao userDao, RecipeBuilderDao recipeBuilderDao) {
         this.recipeDao = recipeDao;
         this.userDao = userDao;
+        this.recipeBuilderDao = recipeBuilderDao;
     }
 
     @GetMapping("/recipes/detail/{id}")
@@ -80,6 +84,27 @@ public class RecipeController {
         int userId = userDao.findIdByUsername(principal.getName());
         return recipeDao.getListOfFavoriteRecipeIdsByUserId(userId);
     }
+    @PostMapping("/recipes")
+    public int addRecipeToRecipeDB(Principal principal, String recipeName, String recipeImage){
+        int userId = userDao.findIdByUsername(principal.getName());
+        return recipeBuilderDao.addRecipeToRecipeDB(recipeName, recipeImage, userId);
+    }
+    @PostMapping("/ingredient")
+    public int addIngredientToDB(String ingredientName){
+        return recipeBuilderDao.addIngredientToDB(ingredientName);
+    }
+    @PostMapping("/unit")
+    public int addUnitToDB(String unitName){
+        return recipeBuilderDao.addUnitToDB(unitName);
+    }
+    @PostMapping("/recipes/{recipeId}/ingredient")
+    public void addIngredientToRecipe(@PathVariable int recipeId, int ingredientId, double quantity, int unitId){
+        recipeBuilderDao.addIngredientToRecipe(ingredientId, recipeId, quantity, unitId);
+    }
+    @DeleteMapping("/ingredient/{ingredientId}")
+    
+
+
 }
 
 
