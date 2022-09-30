@@ -52,8 +52,9 @@ public class JdbcRecipeDao implements RecipeDao {
         List<Ingredient> ingredientList = ingredientDao.getAllIngredients();
         createdRecipe.setIngredientList(ingredientDao.getAllIngredients());
         for(Ingredient eachIngredient : ingredientList) {
-            if()
+//            if()
         }
+        return createdRecipe;
     }
 
     @Override
@@ -158,6 +159,13 @@ public class JdbcRecipeDao implements RecipeDao {
        jdbcTemplate.update(sql, recipe.getRecipeId(), userId);
 
 }
+
+    @Override
+    public int removeARecipeFromSavedRecipes(int userId, int recipeId) {
+        String sql = "DELETE FROM saved_recipes WHERE user_id = ? AND recipe_id = ?";
+        int deleteSucess = jdbcTemplate.update(sql, userId, recipeId);
+        return deleteSucess;
+    }
 
     @Override
     public Recipe deleteRecipeById(int id) {

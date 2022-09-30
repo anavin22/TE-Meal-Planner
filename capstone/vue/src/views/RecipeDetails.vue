@@ -5,8 +5,8 @@
     <ingredients id="ingredients" v-bind:ingredients="detailedRecipe.ingredientList" />
     <instructions id="instructions" v-bind:instructions="detailedRecipe.instructions" />
     <span id="savecheck">
-    <input v-model="recipeSaved" type="checkbox" id="save" name="saved" value="saved"><br>
-    <label v-show="!recipeSaved" v-on:change="addToSaved" for="saved">Save This Recipe</label>
+    <input v-model="recipeSaved" v-on:change="toggleSaved" type="checkbox" id="save" name="saved" value="saved"><br>
+    <label v-show="!recipeSaved" for="saved">Save This Recipe</label>
     <label v-show="recipeSaved" for="saved">Recipe Saved</label>
     </span>
   </div>
@@ -35,15 +35,28 @@ export default {
     };
   },
   methods: {
-    addToSaved() {
+    toggleSaved() {
+      if(this.recipeSaved) {
       RecipeService
       .addToSavedRecipes(this.detailedRecipe)
       .then(response => {
         if(response.status == 200) {
+          this.$store.state.commit('ADD_SAVED_RECIPE', this.currentRecipeId);
           this.recipeSaved = true;
         }
       })
     }
+    else {
+      RecipeService
+      .removeFromSavedRecipes(this.detailedRecipe.recipeId)
+      .then(response => {
+        if(response.status == 200) {
+          this.$store.state.commit('REMOVE_SAVED_RECIPE', this.currentRecipeId);
+          this.recipeSaved = false;
+        }
+      }); 
+    }
+  },
   },
   created() {
     RecipeService.getRecipeById(parseInt(this.$route.params.id)).then(

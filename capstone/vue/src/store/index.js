@@ -50,6 +50,14 @@ export default new Vuex.Store({
       if(state.savedRecipes.includes(id)){
         return true;
       }
+    },
+
+    ADD_SAVED_RECIPE(state, id) {
+      state.savedRecipes.push(id);
+    },
+
+    REMOVE_SAVED_RECIPE(state, id) {
+      state.savedRecipes = this.state.savedRecipes.filter(recipe => recipe !== id);
     }
   }
 })
