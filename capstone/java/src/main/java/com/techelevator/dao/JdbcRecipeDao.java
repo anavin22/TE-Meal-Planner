@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import com.techelevator.model.Ingredient;
 import com.techelevator.model.Recipe;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -15,37 +16,50 @@ public class JdbcRecipeDao implements RecipeDao {
     JdbcTemplate jdbcTemplate;
     JdbcIngredientDao jdbcIngredientDao;
     UserDao userDao;
+    IngredientDao ingredientDao;
 
-    public JdbcRecipeDao(JdbcTemplate jdbcTemplate, JdbcIngredientDao jdbcIngredientDao, UserDao userDao) {
+    public JdbcRecipeDao(JdbcTemplate jdbcTemplate, JdbcIngredientDao jdbcIngredientDao, UserDao userDao, IngredientDao ingredientDao) {
         this.jdbcTemplate = jdbcTemplate;
         this.jdbcIngredientDao = jdbcIngredientDao;
         this.userDao = userDao;
+        this.ingredientDao = ingredientDao;
     }
 
-    @Override
+    @Override   //create recipe table
     public Recipe createRecipe(Recipe recipe) {
         String sql = "INSERT INTO recipe (created_by, recipe_name, recipe_img) " +
                 "VALUES (?, ?, ?) RETURNING recipe_id";
         Integer newId = jdbcTemplate.queryForObject(sql, Integer.class, recipe.getCreatedBy(), recipe.getRecipeName(), recipe.getImage());
         return getRecipeByRecipeId(newId);
     }
-
     @Override
-    public List<Integer> getListOfFavoriteRecipeIdsByUserId(int userId) {
-        List<Integer> favoritesList = new ArrayList<>();
-        String sql = "SELECT recipe_id FROM saved_recipes WHERE user_id = ?";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
-        while(results.next()){
-            favoritesList.add(results.getInt("recipe_id"));
+    public Recipe getRecipeByRecipeId(int id) {
+        Recipe recipe = createObjectCalledRecipe(id);
+        return recipe;
+    }
+    @Override
+    public Recipe createRecipeObjectAndCheckForIngredients(int recipeId) {
+        Recipe createdRecipe = new Recipe();
+        createdRecipe.setRecipeId(recipeId);
+        String sqlRecipeTable = "SELECT recipe_name, created_by, recipe_img " +
+                "FROM recipe WHERE recipe_id = ?";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sqlRecipeTable, recipeId);
+        if (result.next()) {
+            createdRecipe.setRecipeName(result.getString("recipe_name"));
+            createdRecipe.setCreatedBy(result.getInt("created_by"));
+            createdRecipe.setImage(result.getString("recipe_img"));
         }
-        return favoritesList; 
+        List<Ingredient> ingredientList = ingredientDao.getAllIngredients();
+        createdRecipe.setIngredientList(ingredientDao.getAllIngredients());
+        for(Ingredient eachIngredient : ingredientList) {
+            if()
+        }
     }
 
     @Override
     public Recipe createObjectCalledRecipe(int recipeId) {
         Recipe createdRecipe = new Recipe();
         createdRecipe.setRecipeId(recipeId);
-//      createdRecipe.setRecipeName();
         String sqlRecipeTable = "SELECT recipe_name, created_by, recipe_img " +
                 "FROM recipe WHERE recipe_id = ?";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sqlRecipeTable, recipeId);
@@ -65,10 +79,17 @@ public class JdbcRecipeDao implements RecipeDao {
         return createdRecipe;
     }
 
+
+
     @Override
-    public Recipe getRecipeByRecipeId(int id) {
-        Recipe recipe = createObjectCalledRecipe(id);
-        return recipe;
+    public List<Integer> getListOfFavoriteRecipeIdsByUserId(int userId) {
+        List<Integer> favoritesList = new ArrayList<>();
+        String sql = "SELECT recipe_id FROM saved_recipes WHERE user_id = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
+        while(results.next()){
+            favoritesList.add(results.getInt("recipe_id"));
+        }
+        return favoritesList;
     }
 
     @Override
