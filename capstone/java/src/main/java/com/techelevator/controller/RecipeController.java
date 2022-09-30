@@ -9,6 +9,7 @@ import org.springframework.security.access.method.P;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 
@@ -87,9 +88,9 @@ public class RecipeController {
     }
 
     @PostMapping("/recipes")
-    public int addRecipeToRecipeDB(Principal principal, String recipeName, String recipeImage) {
+    public int addRecipeToRecipeDB(Principal principal, @Valid @RequestBody Recipe recipe) {
         int userId = userDao.findIdByUsername(principal.getName());
-        return recipeBuilderDao.addRecipeToRecipeDB(recipeName, recipeImage, userId);
+        return recipeBuilderDao.addRecipeToRecipeDB(recipe.getRecipeName(), recipe.getImage(), userId);
     }
 
     @PostMapping("/ingredient")

@@ -6,6 +6,7 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import RecipeDetails from '../views/RecipeDetails.vue'
+import RecipeEditor from '../views/RecipeEditor.vue'
 
 Vue.use(Router)
 
@@ -62,6 +63,15 @@ const router = new Router({
         requiresAuth: true
       }
     },
+
+    {
+      path: "/recipe-editor",
+      name: "recipeEditor",
+      component: RecipeEditor,
+      meta: {
+        requiresAuth: true
+      }
+    }
   ]
 })
 
