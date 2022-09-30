@@ -1,22 +1,13 @@
 <template>
   <div id="home">
     <h1>Latest Recipes</h1>
-    <!-- <p>You must be authenticated to see this</p> -->
-    
-  
 
     <div class="recipes-browse">
       <card-box />
+
+          <h1>My Recipes</h1>
       <my-saved-recipes />
       
-      <!-- <div class="card" v-for="recipe in recipes" :key="recipe.Id">
-        <h2>{{recipe.title}}</h2>
-        <p>{{recipe.description}}</p>
-        <router-link :to>
-          <button>View Recipe</button>
-          <button>Save Recipe</button>
-        </router-link>
-      </div> -->
 
     </div>
     <button>Add New Recipe</button>
@@ -28,6 +19,7 @@
 <script>
 import CardBox from '../components/CardBox.vue';
 import MySavedRecipes from '../components/MySavedRecipes.vue';
+import RecipeService from '../services/RecipeService'
 export default {
   components: { CardBox, MySavedRecipes },
   name: "home",
@@ -48,6 +40,15 @@ export default {
         instructions: ['instructions1', 'instructions2']
       }
     }
+  },
+  created(){
+    RecipeService
+    .getSavedList()
+    .then(response => {
+      if(response.status == 200) {
+        this.$store.commit('GET_SAVED_LIST', response.data);
+      }
+    });
   }
   
 
