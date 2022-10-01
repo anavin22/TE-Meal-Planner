@@ -6,15 +6,25 @@ public class Ingredient {
     private String type;
     private double quantity;
     private String unit;
+    private int recipeId;
 
     public Ingredient(){};
 
-    public Ingredient(int ingredientId, String name, String type, double quantity, String unit) {
+    public Ingredient(int ingredientId, String name, String type, double quantity, String unit, int recipeId) {
         this.ingredientId = ingredientId;
         this.name = name;
         this.type = type;
         this.quantity = quantity;
         this.unit = unit;
+        this.recipeId = recipeId;
+    }
+
+    public int getRecipeId() {
+        return recipeId;
+    }
+
+    public void setRecipeId(int recipeId) {
+        this.recipeId = recipeId;
     }
 
     public int getIngredientId() {

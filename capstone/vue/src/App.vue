@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <img src="./assets/vector_long_logo_dRAGON.png">
-    <div id="nav">
+    <div id="nav" v-show="checkLogin">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>
-      <span v-show="checkLogin">
-      <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link></span>
+      <router-link v-bind:to="{name: 'recipeEditor'}">Add a Recipe</router-link>
+      <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
     </div>
     <router-view />
   </div>

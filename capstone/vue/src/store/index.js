@@ -21,8 +21,8 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     recipeSaved: false,
-    savedRecipes: [],
-    workingId: 0
+    workingId: 0,
+    savedRecipes: []
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {

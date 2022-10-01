@@ -1,16 +1,15 @@
 package com.techelevator.controller;
 
-import com.techelevator.dao.RecipeBuilderDao;
-import com.techelevator.dao.RecipeDao;
-import com.techelevator.dao.UserDao;
+import com.techelevator.dao.*;
+import com.techelevator.model.Ingredient;
 import com.techelevator.model.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.method.P;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin
@@ -23,11 +22,13 @@ public class RecipeController {
     private RecipeDao recipeDao;
     private UserDao userDao;
     private RecipeBuilderDao recipeBuilderDao;
+    private IngredientDao ingredientDao;
 
-    public RecipeController(RecipeDao recipeDao, UserDao userDao, RecipeBuilderDao recipeBuilderDao) {
+    public RecipeController(RecipeDao recipeDao, UserDao userDao, RecipeBuilderDao recipeBuilderDao, IngredientDao ingredientDao) {
         this.recipeDao = recipeDao;
         this.userDao = userDao;
         this.recipeBuilderDao = recipeBuilderDao;
+        this.ingredientDao = ingredientDao;
     }
 
     @GetMapping("/recipes/detail/{id}")
@@ -63,6 +64,12 @@ public class RecipeController {
         recipeDao.putARecipeIntoSavedRecipes(userId, recipe);
     }
 
+    @PutMapping("/recipes/favorites")
+    public void updateRecipetoRecipeDB(Principal principal, @RequestBody Recipe recipe) {
+        int userId = userDao.findIdByUsername(principal.getName());
+        recipeBuilderDao.updateRecipeToRecipeDB(recipe, userId);
+    }
+
     @DeleteMapping("/recipes/favorites/{recipeId}")
     public int removeRecipeFromSavedRecipes(Principal principal, @PathVariable int recipeId) {
         int userId = userDao.findIdByUsername(principal.getName());
@@ -92,16 +99,14 @@ public class RecipeController {
         return recipeBuilderDao.addIngredientToDB(ingredientName);
     }
 
-    @PostMapping("/unit")
-    public int addUnitToDB(String unitName) {
-        return recipeBuilderDao.addUnitToDB(unitName);
-    }
-
     @PostMapping("/recipes/{recipeId}/ingredient")
-    public void addIngredientToRecipe(@PathVariable int recipeId, int ingredientId, double quantity, int unitId) {
-        recipeBuilderDao.addIngredientToRecipe(ingredientId, recipeId, quantity, unitId);
+    public void addIngredientToRecipe(@PathVariable int recipeId, @Valid @RequestBody Recipe recipe) {
+        List<Ingredient> ingredientList = recipe.getIngredientList();
+        for (Ingredient eachIngredient : ingredientList) {
+            recipeBuilderDao.addIngredientToRecipe(eachIngredient.getIngredientId(), recipe.getRecipeId(),
+                    eachIngredient.getQuantity(), eachIngredient.getUnit());
+        }
     }
-
     @DeleteMapping("/ingredient/{ingredientId}")
     public void removeIngredientFromRecipe(@PathVariable int ingredientId, int recipeId) {
         recipeBuilderDao.removeIngredientFromRecipe(ingredientId, recipeId);
@@ -117,6 +122,18 @@ public class RecipeController {
         recipeBuilderDao.removeInstructionFromRecipe(instructionId);
     }
 
+    @PutMapping("/recipes/{createdBy}")
+    public void updateIngredientQuantityToRecipe(@RequestBody Ingredient ingredient, @PathVariable int createdBy) {
+        recipeBuilderDao.updateIngredientQuantityToRecipe(ingredient, ingredient.getRecipeId());
+    }
+    @GetMapping("/ingredient")
+    public List<Ingredient> getAllIngredients(){
+        return ingredientDao.getAllIngredients();
+    }
+    @PutMapping("/instruction/{instructionId}")
+    public void updateInstructionsToRecipe(@RequestBody Instructions instructions, @PathVariable int instructionId){
+        recipeBuilderDao.updateInstructionsToRecipe(instructions, instructionId);
+    }
 }
 
 

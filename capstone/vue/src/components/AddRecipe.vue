@@ -40,7 +40,6 @@ export default {
             RecipeService
             .addRecipeToDB(this.recipe)
             .then(response => {
-                console.log(response);
                 if(response.status == 200) {
                     this.submitted = true;
                     this.$store.commit('UPDATE_WORKING_ID', response.data);

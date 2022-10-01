@@ -11,20 +11,13 @@ public interface RecipeDao {
 
     List<Recipe> getAllRecipes();
 
-//    Recipe getRecipeByName(String name);
-
     List<Recipe> getAllSavedRecipesByUserId(int id);
 
     List<Recipe> getAllRecipesByCreatedBy(int createdBy);
 
-    //getrecipebytag .. array of tags
-
     List<Recipe> getLatestRecipes();
 
-
     Recipe createObjectCalledRecipe(int recipeId);
-
-    Recipe createRecipeObjectAndCheckForIngredients(int recipeId);
 
     void putARecipeIntoSavedRecipes(int userId, Recipe recipe);
 
@@ -32,11 +25,8 @@ public interface RecipeDao {
 
     Recipe deleteRecipeById(int recipeId);
 
-
     Recipe createRecipe(Recipe recipe);
 
     List<Integer> getListOfFavoriteRecipeIdsByUserId(int userId);
-
-
 
 }
