@@ -8,8 +8,14 @@ public interface MealDao {
 
     Meal getMealbyMealId(int id);
 
-    List<Meal> getAllMealsByMealId(int mealId);
+    List<Meal> getAllMealsByMealPlanId(int mealPlanId);
 
     Meal getMealByDayOfWeek();
+
+   void updateMealToMealPlan(Meal meal, int mealPlanId);
+
+    Meal removeMealFromMealPlan();
+
+
 
 }
