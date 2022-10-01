@@ -59,5 +59,20 @@ CREATE TABLE saved_recipes (
     user_id integer,
     CONSTRAINT PK_saved PRIMARY KEY (recipe_id, user_id)
 );
+CREATE TABLE meal_plan(
+    meal_plan_id SERIAL,
+    created_by integer NOT NULL,
+    title varchar(100) NOT NULL,
+    CONSTRAINT PK_meal_plan PRIMARY KEY (meal_plan_id)
+);
+CREATE TABLE meal(
+    meal_id SERIAL,
+    meal_plan_id integer,
+    recipe_id integer NOT NULL,
+    meal_type varchar (15),
+    day_of_week varchar (10)
+    CONSTRAINT PK_meal PRIMARY KEY (meal_id),
+    CONSTRAINT FK_meal_plan FOREIGN KEY (meal_plan_id) REFERENCES (meal_plan)
+);
 
 COMMIT TRANSACTION;

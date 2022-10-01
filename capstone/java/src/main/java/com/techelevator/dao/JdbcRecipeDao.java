@@ -37,22 +37,6 @@ public class JdbcRecipeDao implements RecipeDao {
         Recipe recipe = createObjectCalledRecipe(id);
         return recipe;
     }
-//    @Override
-//    public Recipe createRecipeObjectAndCheckForIngredients(int recipeId) {
-//        Recipe createdRecipe = new Recipe();
-//        createdRecipe.setRecipeId(recipeId);
-//        String sqlRecipeTable = "SELECT recipe_name, created_by, recipe_img " +
-//                "FROM recipe WHERE recipe_id = ?";
-//        SqlRowSet result = jdbcTemplate.queryForRowSet(sqlRecipeTable, recipeId);
-//        if (result.next()) {
-//            createdRecipe.setRecipeName(result.getString("recipe_name"));
-//            createdRecipe.setCreatedBy(result.getInt("created_by"));
-//            createdRecipe.setImage(result.getString("recipe_img"));
-//        }
-//        List<Ingredient> ingredientList = ingredientDao.getAllIngredients();
-//        createdRecipe.setIngredientList(ingredientDao.getAllIngredients());
-//        return createdRecipe;
-//    }
 
     @Override
     public Recipe createObjectCalledRecipe(int recipeId) {
@@ -99,19 +83,6 @@ public class JdbcRecipeDao implements RecipeDao {
         }
         return recipeList;
     }
-//
-//    @Override
-//    public Recipe getRecipeByName(String name) {
-//        Recipe recipe = null;
-//        String sql = "SELECT recipe_id, created_by, recipe_name, recipe_img " +
-//                "FROM recipe WHERE recipe_name = ?";
-//        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, name);
-//        if (result.next()) {
-//            recipe = mapRowToRecipe(result);
-//        }
-//        return recipe;
-
-//    }
 
     @Override
     public List<Recipe> getAllSavedRecipesByUserId(int id) {
@@ -145,8 +116,6 @@ public class JdbcRecipeDao implements RecipeDao {
         }
         return latestRecipes;
     }
-
-
 
     @Override
     public void putARecipeIntoSavedRecipes(int userId, Recipe recipe) {
