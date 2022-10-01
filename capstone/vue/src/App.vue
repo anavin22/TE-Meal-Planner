@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img src="./assets/vector_long_logo_dRAGON.png">
+    <img id="logo" src="./assets/vector_long_logo_dRAGON.png">
     <div id="nav" v-show="checkLogin">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>
       <router-link v-bind:to="{name: 'recipeEditor'}">Add a Recipe</router-link>
@@ -52,7 +52,7 @@ export default {
     z-index: 1000;
 }
 
-img {
+#logo {
   position: relative;
   margin-top: 3em;
   z-index: 9000;

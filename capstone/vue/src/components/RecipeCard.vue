@@ -1,5 +1,5 @@
 <template>
-  <div id="recipe-card">
+  <div id="recipe-card" >
        <h3>{{recipe.recipeName}}</h3>
       <img id="thumb" v-bind:src="recipe.image">
 
@@ -21,16 +21,35 @@ height: 15em;
 width: 10em;
 border-radius: 20px;
 color: white;
-padding-top: 10px;
-padding-right: 5px;
-padding-left: 5px;
+overflow: hidden;
+position: relative;
+margin-right: -10px;
+z-index: 200;
+box-shadow: -5px 3px 3px darkslategray;
+}
+
+#recipe-card:hover {
+    margin-right: 30px;
+    margin-left: 30px;
+    margin-bottom: 50px;
+    margin-top: -50px;
 }
 
 #thumb {
-    max-height: 10em;
-    max-width: 9em;
-    margin: .5em;
-    border-radius: 15px;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: .8;
+}
+
+h3 {
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    padding: 2%;
+    background-color: #00000075;
 }
 
 </style>

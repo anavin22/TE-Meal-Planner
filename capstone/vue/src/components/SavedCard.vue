@@ -1,5 +1,5 @@
 <template>
-  <div id="saved-card">
+  <div id="recipe-card">
             <h3>{{recipe.recipeName}}</h3>
       <img id="thumb" v-bind:src="recipe.image">
 
@@ -15,23 +15,15 @@ export default {
 </script>
 
 <style>
-#saved-card {
+#recipe-card {
 background: rgb(36,148,146);
 background: linear-gradient(90deg, rgba(36,148,146,1) 70%, rgba(30,70,69,1) 100%);
 height: 15em;
 width: 10em;
 border-radius: 20px;
 color: white;
-padding-top: 10px;
-padding-right: 5px;
-padding-left: 5px;
-}
-
-#thumb {
-    max-height: 10em;
-    max-width: 9em;
-    margin: .5em;
-    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
 }
 
 </style>
