@@ -21,7 +21,7 @@ public interface RecipeBuilderDao {
 
     void removeInstructionFromRecipe(int instructionId);
 
-    void updateInstructionsToRecipe(int recipeId, int sequence, String instructionText);
+    void updateInstructionsToRecipe(Instructions instructions, int instructionId);
 
 
 }

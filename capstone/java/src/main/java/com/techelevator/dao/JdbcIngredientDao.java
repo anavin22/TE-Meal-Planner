@@ -51,7 +51,7 @@ public class JdbcIngredientDao implements IngredientDao {
         return null;
     }
 
-    @Override
+    @Override //retry state in pgadmin
     public List<Ingredient> getAllIngredientsByRecipeId(int recipeId) {
         List<Ingredient> ingredientList = new ArrayList<>();
         String sql = "SELECT ingredient.ingredient_id, ingredient_name, quantity, unit FROM ingredient\n" +

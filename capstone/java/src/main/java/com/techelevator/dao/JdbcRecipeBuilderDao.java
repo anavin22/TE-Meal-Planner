@@ -75,23 +75,10 @@ public class JdbcRecipeBuilderDao implements RecipeBuilderDao {
         jdbcTemplate.update(sql, instructionId);
 
     }
-
     @Override
-    public void updateInstructionsToRecipe(int recipeId, int sequence, String instructionText) {
-
+    public void updateInstructionsToRecipe(Instructions instructions, int instructionId){
+        String sql = "UPDATE instructions SET instruction_text = ? WHERE instruction_id = ?";
+        jdbcTemplate.update(sql, instructions.getInstruction_text(), instructions.getInstruction_id());
     }
-    //add new componenet - recipe name/picture
-    //just updating recipe table -- just in DB
-    //When user pushes button, recipe should go to DB -- only goes to Recipe
-    //recipe id returned -- newId -- return int
-
-
-
-
-    //Think about Ingredients
-    //pull getAllIngredients() in front end -- search function
-
-    //getAllUnits
-    //If ingredient and/or unit is not present, add.
 
 }

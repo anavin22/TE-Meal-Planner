@@ -1,9 +1,6 @@
 package com.techelevator.controller;
 
-import com.techelevator.dao.IngredientDao;
-import com.techelevator.dao.RecipeBuilderDao;
-import com.techelevator.dao.RecipeDao;
-import com.techelevator.dao.UserDao;
+import com.techelevator.dao.*;
 import com.techelevator.model.Ingredient;
 import com.techelevator.model.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -132,6 +129,10 @@ public class RecipeController {
     @GetMapping("/ingredient")
     public List<Ingredient> getAllIngredients(){
         return ingredientDao.getAllIngredients();
+    }
+    @PutMapping("/instruction/{instructionId}")
+    public void updateInstructionsToRecipe(@RequestBody Instructions instructions, @PathVariable int instructionId){
+        recipeBuilderDao.updateInstructionsToRecipe(instructions, instructionId);
     }
 }
 
