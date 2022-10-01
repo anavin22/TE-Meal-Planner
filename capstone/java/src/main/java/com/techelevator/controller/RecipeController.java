@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.*;
 import com.techelevator.model.Ingredient;
+import com.techelevator.model.Instructions;
 import com.techelevator.model.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin
@@ -112,9 +112,9 @@ public class RecipeController {
         recipeBuilderDao.removeIngredientFromRecipe(ingredientId, recipeId);
     }
 
-    @PostMapping("/recipes/{recipeId}/instruction")
-    public int addInstructionToRecipe(@PathVariable int recipeId, int sequence, String instructionText) {
-        return recipeBuilderDao.addInstructionToRecipe(recipeId, sequence, instructionText);
+    @PostMapping("/recipes/instruction")
+    public int addInstructionToRecipe(@Valid @RequestBody Instructions instructions) {
+        return recipeBuilderDao.addInstructionToRecipe(instructions);
     }
 
     @DeleteMapping("/instruction/{instructionId}")
@@ -134,6 +134,7 @@ public class RecipeController {
     public void updateInstructionsToRecipe(@RequestBody Instructions instructions, @PathVariable int instructionId){
         recipeBuilderDao.updateInstructionsToRecipe(instructions, instructionId);
     }
+
 }
 
 

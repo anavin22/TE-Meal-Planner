@@ -85,6 +85,10 @@
     <section id="add-instructions">
       <form>
         <h3>Instructions</h3>
+
+        
+
+
       </form>
     </section>
   </div>
@@ -96,13 +100,12 @@ export default {
   name: "finishRecipe",
   data() {
     return {
-      recIngs: [],
       allIngredients: [],
-      recInst: [],
       ingredientSearch: "",
       sequence: 0,
       quantity: 0.0,
       unit: "",
+      instructionText: "",
       selectedIngredient: {
         ingredientId: "",
         name: "",
@@ -165,6 +168,14 @@ export default {
         name: "",
       };
 
+    },
+    addInstructionToWorkingRecipe() {
+        let workingInstruction = 
+        {
+            recipeId: this.$store.state.workingRecipe.recipeId,
+            sequence: this.sequence,
+            instruction_text: this.instructionText
+        }
     }
   },
 };

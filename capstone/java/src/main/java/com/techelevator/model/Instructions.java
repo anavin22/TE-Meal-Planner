@@ -1,14 +1,24 @@
-package com.techelevator.dao;
+package com.techelevator.model;
 
 public class Instructions {
     private int instruction_id;
+    private int sequence;
     private String instruction_text;
     private int recipeId;
 
-    public Instructions(int instruction_id, String instruction_text, int recipeId) {
+    public Instructions(int instruction_id, int sequence, String instruction_text, int recipeId) {
         this.instruction_id = instruction_id;
+        this.sequence = sequence;
         this.instruction_text = instruction_text;
         this.recipeId = recipeId;
+    }
+
+    public int getSequence() {
+        return sequence;
+    }
+
+    public void setSequence(int sequence) {
+        this.sequence = sequence;
     }
 
     public int getInstruction_id() {

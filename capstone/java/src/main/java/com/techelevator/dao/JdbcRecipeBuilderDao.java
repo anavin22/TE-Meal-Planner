@@ -1,9 +1,9 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Ingredient;
+import com.techelevator.model.Instructions;
 import com.techelevator.model.Recipe;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -62,11 +62,10 @@ public class JdbcRecipeBuilderDao implements RecipeBuilderDao {
     }
 
     @Override
-    public int addInstructionToRecipe(int recipeId, int sequence, String instructionText) {
-        String sql = "INSERT INTO instructions (recipe_id, sequence, instruction_text) " +
-                "VALUES (?, ?, ?) RETURNING instruction_id";
-        int newInstructionid = jdbcTemplate.update(sql, Integer.class, recipeId, sequence, instructionText);
-        return newInstructionid;
+    public int addInstructionToRecipe(Instructions instructions) {
+        String sql = "INSERT INTO instructions (recipe_id, sequence, instruction_text) VALUES (?, ?, ?) RETURNING instruction_id;";
+        int newId = jdbcTemplate.queryForObject(sql, Integer.class, instructions.getRecipeId(), instructions.getSequence(), instructions.getInstruction_text());
+        return newId;
     }
 
     @Override

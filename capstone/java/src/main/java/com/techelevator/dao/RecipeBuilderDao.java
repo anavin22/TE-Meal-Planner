@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Ingredient;
+import com.techelevator.model.Instructions;
 import com.techelevator.model.Recipe;
 
 public interface RecipeBuilderDao {
@@ -17,7 +18,7 @@ public interface RecipeBuilderDao {
 
     void updateIngredientQuantityToRecipe(Ingredient ingredient, int recipeId);
 
-    int addInstructionToRecipe(int recipeId, int sequence, String instructionText);
+    int addInstructionToRecipe(Instructions instructions);
 
     void removeInstructionFromRecipe(int instructionId);
 

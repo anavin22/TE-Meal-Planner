@@ -50,8 +50,8 @@ export default {
         return axios.delete(`/ingredient/${ingredientId}`, ingredientId, recipeId)
     },
 
-    addInstructionToRecipe(recipeId, sequence, instructionText) {
-        return axios.post(`/recipes/${recipeId}/instruction`, recipeId, sequence, instructionText)
+    addInstructionToRecipe(instruction) {
+        return axios.post('/recipes/instruction', instruction)
     },
 
     removeInstructionFromRecipe(instructionId) {
