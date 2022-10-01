@@ -67,11 +67,12 @@ public class JdbcIngredientDao implements IngredientDao {
     @Override
     public List<Ingredient> getAllIngredients() {
         List<Ingredient> ingredientList = new ArrayList<>();
-        String sql = "SELECT ingredient_name FROM ingredient";
+        String sql = "SELECT ingredient_name, ingredient_id FROM ingredient";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while (results.next()) {
             Ingredient ingredient = new Ingredient();
             ingredient.setName(results.getString("ingredient_name"));
+            ingredient.setIngredientId(results.getInt("ingredient_id"));
             ingredientList.add(ingredient);
         }
         return ingredientList;

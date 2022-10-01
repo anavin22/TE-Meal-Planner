@@ -95,8 +95,8 @@ public class RecipeController {
     }
 
     @PostMapping("/ingredient")
-    public int addIngredientToDB(String ingredientName) {
-        return recipeBuilderDao.addIngredientToDB(ingredientName);
+    public int addIngredientToDB(@Valid @RequestBody Ingredient ingredient) {
+        return recipeBuilderDao.addIngredientToDB(ingredient);
     }
 
     @PostMapping("/recipes/{recipeId}/ingredient")

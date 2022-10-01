@@ -22,7 +22,15 @@ export default new Vuex.Store({
     user: currentUser || {},
     recipeSaved: false,
     workingId: 0,
-    savedRecipes: []
+    savedRecipes: [],
+    workingRecipe: {
+      recipeId: 0,
+      createdBy: 0,
+      recipeName: "",
+      image: "",
+      ingredientList: [],
+      instructions: [],
+    },
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -63,6 +71,21 @@ export default new Vuex.Store({
 
     UPDATE_WORKING_ID(state, id) {
       state.workingId = id;
+    },
+
+    ADD_INGREDIENT_TO_WORKING_RECIPE(state, ingredient) {
+      state.workingRecipe.ingredientList.push(ingredient);
+    },
+
+    CLEAR_WORKING_RECIPE(state) {
+      state.workingRecipe = {
+        recipeId: 0,
+        createdBy: 0,
+        recipeName: "",
+        image: "",
+        ingredientList: [],
+        instructions: [],
+      };
     }
 
   }

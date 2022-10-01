@@ -33,10 +33,10 @@ public class JdbcRecipeBuilderDao implements RecipeBuilderDao {
 
 
     @Override
-    public int addIngredientToDB(String ingredientName) {
+    public int addIngredientToDB(Ingredient ingredient) {
         String sql = "INSERT INTO ingredient (ingredient_name) " +
                 "VALUES (?) RETURNING ingredient_id";
-        int newIngredientId = jdbcTemplate.update(sql, Integer.class, ingredientName);
+        int newIngredientId = jdbcTemplate.queryForObject(sql, Integer.class, ingredient.getName());
         return newIngredientId;
     }
 

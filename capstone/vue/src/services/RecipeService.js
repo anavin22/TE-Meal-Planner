@@ -34,16 +34,16 @@ export default {
         return axios.post('/recipes', recipe)
     },
 
-    addIngredientToDB(ingredientName) {
-        return axios.post('/ingredient', ingredientName)
+    addIngredientToDB(ingredient) {
+        return axios.post('/ingredient', ingredient)
     },
 
     addUnitToDB(unitName) {
         return axios.post('/unit', unitName)
     },
 
-    addIngredientToRecipe(recipeId, ingredientId, quantity, unitId) {
-        return axios.post(`/recipes/${recipeId}/ingredient`, ingredientId, recipeId, quantity, unitId)
+    addIngredientToRecipe(recipeId, recipe) {
+        return axios.post(`/recipes/${recipeId}/ingredient`, recipe)
     },
 
     removeIngredientFromRecipe(ingredientId, recipeId) {

@@ -10,8 +10,8 @@
           <button type="submit">Add This Recipe</button>
       </form>
       <span v-show="submitted">
-          <h2>{{ newName }}</h2>
-          <img :src="imageUrl">
+          <h2 id="new-name">{{ newName }}</h2>
+          <img id="new-pic" :src="imageUrl">
       </span>
 
   </div>
@@ -53,5 +53,16 @@ export default {
 </script>
 
 <style>
+#new-pic {
+    grid-area: new-pic;
+  max-width: 100%;
+  height: auto;
+  border-radius: 30px;
+  box-shadow: 20px 16px teal;
+}
+
+#new-name {
+    grid-area: new-name;
+}
 
 </style>

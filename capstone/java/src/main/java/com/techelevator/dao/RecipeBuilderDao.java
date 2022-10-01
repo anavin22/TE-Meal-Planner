@@ -9,7 +9,7 @@ public interface RecipeBuilderDao {
 
     void updateRecipeToRecipeDB(Recipe recipe, int userId);
 
-    int addIngredientToDB(String ingredientName);
+    int addIngredientToDB(Ingredient ingredient);
 
     void addIngredientToRecipe(int ingredientId, int recipeId, double quantity, String unit);
 

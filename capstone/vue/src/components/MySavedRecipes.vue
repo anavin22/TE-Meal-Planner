@@ -33,7 +33,7 @@ export default {
 <style>
 #favorites {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     flex-wrap: wrap;
 }
 </style>

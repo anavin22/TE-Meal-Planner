@@ -1,6 +1,6 @@
 <template>
   <div id="recipe-card" >
-       <h3>{{recipe.recipeName}}</h3>
+       <h3 class="card-title">{{recipe.recipeName}}</h3>
       <img id="thumb" v-bind:src="recipe.image">
 
   </div>
@@ -33,6 +33,7 @@ box-shadow: -5px 3px 3px darkslategray;
     margin-left: 30px;
     margin-bottom: 50px;
     margin-top: -50px;
+    transform: rotate(-0.025turn);
 }
 
 #thumb {
@@ -44,7 +45,7 @@ box-shadow: -5px 3px 3px darkslategray;
     opacity: .8;
 }
 
-h3 {
+.card-title {
     z-index: 100;
     position: absolute;
     top: 0;

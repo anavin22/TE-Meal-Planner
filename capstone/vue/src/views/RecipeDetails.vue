@@ -95,6 +95,7 @@ export default {
 
 #ingredients {
     grid-area: ingredients;
+    margin-left: 20px;
 }
 
 #instructions {
