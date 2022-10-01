@@ -1,6 +1,6 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users, ingredient, recipe, unit, ingredient_recipe, instructions, tag, recipe_tag CASCADE;
+DROP TABLE IF EXISTS users, ingredient, recipe, ingredient_recipe, instructions, tag, recipe_tag CASCADE;
 
 CREATE TABLE users (
 	user_id SERIAL,
@@ -31,7 +31,7 @@ CREATE TABLE ingredient_recipe (
     recipe_id integer,
     quantity numeric NOT NULL,
     unit varchar(100),
-    CONSTRAINT PK_ingredient_recipe PRIMARY KEY (ingredient_id, recipe_id),
+    CONSTRAINT PK_ingredient_recipe PRIMARY KEY (ingredient_id, recipe_id)
 );
 
 CREATE TABLE instructions (

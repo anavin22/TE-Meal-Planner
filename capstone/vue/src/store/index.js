@@ -21,6 +21,7 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     recipeSaved: false,
+    workingId: 0,
     savedRecipes: []
   },
   mutations: {
@@ -58,6 +59,10 @@ export default new Vuex.Store({
 
     REMOVE_SAVED_RECIPE(state, id) {
       state.savedRecipes = this.state.savedRecipes.filter(recipe => recipe !== id);
+    },
+
+    UPDATE_WORKING_ID(state, id) {
+      state.workingId = id;
     }
   }
 })
