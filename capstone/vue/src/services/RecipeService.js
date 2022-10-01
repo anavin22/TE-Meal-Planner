@@ -56,6 +56,12 @@ export default {
 
     removeInstructionFromRecipe(instructionId) {
         return axios.delete(`instruction/${instructionId}`)
+    },
+
+    getAllIngredients() {
+        return axios.get('/ingredient')
     }
+
+
 
 }

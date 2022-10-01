@@ -1,8 +1,5 @@
 BEGIN TRANSACTION;
 
-INSERT INTO unit (unit_id, unit_name)
-    VALUES (4, 'slices'), (5, 'tablespoons'), (6, 'teaspoons'), (7, 'cups'), (8, 'pounds'), (9, 'bunch');
-
 INSERT INTO ingredient (ingredient_id, ingredient_name)
     VALUES (4, 'sandwich bread'), (5, 'unsalted butter'), (6, 'hot sauce'), (7, 'grated sharp cheddar cheese'), (8, 'chopped kimchi'),
     (9, 'baby yukon gold or red skin potatoes'), (10, 'fresh herbs'), (11, 'chicken'), (12, 'extra virgin olive oil'), (13, 'black pepper');
@@ -11,9 +8,9 @@ INSERT INTO recipe (recipe_id, created_by, recipe_name, recipe_img)
     VALUES (2, 1, 'Inside-Out Kimchi Grilled Cheese', 'https://assets.bonappetit.com/photos/613235964a6a69e9fc1fc229/1:1/w_960,c_limit/Inside%20Out%20Kimchi%20Grilled%20Cheese.jpg'),
     (3, 1, 'French Market Chicken With Herbed Potatoes', 'https://static2.refinery29.com/bin/entry/70d/x/1088781/cut-3-ingredient-chicken-dinner-1.jpg');
 
-INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_id)
-    VALUES (4, 2, 4, 4), (5, 2, 3, 5), (6, 2, 4, 6), (7, 2, 1.5, 7), (8, 2, 0.5, 2),
-    (9, 3, 1.5, 8), (10, 3, 1, 9), (11, 3, 1, 1), (12, 3, 2, 5), (13, 3, 0.5, 6), (3, 3, 0.5, 6);
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit)
+    VALUES (4, 2, 4, 'slices'), (5, 2, 3, 'tablespoons'), (6, 2, 4, 'teaspoons'), (7, 2, 1.5, 'cups'), (8, 2, 0.5, 'cup'),
+    (9, 3, 1.5, 'pounds'), (10, 3, 1, 'bunch'), (11, 3, 1, 'whole'), (12, 3, 2, 'tablespoons'), (13, 3, 0.5, 'teaspoon'), (3, 3, 0.5, 'teaspoon');
 
 INSERT INTO instructions (recipe_id, sequence, instruction_text)
     VALUES (2, 1, 'Place 2 bread slices on a work surface. Evenly spread ½ Tbsp. butter over each slice. Turn 1 slice over and spread 2 tsp. gochujang over, then top with ½ cup cheese and half the kimchi. Close sandwich with buttered sides facing out. Sprinkle 2 Tbsp. cheese over top of sandwich, gently pressing to adhere cheese to butter.'),

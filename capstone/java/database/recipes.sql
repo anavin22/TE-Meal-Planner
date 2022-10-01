@@ -2,17 +2,14 @@
 
 BEGIN TRANSACTION;
 
-INSERT INTO unit (unit_id, unit_name)
-    VALUES (1, 'whole'), (2, 'cup'), (3, 'pinch');
-
 INSERT INTO ingredient (ingredient_id, ingredient_name)
     VALUES (1, 'plantain'), (2, 'vegetable oil'), (3, 'salt');
 
 INSERT INTO recipe (recipe_id, created_by, recipe_name, recipe_img)
     VALUES (1, 1, 'Crispy Salted Tostones', 'https://pinchofyum.com/cdn-cgi/image/width=680,height=99999,fit=scale-down/wp-content/uploads/Crispy-Tostones.jpg');
 
-INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_id)
-    VALUES (1, 1, 1, 1), (2, 1, 2, 2), (3, 1, 1, 3);
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit)
+    VALUES (1, 1, 1, 'whole'), (2, 1, 2, 'cups'), (3, 1, 1, 'pinch');
 
 INSERT INTO instructions (recipe_id, sequence, instruction_text)
     VALUES (1, 1, 'Peel the plantains by making a vertical cut through the skin and peeling it back with your hands or the edge of a spoon.'),
