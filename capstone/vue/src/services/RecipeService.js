@@ -42,8 +42,8 @@ export default {
         return axios.post('/unit', unitName)
     },
 
-    addIngredientToRecipe(recipeId, recipe) {
-        return axios.post(`/recipes/${recipeId}/ingredient`, recipe)
+    addIngredientToRecipe(recipe) {
+        return axios.post('/recipes/ingredientList', recipe)
     },
 
     removeIngredientFromRecipe(ingredientId, recipeId) {
@@ -60,6 +60,10 @@ export default {
 
     getAllIngredients() {
         return axios.get('/ingredient')
+    },
+
+    updateIngredients() {
+        return axios.put('/recipes')
     }
 
 

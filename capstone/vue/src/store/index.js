@@ -25,9 +25,9 @@ export default new Vuex.Store({
     savedRecipes: [],
     workingRecipe: {
       recipeId: 0,
-      createdBy: 0,
-      recipeName: "",
-      image: "",
+      // createdBy: 0,
+      // recipeName: "",
+      // image: "",
       ingredientList: [],
       instructions: [],
     },
@@ -71,10 +71,15 @@ export default new Vuex.Store({
 
     UPDATE_WORKING_ID(state, id) {
       state.workingId = id;
+      console.log(state.workingId)
     },
 
     ADD_INGREDIENT_TO_WORKING_RECIPE(state, ingredient) {
       state.workingRecipe.ingredientList.push(ingredient);
+    },
+
+    ADD_INSTRUCTION_TO_WORKING_RECIPE(state, instruction) {
+      state.workingRecipe.instructions.push(instruction.instruction_text);
     },
 
     CLEAR_WORKING_RECIPE(state) {
@@ -86,6 +91,10 @@ export default new Vuex.Store({
         ingredientList: [],
         instructions: [],
       };
+    },
+
+    UPDATE_WORKING_RECIPE_ID(state) {
+      state.workingRecipe.recipeId = state.workingId;
     }
 
   }

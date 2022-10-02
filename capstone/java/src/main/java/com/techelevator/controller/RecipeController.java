@@ -99,8 +99,8 @@ public class RecipeController {
         return recipeBuilderDao.addIngredientToDB(ingredient);
     }
 
-    @PostMapping("/recipes/{recipeId}/ingredient")
-    public void addIngredientToRecipe(@PathVariable int recipeId, @Valid @RequestBody Recipe recipe) {
+    @PostMapping("/recipes/ingredientList")
+    public void addIngredientToRecipe(@Valid @RequestBody Recipe recipe) {
         List<Ingredient> ingredientList = recipe.getIngredientList();
         for (Ingredient eachIngredient : ingredientList) {
             recipeBuilderDao.addIngredientToRecipe(eachIngredient.getIngredientId(), recipe.getRecipeId(),
@@ -122,8 +122,8 @@ public class RecipeController {
         recipeBuilderDao.removeInstructionFromRecipe(instructionId);
     }
 
-    @PutMapping("/recipes/{createdBy}")
-    public void updateIngredientQuantityToRecipe(@RequestBody Ingredient ingredient, @PathVariable int createdBy) {
+    @PutMapping("/recipes/ingredient")
+    public void updateIngredientQuantityToRecipe(@RequestBody Ingredient ingredient) {
         recipeBuilderDao.updateIngredientQuantityToRecipe(ingredient, ingredient.getRecipeId());
     }
     @GetMapping("/ingredient")

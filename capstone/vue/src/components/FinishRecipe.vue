@@ -16,9 +16,12 @@
 
     <section id="new-instructions">
       <ol>
-        <li v-for="inst in $store.state.workingRecipe.instructions" :key="inst.id"></li>
+        <li v-for="inst in $store.state.workingRecipe.instructions" :key="inst.id">{{ inst }}</li>
       </ol>
     </section>
+
+
+    <button id="recipe-done-button" @click.prevent="completeRecipeAndReset" >All Set!</button>
 
 
     <section id="add-ingredients">
@@ -82,11 +85,11 @@
 
     </section>
 
-    <section id="add-instructions">
+    <section id="enter-instructions">
       <form>
-        <h3>Instructions</h3>
-
-        
+        <h3>Add Instructions</h3>
+        <textarea id="add-instruction" v-model="instructionText" placeholder="Enter your instructions one step at a time." />
+        <button @click.prevent.stop="addInstructionToWorkingRecipe" >Add Instruction to Recipe</button>
 
 
       </form>
@@ -102,7 +105,7 @@ export default {
     return {
       allIngredients: [],
       ingredientSearch: "",
-      sequence: 0,
+      sequence: 1,
       quantity: 0.0,
       unit: "",
       instructionText: "",
@@ -169,13 +172,46 @@ export default {
       };
 
     },
+
     addInstructionToWorkingRecipe() {
+
         let workingInstruction = 
         {
-            recipeId: this.$store.state.workingRecipe.recipeId,
+            recipeId: this.$store.state.workingId,
             sequence: this.sequence,
             instruction_text: this.instructionText
+        };
+
+        RecipeService
+        .addInstructionToRecipe(workingInstruction)
+        .then(response => {
+                this.$store.commit('ADD_INSTRUCTION_TO_WORKING_RECIPE', workingInstruction);
+                this.instructionText = '';
+                return response.data;
+        });
+    },
+
+    completeRecipeAndReset() {
+      this.$store.commit('UPDATE_WORKING_RECIPE_ID')
+      console.log(this.$store.state.workingRecipe)
+      RecipeService
+      .addIngredientToRecipe(this.$store.state.workingRecipe)
+      .then(response => {
+        if(response.status == 200) {
+
+          RecipeService
+          .addToSavedRecipes(this.$store.state.workingRecipe)
+          .then(response => {
+
+            if(response.status == 200) {
+              this.$store.commit('CLEAR_WORKING_RECIPE');
+              this.$store.commit('UPDATE_WORKING_ID', 0)
+              this.$router.push('/');
+            }
+
+          });         
         }
+      });
     }
   },
 };
@@ -268,4 +304,11 @@ export default {
     margin-bottom: 20px;
     margin-right: 20px;
 }
+
+#add-instruction {
+  width: 50%;
+  height: 200px;
+}
+
+
 </style>

@@ -42,7 +42,7 @@ public class JdbcRecipeBuilderDao implements RecipeBuilderDao {
 
     @Override   //inserting ingredient to ingredient_recipe table
     public void addIngredientToRecipe(int ingredientId, int recipeId, double quantity, String unit) {
-        String sql = "INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit " +
+        String sql = "INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit) " +
                 "VALUES (?, ?, ?, ?)";
         jdbcTemplate.update(sql, ingredientId, recipeId, quantity, unit);
     }

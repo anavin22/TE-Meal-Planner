@@ -1,10 +1,10 @@
 <template>
   <div id="add-recipe">
       <form v-show="!submitted" @submit.prevent="addRecipeToDB">
-          <label for="RecipeName">Recipe Name</label>
+          <label for="RecipeName">Recipe Name: </label>
           <input type="text" id="RecipeName" v-model="newName" placeholder="Recipe Name" required />
 
-          <label for="ImageUrl">Image URL</label>
+          <label for="ImageUrl">Image URL: </label>
           <input type="text" id="ImageUrl" v-model="imageUrl" placeholder="Provide a link to an image for this recipe" required />
 
           <button type="submit">Add This Recipe</button>
