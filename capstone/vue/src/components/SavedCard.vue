@@ -1,6 +1,6 @@
 <template>
   <div id="recipe-card">
-            <h3>{{recipe.recipeName}}</h3>
+            <h3 class="card-title">{{recipe.recipeName}}</h3>
       <img id="thumb" v-bind:src="recipe.image">
 
   </div>

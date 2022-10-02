@@ -34,24 +34,24 @@ export default {
         return axios.post('/recipes', recipe)
     },
 
-    addIngredientToDB(ingredientName) {
-        return axios.post('/ingredient', ingredientName)
+    addIngredientToDB(ingredient) {
+        return axios.post('/ingredient', ingredient)
     },
 
     addUnitToDB(unitName) {
         return axios.post('/unit', unitName)
     },
 
-    addIngredientToRecipe(recipeId, ingredientId, quantity, unitId) {
-        return axios.post(`/recipes/${recipeId}/ingredient`, ingredientId, recipeId, quantity, unitId)
+    addIngredientToRecipe(recipe) {
+        return axios.post('/recipes/ingredientList', recipe)
     },
 
     removeIngredientFromRecipe(ingredientId, recipeId) {
         return axios.delete(`/ingredient/${ingredientId}`, ingredientId, recipeId)
     },
 
-    addInstructionToRecipe(recipeId, sequence, instructionText) {
-        return axios.post(`/recipes/${recipeId}/instruction`, recipeId, sequence, instructionText)
+    addInstructionToRecipe(instruction) {
+        return axios.post('/recipes/instruction', instruction)
     },
 
     removeInstructionFromRecipe(instructionId) {
@@ -60,6 +60,10 @@ export default {
 
     getAllIngredients() {
         return axios.get('/ingredient')
+    },
+
+    updateIngredients() {
+        return axios.put('/recipes')
     }
 
 

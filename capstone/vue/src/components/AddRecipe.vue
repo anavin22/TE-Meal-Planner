@@ -1,17 +1,17 @@
 <template>
   <div id="add-recipe">
       <form v-show="!submitted" @submit.prevent="addRecipeToDB">
-          <label for="RecipeName">Recipe Name</label>
+          <label for="RecipeName">Recipe Name: </label>
           <input type="text" id="RecipeName" v-model="newName" placeholder="Recipe Name" required />
 
-          <label for="ImageUrl">Image URL</label>
+          <label for="ImageUrl">Image URL: </label>
           <input type="text" id="ImageUrl" v-model="imageUrl" placeholder="Provide a link to an image for this recipe" required />
 
           <button type="submit">Add This Recipe</button>
       </form>
       <span v-show="submitted">
-          <h2>{{ newName }}</h2>
-          <img :src="imageUrl">
+          <h2 id="new-name">{{ newName }}</h2>
+          <img id="new-pic" :src="imageUrl">
       </span>
 
   </div>
@@ -53,5 +53,16 @@ export default {
 </script>
 
 <style>
+#new-pic {
+    grid-area: new-pic;
+  max-width: 100%;
+  height: auto;
+  border-radius: 30px;
+  box-shadow: 20px 16px teal;
+}
+
+#new-name {
+    grid-area: new-name;
+}
 
 </style>
