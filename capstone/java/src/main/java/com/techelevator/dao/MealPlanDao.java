@@ -6,16 +6,14 @@ import java.util.List;
 
 public interface MealPlanDao{
 
-    MealPlan createMealPlan(MealPlan mealPlan);
+    MealPlan createMealPlan(MealPlan mealPlan, int newId);
 
     MealPlan createObjectCalledMealPlan(int mealPlanId);
 
-    //how else would we update a meal plan???
-    MealPlan updateMealPlan(MealPlan mealPlan);
-
-    MealPlan deleteMealPlan(int MealPlanId);
+    public void deleteMealPlan(int MealPlanId);
 
     MealPlan getMealPlanByMealPlanId(int MealPlanId);
 
     List<MealPlan> getMealPlanByCreatedBy(int createdBy);
+
 }

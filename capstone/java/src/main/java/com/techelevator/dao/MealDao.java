@@ -6,7 +6,11 @@ import java.util.List;
 
 public interface MealDao {
 
-    Meal getMealbyMealId(int id);
+    Meal getMealByMealId(int mealId);
+
+    Meal createMeal(Meal meal);
+
+    Meal createObjectCalledMeal(int mealId);
 
     List<Meal> getAllMealsByMealPlanId(int mealPlanId);
 
@@ -14,8 +18,8 @@ public interface MealDao {
 
    void updateMealToMealPlan(Meal meal, int mealPlanId);
 
-    Meal removeMealFromMealPlan();
+    void removeMealFromMealPlan(int mealId);
 
-
+    //getAllMeals -- do we neeed this??
 
 }

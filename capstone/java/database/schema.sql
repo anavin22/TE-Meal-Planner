@@ -1,6 +1,6 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users, ingredient, recipe, ingredient_recipe, instructions, tag, recipe_tag, saved_recipes CASCADE;
+DROP TABLE IF EXISTS users, ingredient, recipe, ingredient_recipe, instructions, tag, recipe_tag, saved_recipes, meal, meal_plan CASCADE;
 
 CREATE TABLE users (
 	user_id SERIAL,

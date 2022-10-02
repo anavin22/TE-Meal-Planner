@@ -21,9 +21,9 @@ public class JdbcMealPlanDao implements MealPlanDao{
     }
 
     @Override
-    public MealPlan createMealPlan(MealPlan mealPlan) {
-        String sql = "INSERT INTO meal_plan (created_by, title) VALUES (?, ?) RETURNING meal_plan_id = ?)";
-        int newId = jdbcTemplate.queryForObject(sql, Integer.class, mealPlan.getCreatedBy(), mealPlan.getTitle(), mealPlan.getMealPlanId());
+    public MealPlan createMealPlan(MealPlan mealPlan, int userId) {
+        String sql = "INSERT INTO meal_plan (created_by, title) VALUES (?, ?) RETURNING meal_plan_id";
+        int newId = jdbcTemplate.queryForObject(sql, Integer.class, mealPlan.getTitle());
         return getMealPlanByMealPlanId(newId);
     }
 
@@ -39,15 +39,13 @@ public class JdbcMealPlanDao implements MealPlanDao{
             createdMealPlan.setMealList(mealDao.getAllMealsByMealPlanId(mealPlanId));
         }
         return createdMealPlan;
-    }
-    @Override
-    public MealPlan updateMealPlan(MealPlan mealPlan) {
-       return null; //not yet
+
     }
 
     @Override
-    public MealPlan deleteMealPlan(int MealPlanId) {
-        return null; //not yet
+    public void deleteMealPlan(int mealPlanId) {
+       String sql = "BEGIN TRANSACTION; DELETE FROM meal WHERE meal_plan_id = ?; DELETE FROM meal_plan WHERE meal_plan_id = ?; COMMIT;";
+       jdbcTemplate.update(sql, mealPlanId, mealPlanId);
     }
 
     @Override
@@ -59,10 +57,10 @@ public class JdbcMealPlanDao implements MealPlanDao{
     @Override
     public List<MealPlan> getMealPlanByCreatedBy(int createdBy) {
         List<MealPlan> mealPlanList = new ArrayList<>();
-        String sql = "SELECT meal_plan_id FROM meal_plan WHERE createdBy = ?";
+        String sql = "SELECT meal_plan_id FROM meal_plan WHERE created_by = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, createdBy);
         while(results.next()){
-            mealPlanList.add(createObjectCalledMealPlan(results.getInt("created_by")));
+            mealPlanList.add(createObjectCalledMealPlan(results.getInt("meal_plan_id")));
         }
         return mealPlanList;
     }
