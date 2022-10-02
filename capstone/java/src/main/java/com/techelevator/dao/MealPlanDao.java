@@ -10,9 +10,6 @@ public interface MealPlanDao{
 
     MealPlan createObjectCalledMealPlan(int mealPlanId);
 
-    //how else would we update a meal plan???
-    MealPlan updateMealPlan(MealPlan mealPlan);
-
     public void deleteMealPlan(int MealPlanId);
 
     MealPlan getMealPlanByMealPlanId(int MealPlanId);

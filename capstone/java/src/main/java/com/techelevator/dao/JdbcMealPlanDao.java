@@ -23,7 +23,7 @@ public class JdbcMealPlanDao implements MealPlanDao{
     @Override
     public MealPlan createMealPlan(MealPlan mealPlan, int userId) {
         String sql = "INSERT INTO meal_plan (created_by, title) VALUES (?, ?) RETURNING meal_plan_id";
-        int newId = jdbcTemplate.queryForObject(sql, Integer.class, userId, mealPlan.getTitle());
+        int newId = jdbcTemplate.queryForObject(sql, Integer.class, mealPlan.getTitle());
         return getMealPlanByMealPlanId(newId);
     }
 
@@ -39,10 +39,7 @@ public class JdbcMealPlanDao implements MealPlanDao{
             createdMealPlan.setMealList(mealDao.getAllMealsByMealPlanId(mealPlanId));
         }
         return createdMealPlan;
-    }
-    @Override
-    public MealPlan updateMealPlan(MealPlan mealPlan) {
-       return null; //not yet
+
     }
 
     @Override

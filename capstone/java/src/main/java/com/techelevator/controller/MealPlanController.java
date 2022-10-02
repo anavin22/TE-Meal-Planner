@@ -46,10 +46,23 @@ public class MealPlanController {
     public void deleteMealPlan(@PathVariable int mealPlanId){
         mealPlanDao.deleteMealPlan(mealPlanId);
     }
+
     //MEAL METHODS
+    @PostMapping("/meal")
+    public Meal createMeal(@RequestBody Meal meal){
+        return mealDao.createMeal(meal);
+    }
+
     @PutMapping("/mealPlan/{mealId}")
     public void updateMealToMealPlan(@Valid @RequestBody Meal meal, @PathVariable int mealId, int mealPlanId){
         mealDao.updateMealToMealPlan(meal, mealPlanId);
     }
+    @DeleteMapping("/mealPlan/meal/{mealId}")
+    public void removeMealFromMealPlan(@PathVariable int mealId){
+        mealDao.removeMealFromMealPlan(mealId);
+    }
+
+    //getMealByMealId
+    //getAllMeals(?? not created yet)
 
 }
