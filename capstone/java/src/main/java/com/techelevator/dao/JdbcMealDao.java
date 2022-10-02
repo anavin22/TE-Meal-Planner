@@ -23,11 +23,11 @@ public class JdbcMealDao implements MealDao{
     }
 
     @Override
-    public List<Meal> getAllMealsByMealPlanId(int mealId) {
+    public List<Meal> getAllMealsByMealPlanId(int mealPlanId) {
         List<Meal> mealList = new ArrayList<>();
-        String sql = "SELECT meal.meal_id, meal_plan_id, recipe_id, meal_type, day_of_week FROM meal " +
-                "JOIN meal_plan ON meal.meal_id = meal_plan.meal_id WHERE meal_plan.meal_id = ?";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, mealId);
+        String sql = "SELECT meal_id, meal.meal_plan_id, recipe_id, meal_type, day_of_week FROM meal " +
+                "JOIN meal_plan ON meal.meal_plan_id = meal_plan.meal_plan_id WHERE meal_plan.meal_plan_id = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, mealPlanId);
         while(results.next()){
             mealList.add(mapRowToMeal(results));
         }

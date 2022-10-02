@@ -10,10 +10,11 @@ public class MealPlan {
 
     public MealPlan (){};
 
-    public MealPlan(int mealPlanId, int createdBy, String title) {
+    public MealPlan(int mealPlanId, int createdBy, String title, List<Meal> mealList) {
         this.mealPlanId = mealPlanId;
         this.createdBy = createdBy;
         this.title = title;
+        this.mealList = mealList;
     }
 
     public List<Meal> getMealList() {
@@ -47,4 +48,5 @@ public class MealPlan {
     public void setTitle(String title) {
         this.title = title;
     }
+
 }

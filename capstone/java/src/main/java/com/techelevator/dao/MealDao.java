@@ -15,7 +15,6 @@ public interface MealDao {
    void updateMealToMealPlan(Meal meal, int mealPlanId);
 
     Meal removeMealFromMealPlan();
-
-
+    //delete from meal table
 
 }
