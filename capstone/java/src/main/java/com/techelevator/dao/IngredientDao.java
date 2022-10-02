@@ -18,6 +18,8 @@ public interface IngredientDao {
 
     List<Ingredient> getAllIngredientsByRecipeId(int recipeId);
 
+    List<Ingredient> getAllIngredientsByMealPlanId(int mealPlanId);
+
     List<Ingredient> getAllIngredients();
 
     void checkIngredientAndCreateIfNonexistent(Ingredient ingredient);
