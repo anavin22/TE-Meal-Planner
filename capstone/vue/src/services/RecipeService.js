@@ -46,8 +46,8 @@ export default {
         return axios.post('/recipes/ingredientList', recipe)
     },
 
-    removeIngredientFromRecipe(ingredientId, recipeId) {
-        return axios.delete(`/ingredient/${ingredientId}`, ingredientId, recipeId)
+    removeIngredientFromRecipe(recipeId, ingredientId) {
+        return axios.delete(`/recipes/${recipeId}/ingredient/${ingredientId}`)
     },
 
     addInstructionToRecipe(instruction) {
@@ -64,6 +64,26 @@ export default {
 
     updateIngredients() {
         return axios.put('/recipes')
+    },
+
+    getCreatedByRecipes(createdBy) {
+        return axios.get(`/recipes/${createdBy}`) 
+    },
+
+    getInstructionsByRecipe(id) {
+        return axios.get(`/recipes/${id}/instruction`)
+    },
+
+    modifyInstructions(instruction, id) {
+        return axios.put(`/instruction/${id}`, instruction)
+    },
+
+    removeInstruction(id) {
+        return axios.delete(`/instruction/${id}`)
+    },
+
+    addSingleIngredientToRecipe(ingredient) {
+        return axios.post('recipes/ingredient', ingredient)
     }
 
 

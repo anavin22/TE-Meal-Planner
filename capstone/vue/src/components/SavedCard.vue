@@ -8,7 +8,7 @@
 
 <script>
 export default {
-    name: "recipeCard",
+    name: "savedRecipeCard",
     props: ['recipe']
 
 }

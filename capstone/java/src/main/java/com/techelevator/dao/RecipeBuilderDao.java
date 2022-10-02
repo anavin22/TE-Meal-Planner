@@ -4,6 +4,8 @@ import com.techelevator.model.Ingredient;
 import com.techelevator.model.Instructions;
 import com.techelevator.model.Recipe;
 
+import java.util.List;
+
 public interface RecipeBuilderDao {
 
     int addRecipeToRecipeDB(String recipeName, String recipeImage, int createdBy);
@@ -23,6 +25,9 @@ public interface RecipeBuilderDao {
     void removeInstructionFromRecipe(int instructionId);
 
     void updateInstructionsToRecipe(Instructions instructions, int instructionId);
+
+    List<Instructions> getAllInstructionsByRecipe(int recipeId);
+
 
 
 }
