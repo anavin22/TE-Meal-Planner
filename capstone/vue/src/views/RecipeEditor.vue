@@ -43,12 +43,15 @@ export default {
   margin-top: 10%;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: auto;
   max-width: 50%;
   max-height: 100%;
   border: 4px solid;
   border-radius: 15px;
 
 }
+
+/* Swiggly Bois */
 
 .loader {
   --s: 40px; /* control the size */

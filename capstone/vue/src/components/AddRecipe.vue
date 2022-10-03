@@ -6,7 +6,7 @@
 
           <label for="ImageUrl">Image URL: </label>
           <input type="text" id="ImageUrl" v-model="imageUrl" placeholder="Paste the image URL here" required />
-
+        
           <button type="submit">Add Recipe</button>
       </form>
       <span v-show="submitted">
@@ -65,12 +65,14 @@ export default {
     grid-area: new-name;
 }
 
+
 button {
     
                 
                     display: inline-block;
                     outline: none;
                     cursor: pointer;
+                    margin-top: 20 px;
                     font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
                     font-size: 14px;
                     line-height: 1;
@@ -123,5 +125,13 @@ input:focus{
                     box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
                 }
                 
+
+#add-recipe {
+    margin-bottom: 40px
+}
+
+#Img-Url {
+    margin-bottom: 15px
+}
 
 </style>
