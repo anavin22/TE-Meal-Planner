@@ -9,6 +9,7 @@ import RecipeDetails from '../views/RecipeDetails.vue'
 import RecipeEditor from '../views/RecipeEditor.vue'
 import MealPlan from '../views/MealPlan.vue'
 import MyStuff from '../views/MyStuff.vue'
+import PlanDetail from '../views/PlanDetail.vue'
 
 Vue.use(Router)
 
@@ -91,7 +92,15 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
-    }
+    },
+    {
+      path: "/plan/:id",
+      name: "planDetail",
+      component: PlanDetail,
+      meta: {
+        requiresAuth: true
+      }
+    },
   ]
 })
 

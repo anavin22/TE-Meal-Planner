@@ -40,8 +40,14 @@ public class MealPlanController {
     @GetMapping("/mealPlan/{createdBy}")
     public List<MealPlan> getMealPlanByCreatedBy(@PathVariable int createdBy){
        return mealPlanDao.getMealPlanByCreatedBy(createdBy);
-
     }
+
+    @GetMapping("/mealPlan/detail/{mealPlanId}")
+    public MealPlan getPlanById(@PathVariable int mealPlanId) {
+        return mealPlanDao.getMealPlanByMealPlanId(mealPlanId);
+    }
+
+
     @DeleteMapping("/mealPlan/{mealPlanId}")
     public void deleteMealPlan(@PathVariable int mealPlanId){
         mealPlanDao.deleteMealPlan(mealPlanId);
