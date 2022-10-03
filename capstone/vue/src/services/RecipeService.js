@@ -84,6 +84,10 @@ export default {
 
     addSingleIngredientToRecipe(ingredient) {
         return axios.post('recipes/ingredient', ingredient)
+    },
+
+    updateIngredientUnitQuantity(ingredient) {
+        return axios.put('/recipes/ingredient', ingredient)
     }
 
 

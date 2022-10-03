@@ -1,7 +1,7 @@
 <template>
   <div id="modify-recipe">
 
-      <h3 id="modifyRecipeTitle">{{ modifyingRecipe.recipeName }}</h3>
+      <h2 id="modifyRecipeTitle">{{ modifyingRecipe.recipeName }}</h2>
       <span v-show="readyForThis">
     <input id="ModifyTitle" type="text" v-model="modifyingRecipe.recipeName" />
     <input id="ModifyImage" type="text" v-model="modifyingRecipe.image" />
@@ -79,9 +79,10 @@ export default {
 <style>
 #modify-recipe {
   position: absolute;
-  top: 5%;
+  top: -2%;
+  left: 15%;
   right: 10%;
-  width: 50%;
+  width: 80%;
   background-color: #FFFFFF60;
 }
 

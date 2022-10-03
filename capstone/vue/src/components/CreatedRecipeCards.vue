@@ -39,6 +39,11 @@ components: { ModifyRecipe },
 </script>
 
 <style>
+/* #modifiable {
+  display: flex;
+  justify-content: center;
+} */
+
 #recipe-card-vertical {
   background: rgb(36, 148, 146);
   background: linear-gradient(
@@ -53,7 +58,7 @@ components: { ModifyRecipe },
   overflow: hidden;
   position: relative;
   margin-bottom: -8em;
-  margin-left: 20%;
+  margin-left: 10%;
   z-index: 200;
   box-shadow: -5px 3px 3px darkslategray;
 }
