@@ -4,6 +4,8 @@
             <h1>My Meal Plan</h1>
         </header>
 
+        <week-display/>
+
         <!-- Vue Carousel -->
         <div>
             
@@ -32,9 +34,11 @@
 </template>
 
 <script>
+import WeekDisplay from '../components/WeekDisplay.vue'
     
 
 export default {
+  components: { WeekDisplay },
     name: "MealPlan",
 
 }
@@ -79,6 +83,7 @@ export default {
 
 .days-of-week-container div {
 grid-template-rows: 1fr 1fr 1fr 1fr;
+background-color:blanchedalmond;
 }
 
 

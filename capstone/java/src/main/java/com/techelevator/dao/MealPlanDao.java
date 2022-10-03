@@ -16,4 +16,6 @@ public interface MealPlanDao{
 
     List<MealPlan> getMealPlanByCreatedBy(int createdBy);
 
+
+
 }
