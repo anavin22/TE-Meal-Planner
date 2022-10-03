@@ -78,4 +78,37 @@ CREATE TABLE meal(
 
 COMMIT TRANSACTION;
 
-
+CREATE TABLE user_meal_plan(
+    user_meal_plan_id SERIAL,
+    created_by int;
+    monday_breakfast int,
+    monday_lunch int,
+    monday_dinner int,
+    monday_other int,
+    tuesday_breakfast int,
+    tuesday_lunch int,
+    tuesday_dinner int,
+    tuesday_other int,
+    wednesday_breakfast int,
+    wednesday_lunch int,
+    wednesday_dinner int,
+    wednesday_other int,
+    thursday_breakfast int,
+    thursday_lunch int,
+    thursday_dinner int,
+    thursday_other int,
+    friday_breakfast int,
+    friday_lunch int,
+    friday_dinner int,
+    friday_other int,
+    saturday_breakfast int,
+    saturday_lunch int,
+    saturday_dinner int,
+    saturday_other int,
+    sunday_breakfast int,
+    sunday_lunch int,
+    sunday_dinner int,
+    sunday_other int,
+    CONSTRAINT PF_user_meal_plan PRIMARY KEY (user_meal_plan_id),
+    CONSTRAINT FK_recipe FOREIGN KEY (created_by) REFERENCES recipe(created_by)
+);

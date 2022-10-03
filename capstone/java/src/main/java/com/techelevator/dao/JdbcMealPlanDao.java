@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Meal;
 import com.techelevator.model.MealPlan;
+import com.techelevator.model.UserMealPlan;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -44,8 +45,8 @@ public class JdbcMealPlanDao implements MealPlanDao{
 
     @Override
     public void deleteMealPlan(int mealPlanId) {
-       String sql = "BEGIN TRANSACTION; DELETE FROM meal WHERE meal_plan_id = ?; DELETE FROM meal_plan WHERE meal_plan_id = ?; COMMIT;";
-       jdbcTemplate.update(sql, mealPlanId, mealPlanId);
+        String sql = "BEGIN TRANSACTION; DELETE FROM meal WHERE meal_plan_id = ?; DELETE FROM meal_plan WHERE meal_plan_id = ?; COMMIT;";
+        jdbcTemplate.update(sql, mealPlanId, mealPlanId);
     }
 
     @Override
@@ -59,7 +60,7 @@ public class JdbcMealPlanDao implements MealPlanDao{
         List<MealPlan> mealPlanList = new ArrayList<>();
         String sql = "SELECT meal_plan_id FROM meal_plan WHERE created_by = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, createdBy);
-        while(results.next()){
+        while (results.next()) {
             mealPlanList.add(createObjectCalledMealPlan(results.getInt("meal_plan_id")));
         }
         return mealPlanList;
