@@ -53,7 +53,7 @@ public class JdbcRecipeDao implements RecipeDao {
         createdRecipe.setIngredientList(jdbcIngredientDao.getAllIngredientsByRecipeId(recipeId));
 
         String sqlInstructionsTable = "SELECT instruction_text FROM instructions WHERE recipe_id = ? " +
-                "ORDER BY sequence ASC";
+                "ORDER BY instruction_id ASC";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sqlInstructionsTable, recipeId);
         while (results.next()) {
             createdRecipe.getInstructions().add(results.getString("instruction_text"));
@@ -109,7 +109,7 @@ public class JdbcRecipeDao implements RecipeDao {
     @Override
     public List<Recipe> getLatestRecipes() {
         List<Recipe> latestRecipes = new ArrayList<>();
-        String sql = "SELECT recipe_id FROM recipe ORDER BY recipe_id DESC LIMIT 8";
+        String sql = "SELECT recipe_id FROM recipe ORDER BY recipe_id DESC LIMIT 10";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while (results.next()) {
             latestRecipes.add(createObjectCalledRecipe(results.getInt("recipe_id")));

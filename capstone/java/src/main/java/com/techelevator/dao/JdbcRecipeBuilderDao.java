@@ -4,7 +4,11 @@ import com.techelevator.model.Ingredient;
 import com.techelevator.model.Instructions;
 import com.techelevator.model.Recipe;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class JdbcRecipeBuilderDao implements RecipeBuilderDao {
@@ -80,4 +84,17 @@ public class JdbcRecipeBuilderDao implements RecipeBuilderDao {
         jdbcTemplate.update(sql, instructions.getInstruction_text(), instructions.getInstruction_id());
     }
 
+    @Override
+    public List<Instructions> getAllInstructionsByRecipe(int recipeId) {
+        List<Instructions> instructionsList = new ArrayList<>();
+        String sql = "SELECT instruction_id, instruction_text FROM instructions WHERE recipe_id = ? ORDER BY instruction_id ASC;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, recipeId);
+        while (results.next()) {
+            Instructions instruction = new Instructions();
+            instruction.setInstruction_id(results.getInt("instruction_id"));
+            instruction.setInstruction_text(results.getString("instruction_text"));
+            instructionsList.add(instruction);
+        }
+        return instructionsList;
+    }
 }

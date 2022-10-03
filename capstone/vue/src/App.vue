@@ -3,6 +3,7 @@
     <img id="logo" src="./assets/vector_long_logo_dRAGON.png">
     <div id="nav" v-show="checkLogin">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>
+      <router-link v-bind:to="{ name: 'myStuff' }">Edit My Recipes</router-link>
       <router-link v-bind:to="{name: 'recipeEditor'}">Add a Recipe</router-link>
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
     </div>
@@ -46,7 +47,7 @@ export default {
     justify-content: space-evenly;
     color: white;
     font-weight: bold;
-    width: 20%;
+    width: 40%;
     height: 40px;
     margin: auto;
     z-index: 1000;

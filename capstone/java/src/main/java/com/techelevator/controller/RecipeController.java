@@ -107,8 +107,14 @@ public class RecipeController {
                     eachIngredient.getQuantity(), eachIngredient.getUnit());
         }
     }
-    @DeleteMapping("/ingredient/{ingredientId}")
-    public void removeIngredientFromRecipe(@PathVariable int ingredientId, int recipeId) {
+
+    @PostMapping("/recipes/ingredient")
+    public void addIngredientToIngredientRecipeTable(@Valid @RequestBody Ingredient ingredient) {
+        recipeBuilderDao.addIngredientToRecipe(ingredient.getIngredientId(), ingredient.getRecipeId(), ingredient.getQuantity(), ingredient.getUnit());
+    }
+
+    @DeleteMapping("/recipes/{recipeId}/ingredient/{ingredientId}")
+    public void removeIngredientFromRecipe(@PathVariable int recipeId, @PathVariable int ingredientId) {
         recipeBuilderDao.removeIngredientFromRecipe(ingredientId, recipeId);
     }
 
@@ -130,9 +136,16 @@ public class RecipeController {
     public List<Ingredient> getAllIngredients(){
         return ingredientDao.getAllIngredients();
     }
+
     @PutMapping("/instruction/{instructionId}")
     public void updateInstructionsToRecipe(@RequestBody Instructions instructions, @PathVariable int instructionId){
         recipeBuilderDao.updateInstructionsToRecipe(instructions, instructionId);
+    }
+
+    @GetMapping("recipes/{recipeId}/instruction")
+    public List<Instructions> getInstructionsByRecipe(@PathVariable int recipeId) {
+        return recipeBuilderDao.getAllInstructionsByRecipe(recipeId);
+
     }
 
 }
