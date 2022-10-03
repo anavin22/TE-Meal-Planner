@@ -1,5 +1,6 @@
 <template>
   <div class="main-look">
+<<<<<<< HEAD
               <h1 class="plan0title"> {{detailedPlan.title}} </h1> 
     <div id="week-display">
       <span class="Monday"><h3 class="weekday">Monday</h3></span>
@@ -19,6 +20,17 @@
 
 
       </span>
+=======
+    <div id="week-display">
+      <span class="Monday">Monday</span>
+      <span class="Tuesday">Tuesday</span>
+      <span class="Wednesday">Wednesday</span>
+      <span class="Thursday">Thursday</span>
+      <span class="Friday">Friday</span>
+      <span class="Saturday">Saturday</span>
+      <span class="Sunday">Sunday</span>
+      <span class="MonBre">Breakfast</span>
+>>>>>>> main
       <span class="TueBre">Breakfast</span>
       <span class="WedBre">Breakfast</span>
       <span class="ThurBre">Breakfast</span>
@@ -144,10 +156,14 @@ export default {
 
 <style>
 #week-display {
+<<<<<<< HEAD
     background-color: #FFFFFF;
     right: 0;
     margin-top: 5%;
     margin-left: .5em;
+=======
+    margin-top: 5%;
+>>>>>>> main
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-areas:

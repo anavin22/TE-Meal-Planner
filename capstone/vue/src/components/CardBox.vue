@@ -33,9 +33,9 @@ export default {
 
 <style>
 #card-box {
+  margin-top:4.5%;
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
 }
+
 
 </style>

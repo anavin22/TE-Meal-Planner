@@ -1,8 +1,10 @@
 package com.techelevator.controller;
 
+import com.techelevator.dao.IngredientDao;
 import com.techelevator.dao.MealDao;
 import com.techelevator.dao.MealPlanDao;
 import com.techelevator.dao.UserDao;
+import com.techelevator.model.Ingredient;
 import com.techelevator.model.Meal;
 import com.techelevator.model.MealPlan;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +26,13 @@ public class MealPlanController {
     private MealDao mealDao;
     private MealPlanDao mealPlanDao;
     private UserDao userDao;
+    private IngredientDao ingredientDao;
 
-    public MealPlanController(MealDao mealDao, MealPlanDao mealPlanDao, UserDao userDao) {
+    public MealPlanController(MealDao mealDao, MealPlanDao mealPlanDao, UserDao userDao, IngredientDao ingredientDao) {
         this.mealDao = mealDao;
         this.mealPlanDao = mealPlanDao;
         this.userDao = userDao;
+        this.ingredientDao = ingredientDao;
 
     }
         //MEAL PLAN METHODS
@@ -51,6 +55,10 @@ public class MealPlanController {
     @DeleteMapping("/mealPlan/{mealPlanId}")
     public void deleteMealPlan(@PathVariable int mealPlanId){
         mealPlanDao.deleteMealPlan(mealPlanId);
+    }
+    @GetMapping("/mealPlan/{mealPlanId}/groceryList")
+    public List<Ingredient> getAllIngredientsByMealPlanId(@PathVariable int mealPlanId){
+        return ingredientDao.getAllIngredientsByMealPlanId(mealPlanId);
     }
 
     //MEAL METHODS

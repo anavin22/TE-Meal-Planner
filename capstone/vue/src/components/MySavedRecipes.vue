@@ -32,8 +32,8 @@ export default {
 
 <style>
 #favorites {
+  margin-top: 4.5%;
+  margin-right: 5em;
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
 }
 </style>

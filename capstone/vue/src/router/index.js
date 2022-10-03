@@ -96,11 +96,19 @@ const router = new Router({
     {
       path: "/plan/:id",
       name: "planDetail",
+<<<<<<< HEAD
       component: PlanDetail,
       meta: {
         requiresAuth: true
       }
     },
+=======
+      component: planDetail,
+      meta: {
+        requiresAuth: true
+      }
+    }
+>>>>>>> main
   ]
 })
 
