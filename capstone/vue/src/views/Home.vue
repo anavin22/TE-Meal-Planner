@@ -75,10 +75,14 @@ export default {
   color: #249492;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   text-align: center;
-  min-height: 100vh;
+  min-height: 1vh;
   z-index: -2;
+  overflow-y: scroll;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
 
 
 </style>

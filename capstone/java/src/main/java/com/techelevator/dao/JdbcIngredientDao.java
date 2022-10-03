@@ -64,6 +64,23 @@ public class JdbcIngredientDao implements IngredientDao {
         return ingredientList;
     }
 
+    //need to connect tables to get all ingredients per meal plan to generate list of ingredients
+    //didnt finish SELECT table - go from ingredients to meal-plan
+    @Override
+    public List<Ingredient> getAllIngredientsByMealPlanId(int mealPlanId) {
+        List<Ingredient> groceryIngredientList = new ArrayList<>();
+        String sql = "SELECT ingredient.ingredient_id, ingredient_name, quantity, unit  FROM ingredient " +
+                "JOIN ingredient_recipe ON ingredient.ingredient_id = ingredient_recipe.ingredient_id " +
+                "JOIN meal ON ingredient_recipe.recipe_id = meal.recipe_id " +
+                "WHERE meal.meal_plan_id = ? ";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, mealPlanId);
+
+        while(results.next()){
+            groceryIngredientList.add(mapRowToIngredient(results));
+        }
+        return groceryIngredientList;
+    }
+
     @Override
     public List<Ingredient> getAllIngredients() {
         List<Ingredient> ingredientList = new ArrayList<>();

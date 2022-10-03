@@ -69,10 +69,13 @@ CREATE TABLE meal(
     meal_id SERIAL,
     meal_plan_id integer,
     recipe_id integer NOT NULL,
-    meal_type varchar (15),
-    day_of_week varchar (10),
+    meal_type varchar(15),
+    day_of_week varchar(10),
     CONSTRAINT PK_meal PRIMARY KEY (meal_id),
-    CONSTRAINT FK_meal_plan FOREIGN KEY (meal_plan_id) REFERENCES meal_plan (meal_plan_id)
+    CONSTRAINT FK_meal_plan FOREIGN KEY (meal_plan_id) REFERENCES meal_plan(meal_plan_id),
+	CONSTRAINT FK_recipe FOREIGN KEY (recipe_id) REFERENCES recipe(recipe_id)
 );
 
 COMMIT TRANSACTION;
+
+

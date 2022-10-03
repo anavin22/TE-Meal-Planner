@@ -36,7 +36,7 @@
         <br>
 
         <label for="enter-quantity">Quantity: </label>
-        <input id="enter-quantity" name="enter-quantity" type="number" step="0.01" v-model="quantity" required=">0" />
+        <input id="enter-quantity" name="enter-quantity" type="number" step="0.25" v-model="quantity" required=">0" />
 
         <br>
 

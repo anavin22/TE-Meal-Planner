@@ -6,6 +6,9 @@ public class Instructions {
     private String instruction_text;
     private int recipeId;
 
+    public Instructions() {
+    }
+
     public Instructions(int instruction_id, int sequence, String instruction_text, int recipeId) {
         this.instruction_id = instruction_id;
         this.sequence = sequence;
