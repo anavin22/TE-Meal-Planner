@@ -3,11 +3,13 @@
     <h1>Latest Recipes</h1>
 
     <div class="recipes-browse">
+      <div class="container">
       <card-box />
-
+</div>
           <h1>My Recipes</h1>
+          <div class="container">
       <my-saved-recipes />
-      
+      </div>
 
     </div>
     <button>Add New Recipe</button>
@@ -80,9 +82,13 @@ export default {
   overflow-y: scroll;
 }
 
-::-webkit-scrollbar {
-  width: 10px;
-}
 
+.container {
+  height: 20em;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  margin-left: 1em;
+  margin-right: 1em;
+}
 
 </style>
