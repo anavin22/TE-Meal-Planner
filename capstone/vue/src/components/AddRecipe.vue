@@ -2,12 +2,12 @@
   <div id="add-recipe">
       <form v-show="!submitted" @submit.prevent="addRecipeToDB">
           <label for="RecipeName">Recipe Name: </label>
-          <input type="text" id="RecipeName" v-model="newName" placeholder="Recipe Name" required />
+          <input type="text" id="RecipeName" v-model="newName" placeholder="What are you making?" required />
 
           <label for="ImageUrl">Image URL: </label>
-          <input type="text" id="ImageUrl" v-model="imageUrl" placeholder="Provide a link to an image for this recipe" required />
+          <input type="text" id="ImageUrl" v-model="imageUrl" placeholder="Paste the image URL here" required />
 
-          <button type="submit">Add This Recipe</button>
+          <button type="submit">Add Recipe</button>
       </form>
       <span v-show="submitted">
           <h2 id="new-name">{{ newName }}</h2>
@@ -64,5 +64,64 @@ export default {
 #new-name {
     grid-area: new-name;
 }
+
+button {
+    
+                
+                    display: inline-block;
+                    outline: none;
+                    cursor: pointer;
+                    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+                    font-size: 14px;
+                    line-height: 1;
+                    border-radius: 500px;
+                    transition-property: background-color,border-color,color,box-shadow,filter;
+                    transition-duration: .3s;
+                    border: 1px solid transparent;
+                    letter-spacing: 2px;
+                    min-width: 160px;
+                    text-transform: uppercase;
+                    white-space: normal;
+                    font-weight: 700;
+                    text-align: center;
+                    padding: 16px 14px 18px;
+                    color: #ffffff;
+                    box-shadow: inset 0 0 0 1px #000000;
+                    background-color: teal;
+                    height: 48px;
+                    
+                
+                
+}
+
+button:hover{
+                        color: #fff;
+                        background-color: #616467;
+                    }
+
+input {
+    
+                padding: 5px 12px;
+                font-size: 14px;
+                line-height: 20px;
+                color: #24292e;
+                vertical-align: middle;
+                background-color: #ffffff;
+                background-repeat: no-repeat;
+                background-position: right 8px center;
+                border: 1px solid #e1e4e8;
+                border-radius: 6px;
+                outline: none;
+                box-shadow: rgba(225, 228, 232, 0.2) 0px 1px 0px 0px inset;
+                
+                
+}
+
+input:focus{
+                    border-color: #0366d6;
+                    outline: none;
+                    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+                }
+                
 
 </style>
