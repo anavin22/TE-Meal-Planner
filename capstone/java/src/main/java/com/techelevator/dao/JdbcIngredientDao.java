@@ -69,7 +69,10 @@ public class JdbcIngredientDao implements IngredientDao {
     @Override
     public List<Ingredient> getAllIngredientsByMealPlanId(int mealPlanId) {
         List<Ingredient> groceryIngredientList = new ArrayList<>();
-        String sql = "SELECT ";
+        String sql = "SELECT ingredient.ingredient_id, ingredient_name, quantity, unit  FROM ingredient " +
+                "JOIN ingredient_recipe ON ingredient.ingredient_id = ingredient_recipe.ingredient_id " +
+                "JOIN meal ON ingredient_recipe.recipe_id = meal.recipe_id " +
+                "WHERE meal.meal_plan_id = ? ";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, mealPlanId);
 
         while(results.next()){
