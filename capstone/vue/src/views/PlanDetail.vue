@@ -1,6 +1,5 @@
 <template>
   <div class="main-look">
-<<<<<<< HEAD
               <h1 class="plan0title"> {{detailedPlan.title}} </h1> 
     <div id="week-display">
       <span class="Monday"><h3 class="weekday">Monday</h3></span>
@@ -13,24 +12,13 @@
       <span class="MonBre">
           <div class="meal-box">
               <h4>Breakfast</h4>
-              <h4>{{ mondayBreakfastName }}</h4>
+              <h4>{{ mondayBreakfast.name }}</h4>
               <img src="" alt="" class="meal-thumb">
           </div>
 
 
 
       </span>
-=======
-    <div id="week-display">
-      <span class="Monday">Monday</span>
-      <span class="Tuesday">Tuesday</span>
-      <span class="Wednesday">Wednesday</span>
-      <span class="Thursday">Thursday</span>
-      <span class="Friday">Friday</span>
-      <span class="Saturday">Saturday</span>
-      <span class="Sunday">Sunday</span>
-      <span class="MonBre">Breakfast</span>
->>>>>>> main
       <span class="TueBre">Breakfast</span>
       <span class="WedBre">Breakfast</span>
       <span class="ThurBre">Breakfast</span>
@@ -117,6 +105,10 @@ export default {
 
     },
 
+    // watch: {
+    //     mondayBreakfastName() 
+    // },
+
     methods: {
         assignMeals(){
             this.detailedPlan.mealList.forEach(meal => {
@@ -135,6 +127,7 @@ export default {
         getRecipeName(recipeId) {
             RecipeService.getRecipeById(recipeId).then(response=> {
                 console.log(response.data.recipeName)
+                this.mondayBreakfast.name = response.data.recipeName;
                 return response.data.recipeName;
             })
         },
@@ -156,14 +149,10 @@ export default {
 
 <style>
 #week-display {
-<<<<<<< HEAD
     background-color: #FFFFFF;
     right: 0;
     margin-top: 5%;
     margin-left: .5em;
-=======
-    margin-top: 5%;
->>>>>>> main
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-areas:
