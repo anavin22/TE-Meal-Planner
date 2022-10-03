@@ -61,6 +61,16 @@ export default {
   height: auto;
 }
 
+::-webkit-scrollbar {
+  background-color: transparent;
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #24949240;
+  border-radius: 15px;
+}
+
 
 </style>
 

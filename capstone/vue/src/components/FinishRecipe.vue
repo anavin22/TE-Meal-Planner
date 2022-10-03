@@ -193,7 +193,6 @@ export default {
 
     completeRecipeAndReset() {
       this.$store.commit('UPDATE_WORKING_RECIPE_ID')
-      console.log(this.$store.state.workingRecipe)
       RecipeService
       .addIngredientToRecipe(this.$store.state.workingRecipe)
       .then(response => {
