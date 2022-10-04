@@ -53,17 +53,14 @@ export default {
 <style>
 
 textarea {
-    width: 100%;
     height: 120px;
-    text-align: center;
     font-size: 1.2em;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     border-radius: 10px;
-
-
-}
-
-button {
+  width: 80%;
+  position: relative;
+  float: right;
+  margin-right: 5%;
 
 }
 

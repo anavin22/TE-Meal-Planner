@@ -29,8 +29,8 @@ box-shadow: -5px 3px 3px darkslategray;
 }
 
 #recipe-card:hover {
-    margin-right: 30px;
-    margin-left: 30px;
+    margin-right: 20px;
+    margin-left: 20px;
     margin-bottom: 50px;
     margin-top: -50px;
     transform: rotate(-0.025turn);

@@ -35,6 +35,9 @@ components: { ModifyRecipe },
       }
     },
   },
+  created() {
+    this.$store.commit("UPDATE_WORKING_ID", 0)
+  }
 };
 </script>
 

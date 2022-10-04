@@ -4,7 +4,7 @@
       <form
         id="addAnIngredientToExistingRecipe"
         @submit.prevent="addIngredientToRecipe"
-      >
+      >      <h4 id="addingHeader">Adding:</h4>
         <input
           id="ingredient-to-add"
           name="ingredient-to-add"
@@ -16,6 +16,7 @@
 
         <br />
 
+        <label for="enter-quantity">Quantity: </label><br>
         <input
           id="enter-quantity"
           name="enter-quantity"
@@ -26,7 +27,7 @@
         />
 
         <br />
-
+<label for="enter-unit">Unit: </label><br>
         <input
           id="enter-unit"
           name="enter-unit"
@@ -67,7 +68,7 @@
         id="addIngred"
         placeholder="Add a new Ingredient"
       />
-      <button @click.prevent="addNewIngredient">Add It</button>
+      <button @click="addNewIngredient">Add It</button>
     </div>
   </div>
 </template>
@@ -156,6 +157,16 @@ export default {
 
 <style>
 #addIngredient {
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 80%;
+  height: 30%;
+  box-shadow: -5px 3px 3px darkslategray;
+  border-radius: 15px;
+  background-color: white;
+  z-index: 99999;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-areas: "form select new";
@@ -180,6 +191,14 @@ export default {
   border-radius: 15px;
 }
 
+.search-entry {
+  width: 90%;
+  height: 50px;
+  margin-top: 20px;
+  margin-bottom: -10px;
+  font-size: 1.5em;
+}
+
 .search-select ul {
   list-style: none;
   text-align: left;
@@ -201,5 +220,26 @@ export default {
   background-color: darkslategray;
   color: white;
   font-weight: bold;
+}
+
+#ingredient-to-add {
+  border-style: none;
+  font-size: 1.5em;
+  height: 1.5em;
+  margin-bottom: 0px;
+}
+
+#addingHeader {
+  font-size: 1em;
+  margin-top: -15px;
+  margin-bottom: 0px;
+}
+
+#addIngred {
+    width: 90%;
+  height: 50px;
+  margin-top: 20px;
+  margin-bottom: -10px;
+  font-size: 1.5em;
 }
 </style>

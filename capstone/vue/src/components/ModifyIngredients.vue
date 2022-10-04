@@ -8,24 +8,24 @@
     </button>
 
     <span v-show="makeChanges">
-      <button id="removeIngredientBtn" @click.prevent="removeIngredient">
+      <button id="removeIngredientBtn" @click="removeIngredient">
         Remove Ingredient
       </button>
 
       <form id="quantityUnitForm">
-        <label for="units">Units: </label>
+        <label for="quantity">Quantity: </label>
         <input
           class="ModifyIngredientQuantity"
           type="number"
-          name="units"
+          name="quantity"
           step="0.25"
           v-model="ingredientToModify.quantity"
         /><br />
-        <label for="quantity">Quantity: </label>
+        <label for="unit">Units: </label>
         <input
           class="ModifyIngredientUnit"
           type="text"
-          name="quantity"
+          name="unit"
           v-model="ingredientToModify.unit"
         />
         <br />

@@ -16,6 +16,7 @@
     <button v-show="!addIngredient" @click.prevent="toggleAddIngredient">Add an Ingredient</button>
 
     <add-an-ingredient v-if="addIngredient" />
+    <button v-if="addIngredient" id="closeAddIngredient" @click.prevent="toggleAddIngredient">Close</button>
 
     <modify-instructions
       v-for="instruction in modifyingInstructions"
@@ -84,6 +85,17 @@ export default {
   right: 10%;
   width: 80%;
   background-color: #FFFFFF60;
+}
+
+#modifyRecipeTitle {
+  margin-left: 10%;
+}
+
+#closeAddIngredient{
+  position: fixed;
+  z-index: 99999999;
+  bottom: 39%;
+  right: 10%;
 }
 
 </style>
