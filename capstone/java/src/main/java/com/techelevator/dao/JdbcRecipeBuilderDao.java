@@ -60,8 +60,8 @@ public class JdbcRecipeBuilderDao implements RecipeBuilderDao {
 
     @Override
     public void updateIngredientQuantityToRecipe(Ingredient ingredient, int recipeId) {
-        String sql = "UPDATE ingredient_recipe SET quantity = ? WHERE ingredient_id = ? AND recipe_id = ? ";
-                jdbcTemplate.update(sql, ingredient.getQuantity(), ingredient.getIngredientId(), recipeId);
+        String sql = "UPDATE ingredient_recipe SET quantity = ?, unit = ? WHERE ingredient_id = ? AND recipe_id = ? ";
+                jdbcTemplate.update(sql, ingredient.getQuantity(), ingredient.getUnit(), ingredient.getIngredientId(), recipeId);
 
     }
 

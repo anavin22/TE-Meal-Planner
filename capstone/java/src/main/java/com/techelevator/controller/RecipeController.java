@@ -129,7 +129,7 @@ public class RecipeController {
     }
 
     @PutMapping("/recipes/ingredient")
-    public void updateIngredientQuantityToRecipe(@RequestBody Ingredient ingredient) {
+    public void updateIngredientQuantityUnitToRecipe(@RequestBody Ingredient ingredient) {
         recipeBuilderDao.updateIngredientQuantityToRecipe(ingredient, ingredient.getRecipeId());
     }
     @GetMapping("/ingredient")

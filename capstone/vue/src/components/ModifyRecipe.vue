@@ -1,7 +1,7 @@
 <template>
   <div id="modify-recipe">
 
-      <h3 id="modifyRecipeTitle">{{ modifyingRecipe.recipeName }}</h3>
+      <h2 id="modifyRecipeTitle">{{ modifyingRecipe.recipeName }}</h2>
       <span v-show="readyForThis">
     <input id="ModifyTitle" type="text" v-model="modifyingRecipe.recipeName" />
     <input id="ModifyImage" type="text" v-model="modifyingRecipe.image" />
@@ -16,6 +16,7 @@
     <button v-show="!addIngredient" @click.prevent="toggleAddIngredient">Add an Ingredient</button>
 
     <add-an-ingredient v-if="addIngredient" />
+    <button v-if="addIngredient" id="closeAddIngredient" @click.prevent="toggleAddIngredient">Close</button>
 
     <modify-instructions
       v-for="instruction in modifyingInstructions"
@@ -79,10 +80,22 @@ export default {
 <style>
 #modify-recipe {
   position: absolute;
-  top: 5%;
+  top: -2%;
+  left: 15%;
   right: 10%;
-  width: 50%;
+  width: 80%;
   background-color: #FFFFFF60;
+}
+
+#modifyRecipeTitle {
+  margin-left: 10%;
+}
+
+#closeAddIngredient{
+  position: fixed;
+  z-index: 99999999;
+  bottom: 39%;
+  right: 10%;
 }
 
 </style>

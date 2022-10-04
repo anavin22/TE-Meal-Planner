@@ -1,5 +1,5 @@
 <template>
-    <div id="favorites">
+    <div id="card-box">
  <router-link 
       v-for="recipe in recipes" :key="recipe.recipeId" 
       v-bind:recipe="recipe" 
@@ -31,9 +31,8 @@ export default {
 </script>
 
 <style>
-#favorites {
+/* #favorites {
   margin-top: 4.5%;
-  margin-right: 5em;
     display: flex;
-}
+} */
 </style>

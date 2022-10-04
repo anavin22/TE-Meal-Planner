@@ -1,7 +1,10 @@
 <template>
   <div id="modify-instruct">
 
-      <textarea class="ModifyInstructionText" type="text" v-model="$props.instruction.instruction_text" /><button @click.prevent="updateInstructions">Update Step</button>
+      <br>
+      <textarea class="ModifyInstructionText" type="text" v-model="$props.instruction.instruction_text" /><br><button @click.prevent="updateInstructions">^ Update Step ^</button>
+      
+      
       <!-- <button @click.prevent="removeInstructions">Remove Step</button> -->
 
 
@@ -48,5 +51,18 @@ export default {
 </script>
 
 <style>
+
+textarea {
+    height: 120px;
+    font-size: 1.2em;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    border-radius: 10px;
+  width: 80%;
+  position: relative;
+  float: right;
+  margin-right: 5%;
+
+}
+
 
 </style>

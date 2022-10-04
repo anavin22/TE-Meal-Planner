@@ -30,6 +30,7 @@ export default new Vuex.Store({
       // image: "",
       ingredientList: [],
       instructions: [],
+      componentKey: 0,
     },
   },
   mutations: {
@@ -95,6 +96,10 @@ export default new Vuex.Store({
 
     UPDATE_WORKING_RECIPE_ID(state) {
       state.workingRecipe.recipeId = state.workingId;
+    },
+
+    UPDATE_COMPONENT_KEY(state){
+      state.componentKey += 1;
     }
 
   }

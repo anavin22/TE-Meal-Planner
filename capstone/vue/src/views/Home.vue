@@ -1,12 +1,12 @@
 <template>
   <div id="Home" class="main-look">
-    <h1>Latest Recipes</h1>
+    <h1 class="frontTitle">Latest Recipes</h1>
 
     <div class="recipes-browse">
       <div class="container">
       <card-box />
 </div>
-          <h1>My Recipes</h1>
+          <h1 class="frontTitle">My Recipes</h1>
           <div class="container">
       <my-saved-recipes />
       </div>
@@ -69,7 +69,7 @@ export default {
   background-position: center;
   background-repeat: repeat-y;
   background-size: 75% auto;
-  width: 80%;
+  max-width: 80%;
   margin-right: auto;
   margin-left: auto;
   margin-top: -9em;
@@ -82,11 +82,16 @@ export default {
   overflow-y: scroll;
 }
 
+.frontTitle {
+  font-size: 6em;
+  margin-bottom: -4.5%;
+}
+
 
 .container {
   height: 20em;
   overflow-x: scroll;
-  overflow-y: hidden;
+  overflow-y: visible;
   margin-left: 1em;
   margin-right: 1em;
 }
