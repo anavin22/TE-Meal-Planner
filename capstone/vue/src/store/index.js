@@ -22,6 +22,7 @@ export default new Vuex.Store({
     user: currentUser || {},
     recipeSaved: false,
     workingId: 0,
+    userMealPlan: {},
     savedRecipes: [],
     workingRecipe: {
       recipeId: 0,
@@ -98,8 +99,8 @@ export default new Vuex.Store({
       state.workingRecipe.recipeId = state.workingId;
     },
 
-    UPDATE_COMPONENT_KEY(state){
-      state.componentKey += 1;
+    ADD_USER_MEALPLAN(state, mealPlan) {
+      state.userMealPlan = mealPlan;
     }
 
   }

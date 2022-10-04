@@ -88,6 +88,10 @@ export default {
 
     updateIngredientUnitQuantity(ingredient) {
         return axios.put('/recipes/ingredient', ingredient)
+    },
+
+    getName(id){
+        return axios.get(`/recipes/name/${id}`)
     }
 
 

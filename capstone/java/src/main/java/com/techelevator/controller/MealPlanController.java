@@ -87,14 +87,20 @@ public class MealPlanController {
 
     //USER MEAL PLAN METHODS
     @PostMapping("/userMealPlan")
-    public UserMealPlan createUserMealPlan(Principal principal, @Valid @RequestBody UserMealPlan userMealPlan) {
+    public UserMealPlan createUserMealPlan(Principal principal) {
         int userId = userDao.findIdByUsername(principal.getName());
-        return userMealPlanDao.createUserMealPlan(userMealPlan, userId);
+        return userMealPlanDao.createUserMealPlan(userId);
     }
 
-    @GetMapping("/userMealPlan/{createdBy}")
-    public List<UserMealPlan> getUserMealPlanByCreatedBy(@PathVariable int createdBy) {
-        return userMealPlanDao.getUserMealPlanByCreatedBy(createdBy);
+    @GetMapping("/userMealPlan")
+    public UserMealPlan getUserMealPlanByCreatedBy(Principal principal) {
+        int userId = userDao.findIdByUsername(principal.getName());
+        return userMealPlanDao.getUserMealPlanByCreatedBy(userId);
     }
+
+//    @GetMapping("/userMealPlan/{createdBy}")
+//    public List<UserMealPlan> getUserMealPlanByCreatedBy(@PathVariable int createdBy) {
+//        return userMealPlanDao.getUserMealPlanByCreatedBy(createdBy);
+//    }
     //@PutMapping(
 }

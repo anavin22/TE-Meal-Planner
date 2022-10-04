@@ -23,7 +23,7 @@ border-radius: 20px;
 color: white;
 overflow: hidden;
 position: relative;
-margin-right: -10px;
+margin-right: -20px;
 z-index: 200;
 box-shadow: -5px 3px 3px darkslategray;
 }

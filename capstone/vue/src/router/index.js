@@ -94,7 +94,7 @@ const router = new Router({
       }
     },
     {
-      path: "/plan/:id",
+      path: "/plan",
       name: "planDetail",
       component: PlanDetail,
       meta: {

@@ -29,4 +29,6 @@ public interface RecipeDao {
 
     List<Integer> getListOfFavoriteRecipeIdsByUserId(int userId);
 
+    String getRecipeName(int recipeId);
+
 }

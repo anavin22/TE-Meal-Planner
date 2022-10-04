@@ -12,13 +12,25 @@
 </template>
 
 <script>
-
+import MealPlanService from './services/MealPlanService'
 export default {
   name: "app",
   data() {
     return {
       
     }
+  },
+  created() {
+    //Pull Plan
+    MealPlanService.getUserMealPlan(this.$store.state.user.id).then(
+      (response) => {
+        if (response.status == 200) {
+          this.$store.commit('ADD_USER_MEALPLAN', response.data)
+        } else {
+          alert("Something went wrong");
+        }
+      }
+    );
   },
     computed: {
     checkLogin() {
