@@ -1,6 +1,8 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.MealPlan;
+import com.techelevator.model.UserMealPlan;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -14,6 +16,5 @@ public interface MealPlanDao{
 
     MealPlan getMealPlanByMealPlanId(int MealPlanId);
 
-    List<MealPlan> getMealPlanByCreatedBy(int createdBy);
-
+    List<MealPlan> getMealPlanByCreatedBy(@PathVariable int createdBy);
 }

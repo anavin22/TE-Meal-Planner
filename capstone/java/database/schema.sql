@@ -80,7 +80,7 @@ COMMIT TRANSACTION;
 
 CREATE TABLE user_meal_plan(
     user_meal_plan_id SERIAL,
-    created_by int;
+    created_by int,
     monday_breakfast int,
     monday_lunch int,
     monday_dinner int,
@@ -109,6 +109,5 @@ CREATE TABLE user_meal_plan(
     sunday_lunch int,
     sunday_dinner int,
     sunday_other int,
-    CONSTRAINT PF_user_meal_plan PRIMARY KEY (user_meal_plan_id),
-    CONSTRAINT FK_recipe FOREIGN KEY (created_by) REFERENCES recipe(created_by)
+    CONSTRAINT PF_user_meal_plan PRIMARY KEY (user_meal_plan_id)
 );

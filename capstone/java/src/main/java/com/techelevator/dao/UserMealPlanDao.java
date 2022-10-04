@@ -15,5 +15,5 @@ public interface UserMealPlanDao {
 
     UserMealPlan createUserMealPlan(UserMealPlan userMealPlan, int userMealPlanId);
 
-
+    UserMealPlan updateUserMealPlan(UserMealPlan userMealPlan);
 }
