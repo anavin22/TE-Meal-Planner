@@ -64,16 +64,20 @@ public class JdbcIngredientDao implements IngredientDao {
         return ingredientList;
     }
 
-    //need to connect tables to get all ingredients per meal plan to generate list of ingredients
-    //didnt finish SELECT table - go from ingredients to meal-plan
+//change input to getting all ing by user whom created the mealplan
+    //JOIN recipe ON recipe.recipe_id = ingredient_recipe.recipe_id
+    //JOIN user_meal_plan ON user_meal_plan.createdBy = recipe.createdBy
+    //WHERE user_meal_plan_id = ?
+    //
     @Override
-    public List<Ingredient> getAllIngredientsByMealPlanId(int mealPlanId) {
+    public List<Ingredient> getAllIngredientsByUserMealPlanId(int userMealPlanId) {
         List<Ingredient> groceryIngredientList = new ArrayList<>();
         String sql = "SELECT ingredient.ingredient_id, ingredient_name, quantity, unit  FROM ingredient " +
                 "JOIN ingredient_recipe ON ingredient.ingredient_id = ingredient_recipe.ingredient_id " +
-                "JOIN meal ON ingredient_recipe.recipe_id = meal.recipe_id " +
-                "WHERE meal.meal_plan_id = ? ";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, mealPlanId);
+                "JOIN recipe ON recipe.recipe_id = ingredient_recipe.recipe_id " +
+                "JOIN user_meal_plan ON user_meal_plan.created_by = recipe.created_by " +
+                "WHERE user_meal_plan.user_meal_plan_id = ? ";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userMealPlanId);
 
         while(results.next()){
             groceryIngredientList.add(mapRowToIngredient(results));
@@ -94,6 +98,23 @@ public class JdbcIngredientDao implements IngredientDao {
         }
         return ingredientList;
     }
+    //calls back all ingredients associated with a createdBy h/ever we will only use this method if user_meal_plan == 1;
+    @Override
+    public List<Ingredient> getAllIngredientsForMealPlanByUserId(int userId) {
+        List<Ingredient> groceryIngredientList = new ArrayList<>();
+        String sql = "SELECT ingredient.ingredient_id, ingredient_name, quantity, unit  FROM ingredient " +
+                "JOIN ingredient_recipe ON ingredient.ingredient_id = ingredient_recipe.ingredient_id " +
+                "JOIN recipe ON recipe.recipe_id = ingredient_recipe.recipe_id " +
+                "JOIN user_meal_plan ON user_meal_plan.created_by = recipe.created_by " +
+                "WHERE user_meal_plan.created_by = ? ";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
+
+        while(results.next()){
+            groceryIngredientList.add(mapRowToIngredient(results));
+        }
+        return groceryIngredientList;
+    }
+
     @Override
     public void checkIngredientAndCreateIfNonexistent(Ingredient ingredient) {
 
