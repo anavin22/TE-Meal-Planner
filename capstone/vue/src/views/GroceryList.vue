@@ -2,8 +2,7 @@
     <div id="Grocery-List" class="Groceries">
 
         <h2 id="ingredientListTitle"> Grocery Shopping Ingredient List </h2>
-        <span id="ingredientListDisplay"> {{}} </span>
-
+        
         <grocery-ingredient-list/>
 
 

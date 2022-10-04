@@ -1,5 +1,9 @@
 <template>
-  <div class="Grocery-List">
+  <div class="main-look">
+    <button id="grocery-list-button"
+    @click="getAllIngredientsByUserIdForUserMealPlan()"
+    >Load Shopping List</button>
+      <span id="ingredients-list">{{ingredients}}</span>
 
 
 
@@ -23,7 +27,7 @@ data(){
 created(){
 
   GroceryListService
-    .getAllIngredientsByMealPlanId(parseInt(this.$route.params.id))
+    .getAllIngredientsByUserIdForUserMealPlan()
     .then(response =>{
       this.ingredients = response.data;
     })
