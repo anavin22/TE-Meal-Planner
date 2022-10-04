@@ -15,7 +15,11 @@ export default {
 
     // makeAPlanForUser(userPlan) {
     //     return axios.post(`/userMealPlan`, userPlan)
-    // }
+    // },
+
+    updateUserPlan() {
+        
+    }
 
     
 }

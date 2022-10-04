@@ -12,65 +12,167 @@
       <span class="MonBre">
         <div class="meal-box">
           <h4 class="mealType">Breakfast</h4>
-            <monday-breakfast v-bind:mealId="userMealPlan.mondayBreakfast" />
+            <meal-mini v-bind:mealId="userMealPlan.mondayBreakfast" :mealTimeColumn="mealTime.mbColumn" :mealTime="mealTime.mbMealTime" />
         </div>
       </span>
       <span class="TueBre">
         <div class="meal-box">
           <h4 class="mealType">Breakfast</h4>
-          <tuesday-breakfast v-bind:mealId="userMealPlan.tuesdayBreakfast" />
+          <meal-mini v-bind:mealId="userMealPlan.tuesdayBreakfast" :mealTime="tuesdayBreakfast" />
         </div>
       </span>
       <span class="WedBre">
         <div class="meal-box">
           <h4 class="mealType">Breakfast</h4>
-          <wednesday-breakfast v-bind:mealId="userMealPlan.wednesdayBreakfast" />
+          <meal-mini v-bind:mealId="userMealPlan.wednesdayBreakfast" :mealTime="wednesdayBreakfast" />
         </div>
-
       </span>
-      <span class="ThurBre">Breakfast</span>
-      <span class="FriBre">Breakfast</span>
-      <span class="SatBre">Breakfast</span>
-      <span class="SunBre">Breakfast</span>
-      <span class="MonLun">Lunch</span>
-      <span class="TueLun">Lunch</span>
-      <span class="WedLun">Lunch</span>
-      <span class="ThurLun">Lunch</span>
-      <span class="FriLun">Lunch</span>
-      <span class="SatLun">Lunch</span>
-      <span class="SunLun">Lunch</span>
-      <span class="MonDin">Dinner</span>
-      <span class="TueDin">Dinner</span>
-      <span class="WedDin">Dinner</span>
-      <span class="ThurDin">Dinner</span>
-      <span class="FriDin">Dinner</span>
-      <span class="SatDin">Dinner</span>
-      <span class="SunDin">Dinner</span>
-      <span class="MonOth">Other</span>
-      <span class="TueOth">Other</span>
-      <span class="WedOth">Other</span>
-      <span class="ThurOth">Other</span>
-      <span class="FriOth">Other</span>
-      <span class="SatOth">Other</span>
-      <span class="SunOth">Other</span>
+      <span class="ThurBre">
+              <div class="meal-box">
+          <h4 class="mealType">Breakfast</h4>
+            <meal-mini v-bind:mealId="userMealPlan.thursdayBreakfast" :mealTime="thursdayBreakfast" />
+        </div>
+      </span>
+      <span class="FriBre"><div class="meal-box">
+          <h4 class="mealType">Breakfast</h4>
+            <meal-mini v-bind:mealId="userMealPlan.fridayBreakfast" :mealTime="fridayBreakfast" />
+        </div>
+      </span>
+      <span class="SatBre"><div class="meal-box">
+          <h4 class="mealType">Breakfast</h4>
+            <meal-mini v-bind:mealId="userMealPlan.saturdayBreakfast" :mealTime="saturdayBreakfast" />
+        </div>
+      </span>
+      <span class="SunBre"><div class="meal-box">
+          <h4 class="mealType">Breakfast</h4>
+            <meal-mini v-bind:mealId="userMealPlan.sundayBreakfast" :mealTime="sundayBreakfast" />
+        </div>
+      </span>
+      <span class="MonLun"><div class="meal-box">
+          <h4 class="mealType">Lunch</h4>
+            <meal-mini v-bind:mealId="userMealPlan.mondayLunch" :mealTime="mondayLunch" />
+        </div>
+      </span>
+      <span class="TueLun"><div class="meal-box">
+          <h4 class="mealType">Lunch</h4>
+            <meal-mini v-bind:mealId="userMealPlan.tuesdayLunch" :mealTime="tuesdayLunch" />
+        </div>
+      </span>
+      <span class="WedLun"><div class="meal-box">
+          <h4 class="mealType">Lunch</h4>
+            <meal-mini v-bind:mealId="userMealPlan.wednesdayLunch" :mealTime="wednesdayLunch" />
+        </div>
+      </span>
+      <span class="ThurLun"><div class="meal-box">
+          <h4 class="mealType">Lunch</h4>
+            <meal-mini v-bind:mealId="userMealPlan.thursdayLunch" :mealTime="thursdayLunch" />
+        </div>
+      </span>
+      <span class="FriLun"><div class="meal-box">
+          <h4 class="mealType">Lunch</h4>
+            <meal-mini v-bind:mealId="userMealPlan.fridayLunch" :mealTime="fridayLunch" />
+        </div>
+      </span>
+      <span class="SatLun"><div class="meal-box">
+          <h4 class="mealType">Lunch</h4>
+            <meal-mini v-bind:mealId="userMealPlan.saturdayLunch" :mealTime="saturdayLunch" />
+        </div>
+      </span>
+      <span class="SunLun"><div class="meal-box">
+          <h4 class="mealType">Lunch</h4>
+            <meal-mini v-bind:mealId="userMealPlan.sundayLunch" :mealTime="sundayLunch" />
+        </div>
+      </span>
+      <span class="MonDin"><div class="meal-box">
+          <h4 class="mealType">Dinner</h4>
+            <meal-mini v-bind:mealId="userMealPlan.mondayDinner" :mealTime="mondayDinner" />
+        </div>
+      </span>
+      <span class="TueDin"><div class="meal-box">
+          <h4 class="mealType">Dinner</h4>
+            <meal-mini v-bind:mealId="userMealPlan.tuesdayDinner" :mealTime="tuesdayDinner" />
+        </div>
+      </span>
+      <span class="WedDin"><div class="meal-box">
+          <h4 class="mealType">Dinner</h4>
+            <meal-mini v-bind:mealId="userMealPlan.wednesdayDinner" :mealTime="wednesdayDinner" />
+        </div>
+      </span>
+      <span class="ThurDin"><div class="meal-box">
+          <h4 class="mealType">Dinner</h4>
+            <meal-mini v-bind:mealId="userMealPlan.thursdayDinner" :mealTime="thursdayDinner" />
+        </div>
+      </span>
+      <span class="FriDin"><div class="meal-box">
+          <h4 class="mealType">Dinner</h4>
+            <meal-mini v-bind:mealId="userMealPlan.fridayDinner" :mealTime="fridayDinner" />
+        </div>
+      </span>
+      <span class="SatDin"><div class="meal-box">
+          <h4 class="mealType">Dinner</h4>
+            <meal-mini v-bind:mealId="userMealPlan.saturdayDinner" :mealTime="saturdayDinner" />
+        </div>
+      </span>
+      <span class="SunDin"><div class="meal-box">
+          <h4 class="mealType">Dinner</h4>
+            <meal-mini v-bind:mealId="userMealPlan.sundayDinner" :mealTime="sundayDinner" />
+        </div>
+      </span>
+      <span class="MonOth"><div class="meal-box">
+          <h4 class="mealType">Other</h4>
+            <meal-mini v-bind:mealId="userMealPlan.mondayOther" :mealTime="mondayOther" />
+        </div>
+      </span>
+      <span class="TueOth"><div class="meal-box">
+          <h4 class="mealType">Other</h4>
+            <meal-mini v-bind:mealId="userMealPlan.tuesdayOther" :mealTime="tuesdayOther" />
+        </div>
+      </span>
+      <span class="WedOth"><div class="meal-box">
+          <h4 class="mealType">Other</h4>
+            <meal-mini v-bind:mealId="userMealPlan.wednesdayOther" :mealTime="wednesdayOther" />
+        </div>
+      </span>
+      <span class="ThurOth"><div class="meal-box">
+          <h4 class="mealType">Other</h4>
+            <meal-mini v-bind:mealId="userMealPlan.thursdayOther" :mealTime="thursdayOther" />
+        </div>
+      </span>
+      <span class="FriOth"><div class="meal-box">
+          <h4 class="mealType">Other</h4>
+            <meal-mini v-bind:mealId="userMealPlan.fridayOther" :mealTime="fridayOther" />
+        </div>
+      </span>
+      <span class="SatOth"><div class="meal-box">
+          <h4 class="mealType">Other</h4>
+            <meal-mini v-bind:mealId="userMealPlan.saturdayOther" :mealTime="saturdayOther" />
+        </div>
+      </span>
+      <span class="SunOth"><div class="meal-box">
+          <h4 class="mealType">Other</h4>
+            <meal-mini v-bind:mealId="userMealPlan.sundayOther" :mealTime="sundayOther" />
+        </div>
+      </span>
     </div>
   </div>
 </template>
 
 <script>
-import MondayBreakfast from '../components/MealPlanMeals/MondayBreakfast.vue';
-import TuesdayBreakfast from '../components/MealPlanMeals/TuesdayBreakfast.vue';
-import WednesdayBreakfast from '../components/MealPlanMeals/WednesdayBreakfast.vue';
+import MealMini from "../components/MealMini.vue"
 import MealPlanService from "../services/MealPlanService";
 // import RecipeService from "../services/RecipeService";
 export default {
-  components: { MondayBreakfast, TuesdayBreakfast, WednesdayBreakfast },
+  components: { MealMini },
   name: "planDetail",
   data() {
     return {
       userMealPlan: {},
-      savedRecipes: [],
-      isLoading: true
+      isLoading: true,
+      mealTime: {
+        mbColumn: "mondayBreakfast",
+        mbMealTime: "Monday Breakfast"
+      }
+      
     };
   },
 
@@ -112,8 +214,8 @@ export default {
   border-style: solid;
   border-width: 5px;
   border-radius: 40px;
-  background-color: #ffffff60;
-  max-width: 95%;
+  background-color: #ffffff;
+  max-width: 75%;
   margin-right: auto;
   margin-left: auto;
   margin-top: -9em;
@@ -153,9 +255,7 @@ justify-content: center;
 
 #week-display {
   background-color: #ffffff;
-  right: 0;
-  margin-top: 5%;
-  margin-left: 0.5em;
+  margin-top: -3em;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 3fr 3fr 3fr 3fr;
@@ -165,6 +265,10 @@ justify-content: center;
     "MonLun TueLun WedLun ThurLun FriLun SatLun SunLun"
     "MonDin TueDin WedDin ThurDin FriDin SatDin SunDin"
     "MonOth TueOth WedOth ThurOth FriOth SatOth SunOth";
+}
+
+.weekday {
+  font-size: 1.5em;
 }
 
 .Monday {
