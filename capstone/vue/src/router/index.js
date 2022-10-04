@@ -10,6 +10,7 @@ import RecipeEditor from '../views/RecipeEditor.vue'
 import MealPlan from '../views/MealPlan.vue'
 import MyStuff from '../views/MyStuff.vue'
 import PlanDetail from '../views/PlanDetail.vue'
+import GroceryList from '../views/GroceryList.vue'
 
 Vue.use(Router)
 
@@ -101,6 +102,14 @@ const router = new Router({
         requiresAuth: true
       }
     },
+    {
+      path: "/user-meal-plan/grocery-list",
+      name: "groceryList",
+      component: GroceryList,
+      meta:{
+        requiresAuth: true
+      }
+    }
   ]
 })
 
