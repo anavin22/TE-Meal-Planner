@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface UserMealPlanDao {
 
-    List<UserMealPlan> getUserMealPlanByCreatedBy(int createdBy);
+    UserMealPlan getUserMealPlanByCreatedBy(int createdBy);
 
     UserMealPlan getUserMealPlanByUserMealPlanId(int userPlanId);
 
     UserMealPlan createObjectCalledUserMealPlan(int userMealPlanId);
 
-    UserMealPlan createUserMealPlan(UserMealPlan userMealPlan, int userMealPlanId);
+    UserMealPlan createUserMealPlan(int userMealPlanId);
 
     UserMealPlan updateUserMealPlan(UserMealPlan userMealPlan);
 }

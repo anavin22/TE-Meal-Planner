@@ -148,6 +148,11 @@ public class RecipeController {
 
     }
 
+    @GetMapping("/recipes/name/{id}")
+    public String getName(@PathVariable int id) {
+        return recipeDao.getRecipeName(id);
+    }
+
 }
 
 
