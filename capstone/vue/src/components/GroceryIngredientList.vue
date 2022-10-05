@@ -1,14 +1,16 @@
 <template>
   <div class="main-look">
-    <button id="grocery-list-button"
-    @click="getAllIngredientsByUserIdForUserMealPlan()"
-    >Load Shopping List</button>
-      <span id="ingredients-list">{{ingredients}}</span>
+      <button id="callList" 
+      @click="getGroceryListIngredients">
+      Load List
+      </button>
 
-
-
+      <h3 id="ingredients">
+        {{ingredients}}
+      </h3>  
 
   </div>
+
 </template>
 
 <script>
@@ -16,22 +18,22 @@ import GroceryListService from '../services/GroceryListService'
 export default {
 name: "GroceryIngredientList",
 components: {},
+props: ["ingredient"],
 data(){
   return{
-    currentMealPlanId : parseInt(this.$route.params.id),
-    GroceryIngredientsList:{
+    
       ingredients: [],
-    }
   };
 },
-created(){
-
+methods: {
+  getGroceryListIngredients(){
   GroceryListService
     .getAllIngredientsByUserIdForUserMealPlan()
     .then(response =>{
       this.ingredients = response.data;
     })
 }
+},
 }
 </script>
 
