@@ -112,7 +112,6 @@ public class MealPlanController {
     @PutMapping("/userMealPlan/update")
     public void updateUserMealPlan(@RequestBody UserMealPlan userMealPlan){
         userMealPlanDao.updateUserMealPlan(userMealPlan);
-
     }
 
 //    @GetMapping("/userMealPlan/{createdBy}")

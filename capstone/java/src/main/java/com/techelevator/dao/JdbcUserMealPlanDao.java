@@ -102,18 +102,14 @@ public class JdbcUserMealPlanDao implements UserMealPlanDao {
 
     @Override
     public UserMealPlan updateUserMealPlan(UserMealPlan userMealPlan) {
-        String sql = "UPDATE user_meal_plan (monday_breakfast, monday_lunch, monday_dinner, monday_other," +
-                "tuesday_breakfast, tuesday_lunch, tuesday_dinner, tuesday_other, wednesday_breakfast, wednesday_lunch, " +
-                "wednesday_dinner, wednesday_other, thursday_breakfast, thursday_lunch, thursday_dinner, thursday_other, " +
-                "friday_breakfast, friday_lunch, friday_dinner, friday_other, saturday_breakfast, saturday_lunch, saturday_dinner, " +
-                "saturday_other, sunday_breakfast, sunday_lunch, sunday_dinner, sunday_other) " +
-                "SET (monday_breakfast = ?, monday_lunch = ?, monday_dinner = ?, monday_other = ?, " +
+        String sql = "UPDATE user_meal_plan " +
+                "SET monday_breakfast = ?, monday_lunch = ?, monday_dinner = ?, monday_other = ?, " +
                 "tuesday_breakfast = ?, tuesday_lunch = ?, tuesday_dinner = ?, tuesday_other = ?, " +
                 "wednesday_breakfast = ?, wednesday_lunch = ?, wednesday_dinner = ?, wednesday_other = ?, " +
                 "thursday_breakfast = ?, thursday_lunch = ?, thursday_dinner = ?, thursday_other = ?, " +
                 "friday_breakfast = ?, friday_lunch = ?, friday_dinner = ?, friday_other = ?, " +
-                "saturday_breakfast = ?, saturday_lunch = ?, saturday_dinner = ?, saturday_other?, " +
-                "sunday_breakfast = ?, sunday_lunch =  ?, sunday_dinner = ?, sunday_other = ?)";
+                "saturday_breakfast = ?, saturday_lunch = ?, saturday_dinner = ?, saturday_other = ?, " +
+                "sunday_breakfast = ?, sunday_lunch =  ?, sunday_dinner = ?, sunday_other = ?";
         jdbcTemplate.update(sql, userMealPlan.getMondayBreakfast(),
                 userMealPlan.getMondayLunch(),
                 userMealPlan.getMondayDinner(),

@@ -17,8 +17,8 @@ export default {
     //     return axios.post(`/userMealPlan`, userPlan)
     // },
 
-    updateUserPlan() {
-        
+    updateUserPlan(mealPlan) {
+        return axios.put('userMealPlan/update', mealPlan)
     }
 
     
