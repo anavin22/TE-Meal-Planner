@@ -109,7 +109,7 @@ public class JdbcRecipeDao implements RecipeDao {
     @Override
     public List<Recipe> getLatestRecipes() {
         List<Recipe> latestRecipes = new ArrayList<>();
-        String sql = "SELECT recipe_id FROM recipe ORDER BY recipe_id DESC LIMIT 10";
+        String sql = "SELECT recipe_id FROM recipe ORDER BY recipe_id DESC LIMIT 35";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while (results.next()) {
             latestRecipes.add(createObjectCalledRecipe(results.getInt("recipe_id")));
