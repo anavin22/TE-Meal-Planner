@@ -12,7 +12,7 @@
       </div>
 
     </div>
-    <button @click="$router.push('recipe-editor')">Add New Recipe</button>
+    <button @click="$router.push('my-stuff')">Add New Recipe</button>
   </div>
 </template>
 

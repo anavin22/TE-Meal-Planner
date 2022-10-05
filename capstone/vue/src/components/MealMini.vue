@@ -14,7 +14,7 @@
           :key="recipe.recipeId"
           v-bind:recipe="recipe"
 
-          @click.native="updateUserPlan(recipe.recipeId)"
+          @click.native="updateUserPlan(recipe.recipeId, recipe.recipeName)"
         />
       </div>
       <h4>Click a Recipe to add to {{ mealTime }}</h4>
@@ -26,7 +26,6 @@
 import RecipeService from "../services/RecipeService";
 import MiniCards from "./MiniCards.vue";
 import MealPlanService from "../services/MealPlanService";
-import PlanDetail from '../views/PlanDetail.vue';
 export default {
   components: { MiniCards },
   props: ["mealId", "mealTimeColumn", "mealTime"],
@@ -43,17 +42,16 @@ export default {
       this.$router.push({ name: "recipeDetails", params: { id: mealId } });
     },
 
-    updateUserPlan(newRecipe) {
+    updateUserPlan(newRecipe, recipeName) {
       let userPlan = {};
       MealPlanService.getUserMealPlan(this.$store.state.user.id).then(
         (response) => {
           if (response.status == 200) {
             userPlan = response.data;
             userPlan[this.mealTimeColumn] = newRecipe;
-            console.log(userPlan);
             MealPlanService.updateUserPlan(userPlan).then((response) => {
               if (response.status == 200) {
-                PlanDetail.$forceUpdate();
+                this.recipeName = recipeName;
                 alert("Updated!");
               } else {
                 alert("Something went wrong");

@@ -162,7 +162,7 @@ export default {
   right: 0;
   margin: auto;
   width: 80%;
-  height: 30%;
+  /* height: 30%; */
   box-shadow: -5px 3px 3px darkslategray;
   border-radius: 15px;
   background-color: white;
@@ -224,7 +224,8 @@ export default {
 
 #ingredient-to-add {
   border-style: none;
-  font-size: 1.5em;
+  width: 90%;
+  font-size: 1.25em;
   height: 1.5em;
   margin-bottom: 0px;
 }

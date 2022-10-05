@@ -52,8 +52,7 @@ export default {
   left: 0;
   right: 0;
   margin: auto;
-  width: 80%;
-  height: 30%;
+  width: 50%;
   box-shadow: -5px 3px 3px darkslategray;
   border-radius: 15px;
   background-color: white;

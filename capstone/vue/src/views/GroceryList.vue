@@ -1,11 +1,12 @@
 <template>
     <div id="Grocery-List" class="main-look">
 
+        <div id="theRest">
         <h2 id="ingredientListTitle"> Grocery Shopping Ingredient List </h2>
         
         <grocery-ingredient-list/>
 
-
+</div>
     </div>
 
 </template>
@@ -28,5 +29,8 @@ data(){
 </script>
 
 <style>
+#theRest {
+    margin-top: 5%;
+}
 
 </style>

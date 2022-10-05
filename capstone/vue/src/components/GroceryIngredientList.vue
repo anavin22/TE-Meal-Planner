@@ -10,7 +10,7 @@
         <th>Quantity/Unit</th>
       </tr>
 
-      <tr class="ingredientRow" v-for="ingredient in filteredIngredients" :key="ingredient.id">
+      <tr class="ingredientRow" v-for="ingredient in ingredients" :key="ingredient.id">
         <td><input type="checkbox" /></td>
         <td>{{ ingredient.name }}</td>
         <td>{{ ingredient.quantity }} {{ ingredient.unit }}</td>
@@ -30,25 +30,19 @@ data(){
     
       ingredients: [],
       ingredientsInStock: [],
-      filteredIngredients: [],
       isLoading: true
   };
-},
-methods: {
-  // hideInStock() {
-  //   this.filteredIngredients = this.ingredients.filter((ingredient) => {
-  //     !this.ingredientsInStock.includes(ingredient);
-  //   });
-  // }
-
 },
 created() {
   GroceryListService
     .getAllIngredientsByUserIdForUserMealPlan()
     .then(response =>{
+      if(response.status == 200) {
       this.ingredients = response.data;
-      this.filteredIngredients = response.data;
       this.isLoading = false;
+      } else {
+        alert("Something went wrong.")
+      }
     });
   
 }

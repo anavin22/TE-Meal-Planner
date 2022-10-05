@@ -8,27 +8,27 @@
     <button>Update Recipe Name or Picture</button>
       </span>
 
+      <button @click.prevent="updateRecipe">Update Changes</button><br>
+
     <modify-ingredients
       v-for="ingredient in modifyingRecipe.ingredientList"
       :key="ingredient.id"
       v-bind:ingredient="ingredient"
     />
-    <button v-show="!addIngredient" @click.prevent="toggleAddIngredient">Add an Ingredient</button>
+    <button v-show="!addIngredient" @click.prevent="toggleAddIngredient">Add an Ingredient</button><br>
 
     <add-an-ingredient v-if="addIngredient" />
     <button v-if="addIngredient" id="closeAddIngredient" @click.prevent="toggleAddIngredient">Close</button>
 
-
- <button v-show="!addInstruction" @click.prevent="toggleAddInstruction">Add a Step</button>
-    <add-instruction v-if="addInstruction" />
-    <button v-if="addInstruction" id="closeAddInstruction" @click.prevent="toggleAddInstruction">Close</button>
 
     <modify-instructions
       v-for="instruction in modifyingInstructions"
       :key="instruction.id"
       v-bind:instruction="instruction"
     />
-    <!-- <button>Add a Step</button> -->
+    <button v-show="!addInstruction" @click.prevent="toggleAddInstruction">Add a Step</button><br>
+    <add-instruction v-if="addInstruction" />
+    <button v-if="addInstruction" id="closeAddInstruction" @click.prevent="toggleAddInstruction">Close</button>
 
   </div>
 </template>
@@ -63,6 +63,27 @@ export default {
           if(!this.addInstruction){
               this.addInstruction = true;
           } else {this.addInstruction = false; }
+      },
+
+      updateRecipe(){
+        RecipeService.getRecipeById(this.$store.state.workingId).then(
+      (response) => {
+        if (response.status == 200) {
+          this.modifyingRecipe = response.data;
+        } else {
+          alert("Something went wrong.");
+        }
+      }
+    );
+    RecipeService
+    .getInstructionsByRecipe(this.$store.state.workingId)
+    .then(response => {
+        if (response.status == 200) {
+            this.modifyingInstructions = response.data;
+        } else {
+          alert("Something went wrong.");
+        }
+    });
       }
   },
 
@@ -92,7 +113,7 @@ export default {
 <style>
 #modify-recipe {
   position: absolute;
-  top: -2%;
+  top: 0;
   left: 15%;
   right: 10%;
   width: 80%;
@@ -103,11 +124,13 @@ export default {
   margin-left: 10%;
 }
 
-#closeAddIngredient, #closeAddInstruction{
+#closeAddIngredient, #closeAddInstruction {
   position: fixed;
   z-index: 99999999;
-  bottom: 39%;
+  top: 0;
   right: 10%;
 }
+
+
 
 </style>
