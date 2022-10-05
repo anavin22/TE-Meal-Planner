@@ -6,7 +6,7 @@
       <div class="container">
       <card-box />
 </div>
-          <h1 class="frontTitle">My Recipes</h1>
+          <h1 class="frontTitle">My Saved Recipes</h1>
           <div class="container">
       <my-saved-recipes />
       </div>
@@ -69,6 +69,7 @@ export default {
   background-position: center;
   background-repeat: repeat-y;
   background-size: 75% auto;
+  background-color: #FFFFFF50;
   max-width: 80vw;
   margin-right: auto;
   margin-left: auto;

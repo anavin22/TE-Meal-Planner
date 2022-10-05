@@ -2,10 +2,10 @@
   <div id="app">
     <img id="logo" src="./assets/vector_long_logo_dRAGON.png">
     <div id="nav" v-show="checkLogin">
-      <router-link v-bind:to="{ name: 'home' }">Home</router-link>
-      <router-link v-bind:to="{ name: 'myStuff' }">Edit My Recipes</router-link>
-      <router-link v-bind:to="{name: 'recipeEditor'}">Add a Recipe</router-link>
-      <router-link v-bind:to="{name: 'groceryList'}">Grocery List</router-link>
+      <router-link v-bind:to="{ name: 'home' }">Home</router-link> | 
+      <router-link v-bind:to="{ name: 'myStuff' }">Edit My Recipes</router-link> | 
+      <router-link v-bind:to="{name: 'planDetail'}">My Meal Plan</router-link> | 
+      <router-link v-bind:to="{name: 'groceryList'}">Grocery List</router-link> | 
       <router-link v-bind:to="{name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
     </div>
     <router-view />
@@ -13,25 +13,12 @@
 </template>
 
 <script>
-import MealPlanService from './services/MealPlanService'
 export default {
   name: "app",
   data() {
     return {
       
     }
-  },
-  created() {
-    //Pull Plan
-    MealPlanService.getUserMealPlan(this.$store.state.user.id).then(
-      (response) => {
-        if (response.status == 200) {
-          this.$store.commit('ADD_USER_MEALPLAN', response.data)
-        } else {
-          alert("Something went wrong");
-        }
-      }
-    );
   },
     computed: {
     checkLogin() {
@@ -60,10 +47,25 @@ export default {
     justify-content: space-evenly;
     color: white;
     font-weight: bold;
-    width: 40%;
+    font-size: 1.5em;
+    max-width: 75%;
     height: 40px;
-    margin: auto;
+    margin-top: -13px;
+    margin-right: auto;
+    margin-left: auto;
     z-index: 1000;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  color: white;
+}
+
+a:hover {
+  text-shadow: -5px 3px 3px darkslategray;
 }
 
 #logo {

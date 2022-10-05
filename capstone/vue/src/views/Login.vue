@@ -78,7 +78,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 
 #login {
   border-color: white;
@@ -103,7 +103,7 @@ h1 {
 }
 
 form {
-  position: relative;
+  position: absolute;
   left: 5%;
   top: 5%;
   font-size: 1.5em;

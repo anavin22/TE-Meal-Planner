@@ -29,10 +29,3 @@ export default {
     
 }
 </script>
-
-<style>
-/* #favorites {
-  margin-top: 4.5%;
-    display: flex;
-} */
-</style>
