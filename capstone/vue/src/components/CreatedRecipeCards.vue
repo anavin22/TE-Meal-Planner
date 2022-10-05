@@ -1,26 +1,25 @@
 <template>
-<div id="modifiable">
-  <div
-    id="recipe-card-vertical"
-    @click="selectCard"
-    v-bind:class="{ selected: $store.state.workingId === selectedModifyId }"
-  >
-    <h3 class="card-title">{{ recipe.recipeName }}</h3>
-    <img id="thumb-vertical" v-bind:src="recipe.image" />
-  </div>
-    <div id="changeBox" v-if="$store.state.workingId === selectedModifyId">
-
-  <modify-recipe />
+  <div id="modifiable">
+    <div
+      id="recipe-card-vertical"
+      @click="selectCard"
+      v-bind:class="{ selected: $store.state.workingId === selectedModifyId }"
+    >
+      <h3 class="card-title">{{ recipe.recipeName }}</h3>
+      <img id="thumb-vertical" v-bind:src="recipe.image" />
     </div>
-</div>
+    <div id="changeBox" v-if="$store.state.workingId === selectedModifyId">
+      <modify-recipe />
+    </div>
+  </div>
 </template>
 
 <script>
-import ModifyRecipe from './ModifyRecipe.vue';
+import ModifyRecipe from "./ModifyRecipe.vue";
 export default {
   name: "createdRecipeCard",
   props: ["recipe"],
-components: { ModifyRecipe },
+  components: { ModifyRecipe },
   data() {
     return {
       selectedModifyId: this.$props.recipe.recipeId,
@@ -36,8 +35,8 @@ components: { ModifyRecipe },
     },
   },
   created() {
-    this.$store.commit("UPDATE_WORKING_ID", 0)
-  }
+    this.$store.commit("UPDATE_WORKING_ID", 0);
+  },
 };
 </script>
 

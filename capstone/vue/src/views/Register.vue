@@ -36,7 +36,8 @@
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
       </button><br>
-            <router-link :to="{ name: 'login' }">Already have an account?</router-link>
+      <button>
+            <router-link :to="{ name: 'login' }">Already have an account?</router-link></button>
     </form>
   </div>
 </template>

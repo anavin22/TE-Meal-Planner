@@ -98,7 +98,7 @@ public class JdbcRecipeDao implements RecipeDao {
     @Override
     public List<Recipe> getAllRecipesByCreatedBy(int createdBy) {
         List<Recipe> recipes = new ArrayList<>();
-        String sql = "SELECT recipe_id FROM recipe WHERE created_by = ?";
+        String sql = "SELECT recipe_id FROM recipe WHERE created_by = ? ORDER BY recipe_id DESC;";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, createdBy);
         while (result.next()) {
             recipes.add(createObjectCalledRecipe(result.getInt("recipe_id")));

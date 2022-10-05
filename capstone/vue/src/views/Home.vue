@@ -90,7 +90,7 @@ export default {
 
 
 .container {
-  height: 20em;
+  height: 25em;
   overflow-x: scroll;
   overflow-y: visible;
   margin-left: 1em;

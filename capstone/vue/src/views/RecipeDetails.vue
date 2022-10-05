@@ -4,10 +4,15 @@
     <img id="foodpic" :src="detailedRecipe.image" />
     <ingredients id="ingredients" v-bind:ingredients="detailedRecipe.ingredientList" />
     <instructions id="instructions" v-bind:instructions="detailedRecipe.instructions" />
+
+
+
+
+    
     <span id="savecheck">
     <input v-model="recipeSaved" v-on:change="toggleSaved" type="checkbox" id="save" name="saved" value="saved"><br>
-    <label v-show="!recipeSaved" for="saved">Save This Recipe</label>
-    <label v-show="recipeSaved" for="saved">Recipe Saved</label>
+    <label v-if="!recipeSaved" for="saved">Save This Recipe</label>
+    <label v-if="recipeSaved" for="saved">Recipe Saved</label>
     </span>
   </div>
 </template>
@@ -74,28 +79,34 @@ export default {
 <style>
 #recipe-details {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 2fr 2fr 1fr;
   grid-template-areas: 
     ". recipe-name recipe-name save"
-    ". foodpic ingredients ingredients"
+    ". foodpic foodpic ."
+    ". ingredients ingredients ."
     "instructions instructions instructions instructions";
+  gap: 30px;
 }
 
 #foodpic {
-    grid-area: foodpic;
-  max-width: 100%;
+  grid-area: foodpic;
+  max-width: 80%;
   height: auto;
   border-radius: 30px;
-  box-shadow: 20px 16px teal;
+  margin-left: 15%;
+  box-shadow: -5px 3px 3px darkslategray;
 }
 
 #recipe-name {
     grid-area: recipe-name;
+    font-size: 4em;
+    margin-top: 10%;
 }
 
 #ingredients {
     grid-area: ingredients;
-    margin-left: 20px;
+    margin-top: 20px;
+  padding-left: 15%;
 }
 
 #instructions {
@@ -111,9 +122,7 @@ export default {
     background-color: #FFFFFF60;
     border-radius: 100px;
     max-width: 15%;
+
 }
 
-h2 {
-    font-size: 3em;
-}
 </style>

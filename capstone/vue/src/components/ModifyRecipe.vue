@@ -18,6 +18,11 @@
     <add-an-ingredient v-if="addIngredient" />
     <button v-if="addIngredient" id="closeAddIngredient" @click.prevent="toggleAddIngredient">Close</button>
 
+
+ <button v-show="!addInstruction" @click.prevent="toggleAddInstruction">Add a Step</button>
+    <add-instruction v-if="addInstruction" />
+    <button v-if="addInstruction" id="closeAddInstruction" @click.prevent="toggleAddInstruction">Close</button>
+
     <modify-instructions
       v-for="instruction in modifyingInstructions"
       :key="instruction.id"
@@ -31,19 +36,21 @@
 <script>
 import RecipeService from "../services/RecipeService";
 import AddAnIngredient from './AddAnIngredient.vue';
+import AddInstruction from './AddInstruction.vue';
 import ModifyIngredients from "./ModifyIngredients.vue";
 import ModifyInstructions from './ModifyInstructions.vue';
 export default {
   name: "ModifyRecipe",
   props: ["recipe"],
-  components: { ModifyIngredients, ModifyInstructions, AddAnIngredient },
+  components: { ModifyIngredients, ModifyInstructions, AddAnIngredient, AddInstruction },
   data() {
     return {
       modifyingRecipe: [],
       modifyingId: this.$store.state.workingId,
       readyForThis: false,
       modifyingInstructions: {},
-      addIngredient: false
+      addIngredient: false,
+      addInstruction: false
     };
   },
   methods: {
@@ -51,6 +58,11 @@ export default {
           if(!this.addIngredient){
               this.addIngredient = true;
           } else {this.addIngredient = false; }
+      },
+      toggleAddInstruction(){
+          if(!this.addInstruction){
+              this.addInstruction = true;
+          } else {this.addInstruction = false; }
       }
   },
 
@@ -91,7 +103,7 @@ export default {
   margin-left: 10%;
 }
 
-#closeAddIngredient{
+#closeAddIngredient, #closeAddInstruction{
   position: fixed;
   z-index: 99999999;
   bottom: 39%;

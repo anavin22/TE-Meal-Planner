@@ -1,5 +1,5 @@
 <template>
-    <div id="Grocery-List" class="Groceries">
+    <div id="Grocery-List" class="main-look">
 
         <h2 id="ingredientListTitle"> Grocery Shopping Ingredient List </h2>
         

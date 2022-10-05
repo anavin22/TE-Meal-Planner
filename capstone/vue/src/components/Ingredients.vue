@@ -1,8 +1,14 @@
 <template>
   <div id="ingredients">
-      <h4>Ingredients</h4>
+
       <table>
+          <tr>
+              <th></th>
+              <th>Quantity</th>
+              <th>Ingredient</th>
+          </tr>
           <tr v-for="ingredient in ingredients" :key="ingredient.id">
+              <td></td>
              <td>{{ingredient.quantity}} {{ingredient.unit}}</td>
               <td>{{ingredient.name}}</td>
 
@@ -20,7 +26,6 @@ export default {
 
 <style>
 #ingredients {
-    width: 50%;
     font-size: 2em;
     text-align: left;
 }
@@ -29,7 +34,7 @@ tr {
     position: relative;
     text-align: left;
     margin: auto;
-    padding-left: 20%;
+
 }
 
 

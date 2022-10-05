@@ -34,7 +34,8 @@
         /><br />
 
         <button type="submit">Sign in</button><br />
-        <router-link :to="{ name: 'register' }">Need an account?</router-link>
+        <button>
+        <router-link class="registerLink" :to="{ name: 'register' }">Need an account?</router-link></button>
       </form>
     </div>
   </div>
@@ -108,6 +109,10 @@ form {
   top: 5%;
   font-size: 1.5em;
   text-align: left;
+}
+
+#registerLink a {
+  color: #249492;
 }
 
 </style>

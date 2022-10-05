@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img id="logo" src="./assets/vector_long_logo_dRAGON.png">
+    <img id="logo" v-show="checkLogin" src="./assets/vector_long_logo_dRAGON.png">
     <div id="nav" v-show="checkLogin">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link> | 
       <router-link v-bind:to="{ name: 'myStuff' }">Edit My Recipes</router-link> | 
@@ -9,6 +9,8 @@
       <router-link v-bind:to="{name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
     </div>
     <router-view />
+
+    <img id="shortLogo" v-show="!checkLogin" src="./assets/vector_long_logo_dRAGON.png">
   </div>
 </template>
 
@@ -84,6 +86,12 @@ a:hover {
 ::-webkit-scrollbar-thumb {
   background-color: #24949240;
   border-radius: 15px;
+}
+
+#shortLogo {
+  position: fixed;
+  top: 5%;
+  left: 2%;
 }
 
 

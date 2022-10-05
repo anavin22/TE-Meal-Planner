@@ -41,6 +41,7 @@ export default {
     flex-direction: column;
     margin-top: 5%;
     position: relative;
+
 }
 
 
