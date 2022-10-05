@@ -12,7 +12,7 @@
       </div>
 
     </div>
-    <button>Add New Recipe</button>
+    <button @click="$router.push('recipe-editor')">Add New Recipe</button>
   </div>
 </template>
 
@@ -69,7 +69,7 @@ export default {
   background-position: center;
   background-repeat: repeat-y;
   background-size: 75% auto;
-  max-width: 80%;
+  max-width: 80vw;
   margin-right: auto;
   margin-left: auto;
   margin-top: -9em;
@@ -77,7 +77,7 @@ export default {
   color: #249492;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   text-align: center;
-  min-height: 1vh;
+  min-height: 100vh;
   z-index: -2;
   overflow-y: scroll;
 }

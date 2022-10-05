@@ -21,4 +21,8 @@ INSERT INTO instructions (recipe_id, sequence, instruction_text)
     (3, 4, 'Put the chicken on top of the potatoes in the skillet (tuck some extra herbs under the chicken, if desired) and roast until golden and a thermometer inserted into the thigh registers 180˚, about 45 minutes. Let cool slightly before serving. Garnish with more herbs, if desired.'),
     (3, 5, 'Note: Want to do a little more? Serve with a green salad and some Dijon mustard for dipping. You could also rub the chicken with softened butter instead of brushing with olive oil. Or maybe stick a lemon, cut into wedges, under the chicken before roasting.');
 
+ALTER SEQUENCE recipe RESTART WITH 4;
+ALTER SEQUENCE ingredient RESTART 14;
+
+
 COMMIT TRANSACTION;

@@ -60,10 +60,8 @@ public class MealPlanController {
         mealPlanDao.deleteMealPlan(mealPlanId);
     }
 
-    @GetMapping("/mealPlan/{mealPlanId}/groceryList")
-    public List<Ingredient> getAllIngredientsByMealPlanId(@PathVariable int mealPlanId) {
-        return ingredientDao.getAllIngredientsByMealPlanId(mealPlanId);
-    }
+
+
 
     //MEAL METHODS
     @PostMapping("/meal")
@@ -86,15 +84,39 @@ public class MealPlanController {
 
 
     //USER MEAL PLAN METHODS
-    @PostMapping("/userMealPlan")
-    public UserMealPlan createUserMealPlan(Principal principal, @Valid @RequestBody UserMealPlan userMealPlan) {
-        int userId = userDao.findIdByUsername(principal.getName());
-        return userMealPlanDao.createUserMealPlan(userMealPlan, userId);
+
+    //changed to getAllIngredientsByUserMealPlanId
+    @GetMapping("/userMealPlan/{userMealPlanId}/groceryList")
+    public List<Ingredient> getAllIngredientsByUserMealPlanId(@PathVariable int userMealPlanId) {
+        return ingredientDao.getAllIngredientsByUserMealPlanId(userMealPlanId);
     }
 
-    @GetMapping("/userMealPlan/{createdBy}")
-    public List<UserMealPlan> getUserMealPlanByCreatedBy(@PathVariable int createdBy) {
-        return userMealPlanDao.getUserMealPlanByCreatedBy(createdBy);
+    @GetMapping("/userMealPlan/groceryList")
+    public List<Ingredient> getAllIngredientsForMealPlanByUserId(Principal principal) {
+        int userId = userDao.findIdByUsername(principal.getName());
+        return ingredientDao.getAllIngredientsForMealPlanByUserId(userId);
     }
+
+    @PostMapping("/userMealPlan")
+    public UserMealPlan createUserMealPlan(Principal principal) {
+        int userId = userDao.findIdByUsername(principal.getName());
+        return userMealPlanDao.createUserMealPlan(userId);
+    }
+
+    @GetMapping("/userMealPlan")
+    public UserMealPlan getUserMealPlanByCreatedBy(Principal principal) {
+        int userId = userDao.findIdByUsername(principal.getName());
+        return userMealPlanDao.getUserMealPlanByCreatedBy(userId);
+    }
+
+    @PutMapping("/userMealPlan/update")
+    public void updateUserMealPlan(@RequestBody UserMealPlan userMealPlan){
+        userMealPlanDao.updateUserMealPlan(userMealPlan);
+    }
+
+//    @GetMapping("/userMealPlan/{createdBy}")
+//    public List<UserMealPlan> getUserMealPlanByCreatedBy(@PathVariable int createdBy) {
+//        return userMealPlanDao.getUserMealPlanByCreatedBy(createdBy);
+//    }
     //@PutMapping(
 }

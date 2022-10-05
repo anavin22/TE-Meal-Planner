@@ -18,9 +18,11 @@ public interface IngredientDao {
 
     List<Ingredient> getAllIngredientsByRecipeId(int recipeId);
 
-    List<Ingredient> getAllIngredientsByMealPlanId(int mealPlanId);
+    List<Ingredient> getAllIngredientsByUserMealPlanId(int userMealPlanId);
 
     List<Ingredient> getAllIngredients();
+
+    List <Ingredient>getAllIngredientsForMealPlanByUserId(int userId);
 
     void checkIngredientAndCreateIfNonexistent(Ingredient ingredient);
 

@@ -19,17 +19,17 @@ public class JdbcUserMealPlanDao implements UserMealPlanDao {
     }
 
     @Override
-    public List<UserMealPlan> getUserMealPlanByCreatedBy(int createdBy){
-        List<UserMealPlan> userMealPlanList = new ArrayList<>();
+    public UserMealPlan getUserMealPlanByCreatedBy(int createdBy){
         String sql = "SELECT user_meal_plan_id, created_by, monday_breakfast, monday_lunch, monday_dinner, monday_other, tuesday_breakfast, tuesday_lunch, " +
                 "tuesday_dinner, tuesday_other, wednesday_breakfast, wednesday_lunch, wednesday_dinner, wednesday_other, thursday_breakfast, thursday_lunch, " +
                 "thursday_dinner, thursday_other, friday_breakfast, friday_lunch, friday_dinner, friday_other, saturday_breakfast, saturday_lunch, " +
                 "saturday_dinner, saturday_other, sunday_breakfast, sunday_lunch, sunday_dinner, sunday_other FROM user_meal_plan WHERE created_by = ?";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, createdBy);
-        while(results.next()){
-            userMealPlanList.add(mapRowToUserMealPlan(results));
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, createdBy);
+        if(result.next()){
+           return mapRowToUserMealPlan(result);
+        } else {
+            return createUserMealPlan(createdBy);
         }
-        return userMealPlanList;
     }
 
     @Override
@@ -54,60 +54,62 @@ public class JdbcUserMealPlanDao implements UserMealPlanDao {
         }
 
         @Override
-        public UserMealPlan createUserMealPlan (UserMealPlan userMealPlan, int userId) {
-            String sql = "INSERT INTO user_meal_plan (created_by, monday_breakfast, monday_lunch, monday_dinner, monday_other, " +
-                    "tuesday_breakfast, tuesday_lunch, tuesday_dinner, tuesday_other, wednesday_breakfast, wednesday_lunch, " +
-                    "wednesday_dinner, wednesday_other, thursday_breakfast, thursday_lunch, thursday_dinner, thursday_other, " +
-                    "friday_breakfast, friday_lunch, friday_dinner, friday_other, saturday_breakfast, saturday_lunch, saturday_dinner, " +
-                    "saturday_other, sunday_breakfast, sunday_lunch, sunday_dinner, sunday_other) RETURNING user_meal_plan_id" +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            int newId = jdbcTemplate.queryForObject(sql, Integer.class, userId,
-                    userMealPlan.getMondayBreakfast(),
-                    userMealPlan.getMondayLunch(),
-                    userMealPlan.getMondayDinner(),
-                    userMealPlan.getMondayOther(),
-                    userMealPlan.getTuesdayBreakfast(),
-                    userMealPlan.getTuesdayLunch(),
-                    userMealPlan.getTuesdayDinner(),
-                    userMealPlan.getTuesdayOther(),
-                    userMealPlan.getWednesdayBreakfast(),
-                    userMealPlan.getWednesdayLunch(),
-                    userMealPlan.getWednesdayDinner(),
-                    userMealPlan.getWednesdayOther(),
-                    userMealPlan.getThursdayBreakfast(),
-                    userMealPlan.getThursdayLunch(),
-                    userMealPlan.getThursdayDinner(),
-                    userMealPlan.getThursdayOther(),
-                    userMealPlan.getFridayBreakfast(),
-                    userMealPlan.getFridayLunch(),
-                    userMealPlan.getFridayDinner(),
-                    userMealPlan.getFridayOther(),
-                    userMealPlan.getSaturdayBreakfast(),
-                    userMealPlan.getSaturdayLunch(),
-                    userMealPlan.getSaturdayDinner(),
-                    userMealPlan.getSaturdayOther(),
-                    userMealPlan.getSundayBreakfast(),
-                    userMealPlan.getSundayLunch(),
-                    userMealPlan.getSundayDinner(),
-                    userMealPlan.getSundayOther());
-            return getUserMealPlanByUserMealPlanId(newId);
+        public UserMealPlan createUserMealPlan (int userId) {
+            String sql = "INSERT INTO user_meal_plan (created_by) VALUES (?) RETURNING user_meal_plan_id;";
+            int newId = jdbcTemplate.queryForObject(sql, Integer.class, userId);
+
+
+//            String sql = "INSERT INTO user_meal_plan (created_by, monday_breakfast, monday_lunch, monday_dinner, monday_other, " +
+//                    "tuesday_breakfast, tuesday_lunch, tuesday_dinner, tuesday_other, wednesday_breakfast, wednesday_lunch, " +
+//                    "wednesday_dinner, wednesday_other, thursday_breakfast, thursday_lunch, thursday_dinner, thursday_other, " +
+//                    "friday_breakfast, friday_lunch, friday_dinner, friday_other, saturday_breakfast, saturday_lunch, saturday_dinner, " +
+//                    "saturday_other, sunday_breakfast, sunday_lunch, sunday_dinner, sunday_other) RETURNING user_meal_plan_id" +
+//                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+//            int newId = jdbcTemplate.queryForObject(sql, Integer.class, userId,
+//                    userMealPlan.getMondayBreakfast(),
+//                    userMealPlan.getMondayLunch(),
+//                    userMealPlan.getMondayDinner(),
+//                    userMealPlan.getMondayOther(),
+//                    userMealPlan.getTuesdayBreakfast(),
+//                    userMealPlan.getTuesdayLunch(),
+//                    userMealPlan.getTuesdayDinner(),
+//                    userMealPlan.getTuesdayOther(),
+//                    userMealPlan.getWednesdayBreakfast(),
+//                    userMealPlan.getWednesdayLunch(),
+//                    userMealPlan.getWednesdayDinner(),
+//                    userMealPlan.getWednesdayOther(),
+//                    userMealPlan.getThursdayBreakfast(),
+//                    userMealPlan.getThursdayLunch(),
+//                    userMealPlan.getThursdayDinner(),
+//                    userMealPlan.getThursdayOther(),
+//                    userMealPlan.getFridayBreakfast(),
+//                    userMealPlan.getFridayLunch(),
+//                    userMealPlan.getFridayDinner(),
+//                    userMealPlan.getFridayOther(),
+//                    userMealPlan.getSaturdayBreakfast(),
+//                    userMealPlan.getSaturdayLunch(),
+//                    userMealPlan.getSaturdayDinner(),
+//                    userMealPlan.getSaturdayOther(),
+//                    userMealPlan.getSundayBreakfast(),
+//                    userMealPlan.getSundayLunch(),
+//                    userMealPlan.getSundayDinner(),
+//                    userMealPlan.getSundayOther());
+
+//            return getUserMealPlanByUserMealPlanId(newId);
+            return getUserMealPlanByCreatedBy(userId);
 
     }
 
     @Override
     public UserMealPlan updateUserMealPlan(UserMealPlan userMealPlan) {
-        String sql = "UPDATE user_meal_plan (monday_breakfast, monday_lunch, monday_dinner, monday_other," +
-                "tuesday_breakfast, tuesday_lunch, tuesday_dinner, tuesday_other, wednesday_breakfast, wednesday_lunch, " +
-                "wednesday_dinner, wednesday_other, thursday_breakfast, thursday_lunch, thursday_dinner, thursday_other, " +
-                "friday_breakfast, friday_lunch, friday_dinner, friday_other, saturday_breakfast, saturday_lunch, saturday_dinner, " +
-                "saturday_other, sunday_breakfast, sunday_lunch, sunday_dinner, sunday_other) " +
-                "SET (monday_breakfast = ?, monday_lunch = ?, monday_dinner = ?, monday_other = ?, " +
+        String sql = "UPDATE user_meal_plan " +
+                "SET monday_breakfast = ?, monday_lunch = ?, monday_dinner = ?, monday_other = ?, " +
                 "tuesday_breakfast = ?, tuesday_lunch = ?, tuesday_dinner = ?, tuesday_other = ?, " +
                 "wednesday_breakfast = ?, wednesday_lunch = ?, wednesday_dinner = ?, wednesday_other = ?, " +
                 "thursday_breakfast = ?, thursday_lunch = ?, thursday_dinner = ?, thursday_other = ?, " +
                 "friday_breakfast = ?, friday_lunch = ?, friday_dinner = ?, friday_other = ?, " +
-                "saturday_breakfast = ?, saturday_lunch = ?, saturday_dinner = ?, saturday_other?, " +
-                "sunday_breakfast = ?, sunday_lunch =  ?, sunday_dinner = ?, sunday_other = ?)";
+                "saturday_breakfast = ?, saturday_lunch = ?, saturday_dinner = ?, saturday_other = ?, " +
+                "sunday_breakfast = ?, sunday_lunch =  ?, sunday_dinner = ?, sunday_other = ?";
         jdbcTemplate.update(sql, userMealPlan.getMondayBreakfast(),
                 userMealPlan.getMondayLunch(),
                 userMealPlan.getMondayDinner(),
@@ -139,6 +141,8 @@ public class JdbcUserMealPlanDao implements UserMealPlanDao {
         return userMealPlan;
     }
 
+
+
     private UserMealPlan mapRowToUserMealPlan(SqlRowSet result){
         UserMealPlan userMealPlan = new UserMealPlan();
         userMealPlan.setUserMealPlanId(result.getInt("user_meal_plan_id"));
@@ -168,7 +172,7 @@ public class JdbcUserMealPlanDao implements UserMealPlanDao {
         userMealPlan.setSaturdayDinner(result.getInt("saturday_dinner"));
         userMealPlan.setSaturdayOther(result.getInt("saturday_other"));
         userMealPlan.setSundayBreakfast(result.getInt("sunday_breakfast"));
-        userMealPlan.setSaturdayLunch(result.getInt("sunday_lunch"));
+        userMealPlan.setSundayLunch(result.getInt("sunday_lunch"));
         userMealPlan.setSundayDinner(result.getInt("sunday_dinner"));
         userMealPlan.setSundayOther(result.getInt("sunday_other"));
         return userMealPlan;
