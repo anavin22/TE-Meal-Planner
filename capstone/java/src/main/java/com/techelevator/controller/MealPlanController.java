@@ -94,7 +94,7 @@ public class MealPlanController {
     @GetMapping("/userMealPlan/groceryList")
     public List<Ingredient> getAllIngredientsForMealPlanByUserId(Principal principal) {
         int userId = userDao.findIdByUsername(principal.getName());
-        return ingredientDao.getAllIngredientsForMealPlanByUserId(userId);
+        return ingredientDao.getAllIngredientsForRecipesByUserMealPlan(userId);
     }
 
     @PostMapping("/userMealPlan")

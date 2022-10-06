@@ -17,4 +17,5 @@ public interface MealPlanDao{
     MealPlan getMealPlanByMealPlanId(int MealPlanId);
 
     List<MealPlan> getMealPlanByCreatedBy(@PathVariable int createdBy);
+
 }

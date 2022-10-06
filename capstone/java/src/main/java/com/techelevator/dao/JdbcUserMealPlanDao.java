@@ -109,7 +109,7 @@ public class JdbcUserMealPlanDao implements UserMealPlanDao {
                 "thursday_breakfast = ?, thursday_lunch = ?, thursday_dinner = ?, thursday_other = ?, " +
                 "friday_breakfast = ?, friday_lunch = ?, friday_dinner = ?, friday_other = ?, " +
                 "saturday_breakfast = ?, saturday_lunch = ?, saturday_dinner = ?, saturday_other = ?, " +
-                "sunday_breakfast = ?, sunday_lunch =  ?, sunday_dinner = ?, sunday_other = ?";
+                "sunday_breakfast = ?, sunday_lunch =  ?, sunday_dinner = ?, sunday_other = ? WHERE created_by = ?";
         jdbcTemplate.update(sql, userMealPlan.getMondayBreakfast(),
                 userMealPlan.getMondayLunch(),
                 userMealPlan.getMondayDinner(),
@@ -137,7 +137,7 @@ public class JdbcUserMealPlanDao implements UserMealPlanDao {
                 userMealPlan.getSundayBreakfast(),
                 userMealPlan.getSundayLunch(),
                 userMealPlan.getSundayDinner(),
-                userMealPlan.getSundayOther());
+                userMealPlan.getSundayOther(), userMealPlan.getCreatedBy());
         return userMealPlan;
     }
 

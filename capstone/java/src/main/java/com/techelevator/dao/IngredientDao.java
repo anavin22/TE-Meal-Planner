@@ -26,4 +26,6 @@ public interface IngredientDao {
 
     void checkIngredientAndCreateIfNonexistent(Ingredient ingredient);
 
+    List<Ingredient> getAllIngredientsForRecipesByUserMealPlan(int userId);
+
 }

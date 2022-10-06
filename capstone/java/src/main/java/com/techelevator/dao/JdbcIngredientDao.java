@@ -1,19 +1,24 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Ingredient;
+import com.techelevator.model.UserMealPlan;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Component
 public class JdbcIngredientDao implements IngredientDao {
     JdbcTemplate jdbcTemplate;
+    UserMealPlanDao userMealPlanDao;
 
-    public JdbcIngredientDao(JdbcTemplate jdbcTemplate) {
+    public JdbcIngredientDao(JdbcTemplate jdbcTemplate, UserMealPlanDao userMealPlanDao) {
         this.jdbcTemplate = jdbcTemplate;
+        this.userMealPlanDao = userMealPlanDao;
     }
 
     @Override
@@ -120,11 +125,60 @@ public class JdbcIngredientDao implements IngredientDao {
 
     }
 
+    @Override
+    public List<Ingredient> getAllIngredientsForRecipesByUserMealPlan(int userId) {
+        UserMealPlan userMealPlan = userMealPlanDao.getUserMealPlanByCreatedBy(userId);
+        List<Integer> recipeIds = new ArrayList<>();
+        recipeIds.add(userMealPlan.getMondayBreakfast());
+        recipeIds.add(userMealPlan.getMondayLunch());
+        recipeIds.add(userMealPlan.getMondayDinner());
+        recipeIds.add(userMealPlan.getMondayOther());
+        recipeIds.add(userMealPlan.getTuesdayBreakfast());
+        recipeIds.add(userMealPlan.getTuesdayLunch());
+        recipeIds.add(userMealPlan.getTuesdayDinner());
+        recipeIds.add(userMealPlan.getTuesdayOther());
+        recipeIds.add(userMealPlan.getWednesdayBreakfast());
+        recipeIds.add(userMealPlan.getWednesdayLunch());
+        recipeIds.add(userMealPlan.getWednesdayDinner());
+        recipeIds.add(userMealPlan.getWednesdayOther());
+        recipeIds.add(userMealPlan.getThursdayBreakfast());
+        recipeIds.add(userMealPlan.getThursdayLunch());
+        recipeIds.add(userMealPlan.getThursdayDinner());
+        recipeIds.add(userMealPlan.getThursdayOther());
+        recipeIds.add(userMealPlan.getFridayBreakfast());
+        recipeIds.add(userMealPlan.getFridayLunch());
+        recipeIds.add(userMealPlan.getFridayDinner());
+        recipeIds.add(userMealPlan.getFridayOther());
+        recipeIds.add(userMealPlan.getSaturdayBreakfast());
+        recipeIds.add(userMealPlan.getSaturdayLunch());
+        recipeIds.add(userMealPlan.getSaturdayDinner());
+        recipeIds.add(userMealPlan.getSaturdayOther());
+        recipeIds.add(userMealPlan.getSundayBreakfast());
+        recipeIds.add(userMealPlan.getSundayLunch());
+        recipeIds.add(userMealPlan.getSundayDinner());
+        recipeIds.add(userMealPlan.getSundayOther());
+
+        List<Ingredient> ingredientList = new ArrayList<>();
+        for(int recipe : recipeIds){
+            List<Ingredient> temp = getAllIngredientsByRecipeId(recipe);
+            for(Ingredient eachIngredient : temp){
+                ingredientList.add(eachIngredient);
+
+            }
+        }
+        Collections.sort(ingredientList, new Comparator<Ingredient>() {
+            @Override
+            public int compare(Ingredient o1, Ingredient o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
+                return ingredientList;
+    }
+
     private Ingredient mapRowToIngredient(SqlRowSet result) {
         Ingredient ingredient = new Ingredient();
         ingredient.setIngredientId(result.getInt("ingredient_id"));
         ingredient.setName(result.getString("ingredient_name"));
-        //ingredient.setType(result.getString("ingredient_type"));
         ingredient.setQuantity(result.getDouble("quantity"));
         ingredient.setUnit(result.getString("unit"));
         return ingredient;

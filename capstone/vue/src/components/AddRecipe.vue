@@ -8,7 +8,7 @@
         v-model="newName"
         placeholder="What are you making?"
         required
-      /><br>
+      /><br />
 
       <label for="ImageUrl">Image URL: </label>
       <input
@@ -17,16 +17,14 @@
         v-model="imageUrl"
         placeholder="Paste the image URL here"
         required
-      /><br>
+      /><br />
 
-      <button type="submit">Add Recipe</button><button @click.prevent="submitted = true">Close</button>
+      <button type="submit">Add Recipe</button
+      ><button @click.prevent="submitted = true">Close</button>
     </form>
-    
+
     <h3>Image Preview</h3>
     <img id="new-pic" :src="imageUrl" />
-
-
-
 
     <!-- <span v-show="submitted">
       <h2 id="new-name">{{ newName }}</h2>
@@ -69,7 +67,6 @@ export default {
 </script>
 
 <style>
-
 #add-recipe {
   position: fixed;
   right: 5%;
@@ -79,16 +76,15 @@ export default {
   width: 40%;
   box-shadow: -5px 3px 3px darkslategray;
   border-radius: 15px;
-  background-color: #fda172;
+  background-color: aliceblue;
   z-index: 99999;
 }
-
 
 #new-pic {
   max-width: 80%;
   height: auto;
   border-radius: 30px;
-   box-shadow: -5px 3px 3px darkslategray;
+  box-shadow: -5px 3px 3px darkslategray;
 }
 
 #new-name {

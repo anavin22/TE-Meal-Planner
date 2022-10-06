@@ -1,54 +1,54 @@
 <template>
   <div id="add-instructions">
-
-<form>
-        <h3>Add Instructions</h3>
-        <textarea id="add-instruction" v-model="instructionText" placeholder="Enter your instructions one step at a time." />
-        <button @click.prevent.stop="addInstructionToWorkingRecipe" >Add Instruction to Recipe</button>
-
-
-      </form>
-
-
-
+    <form>
+      <h3>Add Instructions</h3>
+      <textarea
+        id="add-instruction"
+        v-model="instructionText"
+        placeholder="Enter your instructions one step at a time."
+      />
+      <button @click.prevent.stop="addInstructionToWorkingRecipe">
+        Add Instruction to Recipe
+      </button>
+    </form>
   </div>
 </template>
 
 <script>
 import RecipeService from "../services/RecipeService";
 export default {
-    name: "addInstructions",
-    data() {
-        return {
-            instructionText: "",
+  name: "addInstructions",
+  data() {
+    return {
+      instructionText: "",
+    };
+  },
+  methods: {
+    addInstructionToWorkingRecipe() {
+      let workingInstruction = {
+        recipeId: this.$store.state.workingId,
+        sequence: this.sequence,
+        instruction_text: this.instructionText,
+      };
 
+      RecipeService.addInstructionToRecipe(workingInstruction).then(
+        (response) => {
+          this.$store.commit(
+            "ADD_INSTRUCTION_TO_WORKING_RECIPE",
+            workingInstruction
+          );
+          this.instructionText = "";
+          return response.data;
         }
+      );
     },
-    methods: {
-        addInstructionToWorkingRecipe() {
-
-        let workingInstruction = 
-        {
-            recipeId: this.$store.state.workingId,
-            sequence: this.sequence,
-            instruction_text: this.instructionText
-        };
-
-        RecipeService
-        .addInstructionToRecipe(workingInstruction)
-        .then(response => {
-                this.$store.commit('ADD_INSTRUCTION_TO_WORKING_RECIPE', workingInstruction);
-                this.instructionText = '';
-                return response.data;
-        });
-    }
-    }
-}
+  },
+};
 </script>
 
 <style>
 #add-instructions {
-  position: fixed;
+  position: absolute;
   left: 0;
   right: 0;
   margin: auto;

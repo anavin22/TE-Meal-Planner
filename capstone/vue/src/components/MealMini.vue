@@ -13,7 +13,6 @@
           v-for="recipe in recipes"
           :key="recipe.recipeId"
           v-bind:recipe="recipe"
-
           @click.native="updateUserPlan(recipe.recipeId, recipe.recipeName)"
         />
       </div>
@@ -100,7 +99,7 @@ export default {
   width: 40%;
   box-shadow: -5px 3px 3px darkslategray;
   border-radius: 15px;
-  background-color: #fda172;
+  background-color: aliceblue;
   z-index: 99999;
 }
 #mini-box {
